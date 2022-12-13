@@ -23,16 +23,17 @@ function createData(
     name: string,
     unit: string,
     type: string,
+    group: string,
 ) {
-    return {name, unit, type};
+    return {name, unit, type, group};
 }
 
 const rows = [
-    createData('id', 'Ola Normann', 'Viken videregående skole', 'elev'),
-    createData('id', 'Kari Normann', 'Viken videregående skole', 'elev'),
+    createData('id', 'Ola Normann', 'Viken videregående skole', 'elev', 'Basisgruppe 1FBA'),
+    createData('id', 'Kari Normann', 'Viken videregående skole', 'elev', 'Basisgruppe 1FBA'),
 ];
 
-export default function UserTable() {
+export default function BasicTable() {
     const classes = useStyles();
     return (
         <Box sx={{p: 1}}>
@@ -43,6 +44,7 @@ export default function UserTable() {
                             <TableCell align="left">Navn</TableCell>
                             <TableCell align="left">Enhet</TableCell>
                             <TableCell align="left">Brukertype</TableCell>
+                            <TableCell align="left">Gruppetype</TableCell>
                             <TableCell align="left"></TableCell>
                         </TableRow>
                     </TableHead>
@@ -57,6 +59,7 @@ export default function UserTable() {
                                 </TableCell>
                                 <TableCell align="left">{row.unit}</TableCell>
                                 <TableCell align="left">{row.type}</TableCell>
+                                <TableCell align="left">{row.group}</TableCell>
                                 <TableCell align="left">
                                     <IconButton aria-label="settings"
                                                 component={Link} to="/info"
