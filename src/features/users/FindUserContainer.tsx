@@ -3,6 +3,7 @@ import SearchFieldUser from "./SearchFieldUsers";
 import {createStyles, makeStyles} from "@mui/styles";
 import FilterUnitUser from "./FilterUnitUser";
 import FilterGroupUser from "./FilterGroupUser";
+import UserTable from "./UserTable";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -31,6 +32,9 @@ function FindUserContainer() {
                     <SearchFieldUser/>
                     <FilterUnitUser/>
                     <FilterGroupUser/>
+                </Box>
+                <Box>
+                    <UserTable/>
                 </Box>
             </Box>
         </Box>
