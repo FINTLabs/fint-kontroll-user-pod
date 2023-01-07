@@ -4,7 +4,7 @@ import {createStyles, makeStyles} from "@mui/styles";
 import FilterUnitUser from "./FilterUnitUser";
 import FilterGroupUser from "./FilterGroupUser";
 import FilterTypeUser from "./FilterTypeUser";
-import UserTable from "./UserTable";
+import {UserTable} from "./UserTable";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({

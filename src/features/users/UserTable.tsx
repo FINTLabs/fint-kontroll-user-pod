@@ -8,8 +8,10 @@ import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
 import {SettingsRounded} from "@mui/icons-material";
 import {createStyles, makeStyles} from "@mui/styles";
-import {Box, Theme} from "@mui/material";
+import {Box, Theme,} from "@mui/material";
 import {Link} from "react-router-dom";
+import {useContext, useEffect} from "react";
+import {UsersContext} from "../../context/userContext";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -18,23 +20,16 @@ const useStyles = makeStyles((theme: Theme) =>
         }
     }));
 
-function createData(
-    id: string,
-    name: string,
-    unit: string,
-    type: string,
-    group: string,
-) {
-    return {name, unit, type, group};
-}
-
-const rows = [
-    createData('id', 'Ola Normann', 'Viken videregående skole', 'elev', 'Basisgruppe 1FBA'),
-    createData('id', 'Kari Normann', 'Viken videregående skole', 'elev', 'Basisgruppe 1FBA'),
-];
-
-export default function BasicTable() {
+export const UserTable: any = () => {
     const classes = useStyles();
+    const {getAllUsers, users, getUserById, user} = useContext(UsersContext);
+
+
+    useEffect(() => {
+        getAllUsers();
+        getUserById("1");
+    }, [])
+
     return (
         <Box sx={{p: 1}}>
             <TableContainer sx={{maxWidth: 1040}}>
@@ -49,17 +44,17 @@ export default function BasicTable() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
+                        {users.map((user) => (
                             <TableRow
-                                key={row.name}
+                                key={user.resourceId}
                                 sx={{'&:last-child td, &:last-child th': {border: 0}}}
                             >
                                 <TableCell align="left" component="th" scope="row">
-                                    {row.name}
+                                    {`${user.firstName} ${user.lastName}`}
                                 </TableCell>
-                                <TableCell align="left">{row.unit}</TableCell>
-                                <TableCell align="left">{row.type}</TableCell>
-                                <TableCell align="left">{row.group}</TableCell>
+                                <TableCell align="left">{}</TableCell>
+                                <TableCell align="left">{user.userType}</TableCell>
+                                <TableCell align="left">{}</TableCell>
                                 <TableCell align="left">
                                     <IconButton aria-label="settings"
                                                 component={Link} to="/info"
@@ -74,4 +69,4 @@ export default function BasicTable() {
             </TableContainer>
         </Box>
     );
-}
+};
