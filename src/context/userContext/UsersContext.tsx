@@ -1,6 +1,6 @@
 import React, {createContext, ReactNode, useState,} from "react";
 import UserRepository from "../../repositories/UserRepository";
-import {contextDefaultValues, IUserItem, UserContextState} from "./types";
+import {contextDefaultValues, IUserItem, IUserPage, UserContextState} from "./types";
 
 
 export const UsersContext = createContext<UserContextState>(
@@ -14,6 +14,7 @@ type Props = {
 const UsersProvider = ({children}: Props) => {
     const [user, setUser] = useState<IUserItem | null>(contextDefaultValues.user);
     const [users, setUsers] = useState<IUserItem[]>(contextDefaultValues.users);
+    const [page, setPage] = useState<IUserPage | null>(contextDefaultValues.page);
 
     /*const userList: any[] = [
         {user: user, setter: setUser},
@@ -37,13 +38,21 @@ const UsersProvider = ({children}: Props) => {
             .catch((err) => console.error(err))
     }
 
+    const getUserPage = (page: number, size: number = 10) => {
+        UserRepository.getUserPage(page, size)
+            .then(response => setPage(response.data))
+            .catch((err) => console.error(err))
+    }
+
     return (
         <UsersContext.Provider
             value={{
+                page,
                 user,
                 users,
                 getAllUsers,
-                getUserById
+                getUserById,
+                getUserPage,
             }}
         >
             {children}

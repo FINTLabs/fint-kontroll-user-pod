@@ -8,10 +8,10 @@ import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
 import {SettingsRounded} from "@mui/icons-material";
 import {createStyles, makeStyles} from "@mui/styles";
-import {Box, Theme,} from "@mui/material";
+import {Box, Button, Theme,} from "@mui/material";
 import {Link} from "react-router-dom";
-import {useContext, useEffect} from "react";
-import {UsersContext} from "../../context/userContext";
+import {useContext, useEffect, useState} from "react";
+import {UsersContext} from "../../context/userContext/UsersContext";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -22,16 +22,23 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const UserTable: any = () => {
     const classes = useStyles();
-    const {getAllUsers, users, getUserById, user} = useContext(UsersContext);
+    const {getUserPage, page, getUserById, user} = useContext(UsersContext);
+    const [currentPage, setCurrentPage] = useState<number>(0);
 
 
     useEffect(() => {
-        getAllUsers();
+        getUserPage(currentPage, 10);
         getUserById("1");
     }, [])
 
+
+    const nextPage = () => {
+        setCurrentPage(currentPage + 1);
+        getUserPage(currentPage, 10);
+    }
     return (
         <Box sx={{p: 1}}>
+            <Button onClick={nextPage} disabled={currentPage === page?.totalPages}>Next</Button>
             <TableContainer sx={{maxWidth: 1040}}>
                 <Table aria-label="simple icon">
                     <TableHead>
@@ -44,7 +51,7 @@ export const UserTable: any = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {users.map((user) => (
+                        {page?.users.map((user) => (
                             <TableRow
                                 key={user.resourceId}
                                 sx={{'&:last-child td, &:last-child th': {border: 0}}}
