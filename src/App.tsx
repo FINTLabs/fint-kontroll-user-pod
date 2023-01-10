@@ -3,7 +3,7 @@ import {createTheme} from '@mui/material/styles';
 import {ThemeProvider} from "@mui/styles";
 import {Routes, Route} from 'react-router-dom';
 import FindUserContainer from './features/users/FindUserContainer'
-import UsersProvider from "./context/userContext";
+import UsersProvider from "./context/userContext/UsersContext";
 
 const theme = createTheme({
     palette: {

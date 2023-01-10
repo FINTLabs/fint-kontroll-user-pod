@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
-import {SettingsRounded} from "@mui/icons-material";
+import {ArrowForwardIos, SettingsRounded} from "@mui/icons-material";
 import {createStyles, makeStyles} from "@mui/styles";
 import {Box, Button, Theme,} from "@mui/material";
 import {Link} from "react-router-dom";
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         icon: {
             color: theme.palette.primary.main
-        }
+        },
     }));
 
 export const UserTable: any = () => {
@@ -25,22 +25,20 @@ export const UserTable: any = () => {
     const {getUserPage, page, getUserById, user} = useContext(UsersContext);
     const [currentPage, setCurrentPage] = useState<number>(0);
 
-
     useEffect(() => {
         getUserPage(currentPage, 10);
         getUserById("1");
     }, [])
 
-
     const nextPage = () => {
+        getUserPage(currentPage + 1, 10);
         setCurrentPage(currentPage + 1);
-        getUserPage(currentPage, 10);
     }
+
     return (
         <Box sx={{p: 1}}>
-            <Button onClick={nextPage} disabled={currentPage === page?.totalPages}>Next</Button>
             <TableContainer sx={{maxWidth: 1040}}>
-                <Table aria-label="simple icon">
+                <Table aria-label="Users">
                     <TableHead>
                         <TableRow>
                             <TableCell align="left">Navn</TableCell>
@@ -74,6 +72,14 @@ export const UserTable: any = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
+            <Button
+                variant="text"
+                endIcon={<ArrowForwardIos/>}
+                onClick={nextPage}
+                disabled={currentPage === page?.totalPages}
+            >
+                Neste
+            </Button>
         </Box>
     );
 };
