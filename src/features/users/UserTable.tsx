@@ -24,14 +24,15 @@ export const UserTable: any = () => {
     const classes = useStyles();
     const {getUserPage, page, getUserById, user} = useContext(UsersContext);
     const [currentPage, setCurrentPage] = useState<number>(0);
+    const [size] = useState<number>(4)
 
     useEffect(() => {
-        getUserPage(currentPage, 10);
+        getUserPage(currentPage, size);
         getUserById("1");
     }, [])
 
     const nextPage = () => {
-        getUserPage(currentPage + 1, 10);
+        getUserPage(currentPage + 1, size);
         setCurrentPage(currentPage + 1);
     }
 
@@ -44,22 +45,20 @@ export const UserTable: any = () => {
                             <TableCell align="left">Navn</TableCell>
                             <TableCell align="left">Enhet</TableCell>
                             <TableCell align="left">Brukertype</TableCell>
-                            <TableCell align="left">Gruppetype</TableCell>
                             <TableCell align="left"></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {page?.users.map((user) => (
                             <TableRow
-                                key={user.resourceId}
+                                key={user.id}
                                 sx={{'&:last-child td, &:last-child th': {border: 0}}}
                             >
                                 <TableCell align="left" component="th" scope="row">
-                                    {`${user.firstName} ${user.lastName}`}
+                                    {user.fullName}
                                 </TableCell>
-                                <TableCell align="left">{}</TableCell>
+                                <TableCell align="left">{user.organisationUnitName}</TableCell>
                                 <TableCell align="left">{user.userType}</TableCell>
-                                <TableCell align="left">{}</TableCell>
                                 <TableCell align="left">
                                     <IconButton aria-label="settings"
                                                 component={Link} to="/info"
@@ -74,6 +73,7 @@ export const UserTable: any = () => {
             </TableContainer>
             <Button
                 variant="text"
+                color={"primary"}
                 endIcon={<ArrowForwardIos/>}
                 onClick={nextPage}
                 disabled={currentPage === page?.totalPages}

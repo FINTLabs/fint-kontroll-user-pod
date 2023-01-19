@@ -1,16 +1,9 @@
 export interface IUserItem {
-    firstName: string;
-    lastName: string;
-    userType: string;
-    userName: string;
-    mobilePhone: string;
-    email: string;
-    resourceId: string;
-    id: number;
-    identityProviderUserObjectId: string;
-    managerRef: string;
+    "id": number;
+    "fullName": string;
+    "organisationUnitName": string;
+    "userType": string;
 }
-
 
 export interface IUserPage {
     totalItems: number;
