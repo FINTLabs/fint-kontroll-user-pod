@@ -2,7 +2,6 @@ import {Box, Theme} from "@mui/material";
 import SearchFieldUser from "./SearchFieldUsers";
 import {createStyles, makeStyles} from "@mui/styles";
 import FilterUnitUser from "./FilterUnitUser";
-import FilterGroupUser from "./FilterGroupUser";
 import FilterTypeUser from "./FilterTypeUser";
 import {UserTable} from "./UserTable";
 
@@ -33,7 +32,6 @@ function FindUserContainer() {
                     <SearchFieldUser/>
                     <FilterUnitUser/>
                     <FilterTypeUser/>
-                    <FilterGroupUser/>
                 </Box>
                 <Box>
                     <UserTable/>
