@@ -6,9 +6,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
-import {ArrowForwardIos, SettingsRounded} from "@mui/icons-material";
+import {ArrowBackIos, ArrowForwardIos, SettingsRounded} from "@mui/icons-material";
 import {createStyles, makeStyles} from "@mui/styles";
-import {Box, Button, Theme,} from "@mui/material";
+import {Box, Button, Theme, Typography,} from "@mui/material";
 import {Link} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {UsersContext} from "../../context/userContext/UsersContext";
@@ -18,13 +18,17 @@ const useStyles = makeStyles((theme: Theme) =>
         icon: {
             color: theme.palette.primary.main
         },
+        buttons: {
+            display: "flex",
+            justifyContent: "center",
+        },
     }));
 
 export const UserTable: any = () => {
     const classes = useStyles();
     const {getUserPage, page, getUserById, user} = useContext(UsersContext);
     const [currentPage, setCurrentPage] = useState<number>(0);
-    const [size] = useState<number>(4)
+    const [size] = useState<number>(8)
 
     useEffect(() => {
         getUserPage(currentPage, size);
@@ -34,6 +38,11 @@ export const UserTable: any = () => {
     const nextPage = () => {
         getUserPage(currentPage + 1, size);
         setCurrentPage(currentPage + 1);
+    }
+
+    const previousPage = () => {
+        getUserPage(currentPage - 1, size);
+        setCurrentPage(currentPage - 1);
     }
 
     return (
@@ -71,15 +80,32 @@ export const UserTable: any = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Button
-                variant="text"
-                color={"primary"}
-                endIcon={<ArrowForwardIos/>}
-                onClick={nextPage}
-                disabled={currentPage === page?.totalPages}
-            >
-                Neste
-            </Button>
+            <Box className={classes.buttons}>
+                <Button
+                    variant="text"
+                    color={"primary"}
+                    startIcon={<ArrowBackIos/>}
+                    onClick={previousPage}
+                    disabled={currentPage === 0}
+                    sx={{mr: 4, mt: 5}}
+                >
+                    Forrige
+                </Button>
+                <Button
+                    variant="text"
+                    color={"primary"}
+                    endIcon={<ArrowForwardIos/>}
+                    onClick={nextPage}
+                    disabled={currentPage === page?.totalPages - 1}
+                    sx={{mt: 5}}
+                >
+                    Neste
+                </Button>
+
+            </Box>
+            <Typography align={"center"}>
+                side {currentPage + 1} av {page?.totalPages}
+            </Typography>
         </Box>
     );
 };

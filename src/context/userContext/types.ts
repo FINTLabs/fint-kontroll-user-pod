@@ -7,7 +7,7 @@ export interface IUserItem {
 
 export interface IUserPage {
     totalItems: number;
-    totalPages: number;
+    totalPages: number | any;
     currentPage: number;
     users: IUserItem[];
 }
