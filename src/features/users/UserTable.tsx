@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
 import {ArrowBackIos, ArrowForwardIos, SettingsRounded} from "@mui/icons-material";
 import {createStyles, makeStyles} from "@mui/styles";
-import {Box, Button, Theme,} from "@mui/material";
+import {Box, Button, Theme, Typography,} from "@mui/material";
 import {Link} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {UsersContext} from "../../context/userContext/UsersContext";
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
         buttons: {
             display: "flex",
             justifyContent: "center",
-        }
+        },
     }));
 
 export const UserTable: any = () => {
@@ -101,7 +101,11 @@ export const UserTable: any = () => {
                 >
                     Neste
                 </Button>
+
             </Box>
+            <Typography align={"center"}>
+                side {currentPage + 1} av {page?.totalPages}
+            </Typography>
         </Box>
     );
 };
