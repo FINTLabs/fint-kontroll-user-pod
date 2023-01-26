@@ -1,12 +1,17 @@
 import * as React from 'react';
-import {FormControl, InputLabel, MenuItem, Select, Theme} from "@mui/material";
+import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Theme} from "@mui/material";
+import {useContext} from "react";
+import {UsersContext} from "../../context/userContext";
 
 export default function FilterGroupUser() {
 
-    function handleChange() {
+    const {userType, updateUserType, getUserPage} = useContext(UsersContext);
+
+    function handleChange(event: SelectChangeEvent) {
+        updateUserType(event.target.value as string);
+        getUserPage(0, 10, event.target.value as string);
     }
 
-    let type;
     return (
         <FormControl style={{minWidth: 220}} sx={{mx: '2rem'}}>
             <InputLabel
@@ -17,12 +22,13 @@ export default function FilterGroupUser() {
             <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select-autowidth"
-                value={type}
+                value={userType}
                 label="Brukertype"
                 onChange={handleChange}
             >
-                <MenuItem value={1}>Elev</MenuItem>
-                <MenuItem value={2}>Ansatt</MenuItem>
+                <MenuItem value={"all"}>Alle</MenuItem>
+                <MenuItem value={"students"}>Elev</MenuItem>
+                <MenuItem value={"employees"}>Ansatt</MenuItem>
             </Select>
         </FormControl>
     );

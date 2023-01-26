@@ -26,22 +26,22 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const UserTable: any = () => {
     const classes = useStyles();
-    const {getUserPage, page, getUserById, user} = useContext(UsersContext);
+    const {getUserPage, page, getUserById, userType} = useContext(UsersContext);
     const [currentPage, setCurrentPage] = useState<number>(0);
     const [size] = useState<number>(8)
 
     useEffect(() => {
-        getUserPage(currentPage, size);
+        getUserPage(currentPage, size, userType);
         getUserById("1");
     }, [])
 
     const nextPage = () => {
-        getUserPage(currentPage + 1, size);
+        getUserPage(currentPage + 1, size, userType);
         setCurrentPage(currentPage + 1);
     }
 
     const previousPage = () => {
-        getUserPage(currentPage - 1, size);
+        getUserPage(currentPage - 1, size, userType);
         setCurrentPage(currentPage - 1);
     }
 
