@@ -1,15 +1,20 @@
 import * as React from 'react';
 import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Theme} from "@mui/material";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import {UsersContext} from "../../context/userContext";
 
 export default function FilterGroupUser() {
 
-    const {userType, updateUserType, getUserPage} = useContext(UsersContext);
+    const {userType, updateUserType, getUserPage, page, currentPage, updateCurrentPage} = useContext(UsersContext);
 
     function handleChange(event: SelectChangeEvent) {
         updateUserType(event.target.value as string);
-        getUserPage(0, 10, event.target.value as string);
+        getUserPage(0, 3, event.target.value as string);
+    }
+
+    const updatePage = () => {
+        updateCurrentPage(0)
+        getUserPage(currentPage - 1, 3, userType);
     }
 
     return (
@@ -26,9 +31,9 @@ export default function FilterGroupUser() {
                 label="Brukertype"
                 onChange={handleChange}
             >
-                <MenuItem value={"all"}>Alle</MenuItem>
-                <MenuItem value={"students"}>Elev</MenuItem>
-                <MenuItem value={"employees"}>Ansatt</MenuItem>
+                <MenuItem value={"all"} onClick={updatePage}>Alle</MenuItem>
+                <MenuItem value={"students"} onClick={updatePage}>Elev</MenuItem>
+                <MenuItem value={"employees"} onClick={updatePage}>Ansatt</MenuItem>
             </Select>
         </FormControl>
     );

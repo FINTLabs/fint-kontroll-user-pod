@@ -15,6 +15,7 @@ const UsersProvider = ({children}: Props) => {
     const [users, setUsers] = useState<IUserItem[]>(contextDefaultValues.users);
     const [page, setPage] = useState<IUserPage | null>(contextDefaultValues.page);
     const [userType, setUserType] = useState<string>(contextDefaultValues.userType)
+    const [currentPage, setCurrentPage] = useState<number>(contextDefaultValues.currentPage);
 
     const getUserById = (id: string) => {
         UserRepository.getUserByResourceId(id)
@@ -33,7 +34,7 @@ const UsersProvider = ({children}: Props) => {
             .catch((err) => console.error(err))
     }
 
-    const getUserPage = (page: number, size: number = 10, userType: string) => {
+    const getUserPage = (page: number, size: number, userType: string) => {
         UserRepository.getUserPage(page, size, userType)
             .then(response => setPage(response.data))
             .catch((err) => console.error(err))
@@ -43,6 +44,10 @@ const UsersProvider = ({children}: Props) => {
         setUserType(userType)
     }
 
+    const updateCurrentPage = (currentPage: number) => {
+        setCurrentPage(currentPage)
+    }
+
     return (
         <UsersContext.Provider
             value={{
@@ -50,6 +55,8 @@ const UsersProvider = ({children}: Props) => {
                 page,
                 user,
                 users,
+                currentPage,
+                updateCurrentPage,
                 getAllUsers,
                 getUserById,
                 getUserPage,

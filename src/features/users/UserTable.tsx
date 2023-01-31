@@ -26,9 +26,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const UserTable: any = () => {
     const classes = useStyles();
-    const {getUserPage, page, getUserById, userType} = useContext(UsersContext);
-    const [currentPage, setCurrentPage] = useState<number>(0);
-    const [size] = useState<number>(8)
+    const {getUserPage, page, getUserById, userType, currentPage, updateCurrentPage} = useContext(UsersContext);
+    const [size] = useState<number>(3)
 
     useEffect(() => {
         getUserPage(currentPage, size, userType);
@@ -37,12 +36,12 @@ export const UserTable: any = () => {
 
     const nextPage = () => {
         getUserPage(currentPage + 1, size, userType);
-        setCurrentPage(currentPage + 1);
+        updateCurrentPage(currentPage + 1);
     }
 
     const previousPage = () => {
         getUserPage(currentPage - 1, size, userType);
-        setCurrentPage(currentPage - 1);
+        updateCurrentPage(currentPage - 1);
     }
 
     return (
@@ -101,7 +100,6 @@ export const UserTable: any = () => {
                 >
                     Neste
                 </Button>
-
             </Box>
             <Typography align={"center"}>
                 side {currentPage + 1} av {page?.totalPages}
