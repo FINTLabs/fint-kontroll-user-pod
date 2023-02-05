@@ -1,11 +1,11 @@
 import axios from 'axios';
-import {IUserItem, IUserPage} from "../context/userContext/types";
+import {IUser, IUserItem, IUserPage} from "../context/userContext/types";
 
 const getUsers = () => {
     return axios.get<IUserItem[]>('/api/users');
 }
 
-const getUserById = (id: string) => axios.get<IUserItem>(`/api/users/id/${id}`);
+const getUserById = (id: string) => axios.get<IUser>(`/api/users/id/${id}`);
 
 const getUserPage = (page: number, size: number, userType: string) => {
     if (userType === "all") {

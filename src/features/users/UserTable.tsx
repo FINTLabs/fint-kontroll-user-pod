@@ -67,7 +67,8 @@ export const UserTable: any = () => {
                                 <TableCell align="left">{user.userType}</TableCell>
                                 <TableCell align="left">
                                     <IconButton aria-label="settings"
-                                                component={Link} to="/info"
+                                                component={Link}
+                                                to={`/info/${user.id}`}
                                     >
                                         <SettingsRounded className={classes.icon}/>
                                     </IconButton>
