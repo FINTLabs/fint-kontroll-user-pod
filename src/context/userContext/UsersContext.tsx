@@ -16,6 +16,7 @@ const UsersProvider = ({children}: Props) => {
     const [page, setPage] = useState<IUserPage | null>(contextDefaultValues.page);
     const [userType, setUserType] = useState<string>(contextDefaultValues.userType)
     const [currentPage, setCurrentPage] = useState<number>(contextDefaultValues.currentPage);
+    const [size, setSize] = useState<number>(contextDefaultValues.size);
 
     const getUserById = (id: string) => {
         UserRepository.getUserByResourceId(id)
@@ -56,6 +57,7 @@ const UsersProvider = ({children}: Props) => {
                 user,
                 users,
                 currentPage,
+                size,
                 updateCurrentPage,
                 getAllUsers,
                 getUserById,

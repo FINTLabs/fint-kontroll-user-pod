@@ -10,7 +10,7 @@ import {ArrowBackIos, ArrowForwardIos, SettingsRounded} from "@mui/icons-materia
 import {createStyles, makeStyles} from "@mui/styles";
 import {Box, Button, Theme, Typography,} from "@mui/material";
 import {Link} from "react-router-dom";
-import {useContext, useEffect, useState} from "react";
+import {useContext, useEffect} from "react";
 import {UsersContext} from "../../context/userContext/UsersContext";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -26,12 +26,10 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const UserTable: any = () => {
     const classes = useStyles();
-    const {getUserPage, page, getUserById, userType, currentPage, updateCurrentPage} = useContext(UsersContext);
-    const [size] = useState<number>(3)
+    const {getUserPage, page, userType, currentPage, updateCurrentPage, size} = useContext(UsersContext);
 
     useEffect(() => {
         getUserPage(currentPage, size, userType);
-        getUserById("1");
     }, [])
 
     const nextPage = () => {

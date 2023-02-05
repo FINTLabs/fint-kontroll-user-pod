@@ -17,13 +17,13 @@ export type UserContextState = {
     users: IUserItem[];
     page: IUserPage | null;
     currentPage: number;
+    size: number;
     updateCurrentPage: (currentPage: number) => void;
     userType: string;
     getUserById: (id: string) => void;
     getAllUsers: () => void;
     getUserPage: (page: number, size: number, userType: string) => void;
     updateUserType: (userType: string) => void;
-
 };
 
 export const contextDefaultValues: UserContextState = {
@@ -32,6 +32,7 @@ export const contextDefaultValues: UserContextState = {
     users: [],
     page: null,
     currentPage: 0,
+    size: 5,
     getAllUsers: () => {
     },
     getUserById: (id: string) => {
@@ -42,5 +43,4 @@ export const contextDefaultValues: UserContextState = {
     },
     updateCurrentPage(currentPage: number): void {
     },
-
 };
