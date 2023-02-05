@@ -7,6 +7,7 @@ import {useContext, useEffect} from "react";
 import {UsersContext} from "../../context/userContext";
 import {AlternateEmail, Apartment, Person, PersonOutline, Phone} from "@mui/icons-material";
 import {useParams} from "react-router-dom";
+import {ResourceTable} from "./ResourceTable";
 
 const Demo = styled('div')(({theme}) => ({
     backgroundColor: theme.palette.background.paper,
@@ -90,6 +91,7 @@ function UserInfo() {
                     </Demo>
                 </Grid>
             </Grid>
+            <ResourceTable/>
         </Box>
     );
 }
