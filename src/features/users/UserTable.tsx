@@ -10,7 +10,7 @@ import {ArrowBackIos, ArrowForwardIos, SettingsRounded} from "@mui/icons-materia
 import {createStyles, makeStyles} from "@mui/styles";
 import {Box, Button, Theme, Typography,} from "@mui/material";
 import {Link} from "react-router-dom";
-import {useContext, useEffect, useState} from "react";
+import {useContext, useEffect} from "react";
 import {UsersContext} from "../../context/userContext/UsersContext";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -26,23 +26,20 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const UserTable: any = () => {
     const classes = useStyles();
-    const {getUserPage, page, getUserById, user} = useContext(UsersContext);
-    const [currentPage, setCurrentPage] = useState<number>(0);
-    const [size] = useState<number>(8)
+    const {getUserPage, page, userType, currentPage, updateCurrentPage, size} = useContext(UsersContext);
 
     useEffect(() => {
-        getUserPage(currentPage, size);
-        getUserById("1");
+        getUserPage(currentPage, size, userType);
     }, [])
 
     const nextPage = () => {
-        getUserPage(currentPage + 1, size);
-        setCurrentPage(currentPage + 1);
+        getUserPage(currentPage + 1, size, userType);
+        updateCurrentPage(currentPage + 1);
     }
 
     const previousPage = () => {
-        getUserPage(currentPage - 1, size);
-        setCurrentPage(currentPage - 1);
+        getUserPage(currentPage - 1, size, userType);
+        updateCurrentPage(currentPage - 1);
     }
 
     return (
@@ -101,7 +98,6 @@ export const UserTable: any = () => {
                 >
                     Neste
                 </Button>
-
             </Box>
             <Typography align={"center"}>
                 side {currentPage + 1} av {page?.totalPages}
