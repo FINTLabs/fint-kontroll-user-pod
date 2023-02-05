@@ -7,8 +7,6 @@ import {useContext, useEffect} from "react";
 import {UsersContext} from "../../context/userContext";
 import {AlternateEmail, Apartment, Person, PersonOutline, Phone} from "@mui/icons-material";
 import {useParams} from "react-router-dom";
-import {ResourceTable} from "./ResourceTable";
-import H1 from "../Headings/H1";
 
 const Demo = styled('div')(({theme}) => ({
     backgroundColor: theme.palette.background.paper,
@@ -27,7 +25,6 @@ function UserInfo() {
 
     return (
         <Box sx={{flexGrow: 1, maxWidth: 752}}>
-            <H1 title='Brukerinformasjon'/>
             <FormGroup row>
             </FormGroup>
             <Grid container spacing={2}>
@@ -93,7 +90,6 @@ function UserInfo() {
                     </Demo>
                 </Grid>
             </Grid>
-            <ResourceTable/>
         </Box>
     );
 }

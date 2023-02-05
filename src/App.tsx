@@ -5,6 +5,7 @@ import {Routes, Route} from 'react-router-dom';
 import FindUserContainer from './features/users/FindUserContainer';
 import UsersProvider from "./context/userContext/UsersContext";
 import UserInfo from "./features/user-info/UserInfo";
+import UserInfoContainer from "./features/user-info/UserInfoContainer";
 
 const theme = createTheme({
     palette: {
@@ -33,7 +34,7 @@ function App() {
             <UsersProvider>
                 <Routes>
                     <Route path="/" element={<FindUserContainer/>}/>
-                    <Route path="/info/:id" element={<UserInfo/>}/>
+                    <Route path="/info/:id" element={<UserInfoContainer/>}/>
                 </Routes>
             </UsersProvider>
         </ThemeProvider>
