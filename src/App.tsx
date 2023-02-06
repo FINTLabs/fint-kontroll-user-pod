@@ -1,6 +1,6 @@
 import React from 'react';
 import {createTheme} from '@mui/material/styles';
-import {ThemeProvider} from "@mui/styles";
+import { ThemeProvider } from '@mui/material/styles';
 import {Routes, Route} from 'react-router-dom';
 import FindUserContainer from './features/users/FindUserContainer';
 import UsersProvider from "./context/userContext/UsersContext";
