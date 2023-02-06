@@ -33,8 +33,11 @@ function UserInfo() {
                         <List>
                             <ListItem>
                                 <ListItemAvatar>
-                                    <Avatar>
-                                        {<Person/>}
+                                    <Avatar sx={{
+                                        border: '1px solid #4b727a',
+                                        backgroundColor: 'transparent'
+                                    }}>
+                                        {<Person sx={{color: '#4b727a'}}/>}
                                     </Avatar>
                                 </ListItemAvatar>
                                 <ListItemText
@@ -44,8 +47,11 @@ function UserInfo() {
                             </ListItem>
                             <ListItem>
                                 <ListItemAvatar>
-                                    <Avatar>
-                                        {<PersonOutline/>}
+                                    <Avatar sx={{
+                                        border: '1px solid #4b727a',
+                                        backgroundColor: 'transparent'
+                                    }}>
+                                        {<PersonOutline sx={{color: '#4b727a'}}/>}
                                     </Avatar>
                                 </ListItemAvatar>
                                 <ListItemText
@@ -55,8 +61,11 @@ function UserInfo() {
                             </ListItem>
                             <ListItem>
                                 <ListItemAvatar>
-                                    <Avatar>
-                                        {<Apartment/>}
+                                    <Avatar sx={{
+                                        border: '1px solid #4b727a',
+                                        backgroundColor: 'transparent'
+                                    }}>
+                                        {<Apartment sx={{color: '#4b727a'}}/>}
                                     </Avatar>
                                 </ListItemAvatar>
                                 <ListItemText
@@ -66,8 +75,11 @@ function UserInfo() {
                             </ListItem>
                             <ListItem>
                                 <ListItemAvatar>
-                                    <Avatar>
-                                        {<Phone/>}
+                                    <Avatar sx={{
+                                        border: '1px solid #4b727a',
+                                        backgroundColor: 'transparent'
+                                    }}>
+                                        {<Phone sx={{color: '#4b727a'}}/>}
                                     </Avatar>
                                 </ListItemAvatar>
                                 <ListItemText
@@ -77,8 +89,11 @@ function UserInfo() {
                             </ListItem>
                             <ListItem>
                                 <ListItemAvatar>
-                                    <Avatar>
-                                        {<AlternateEmail/>}
+                                    <Avatar sx={{
+                                        border: '1px solid #4b727a',
+                                        backgroundColor: 'transparent'
+                                    }}>
+                                        {<AlternateEmail sx={{color: '#4b727a'}}/>}
                                     </Avatar>
                                 </ListItemAvatar>
                                 <ListItemText

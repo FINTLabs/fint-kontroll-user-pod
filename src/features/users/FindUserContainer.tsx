@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function FindUserContainer() {
     const classes = useStyles();
+
     return (
         <Box className={classes.content}>
             <Box>

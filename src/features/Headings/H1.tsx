@@ -8,7 +8,7 @@ type HeaderProps = {
 
 const H1 = (props: HeaderProps) => {
     return (
-        <Typography variant="h1" sx={{ fontWeight: 'regular', fontSize: 'h5.fontSize', mx: 1}}>
+        <Typography variant="h1" sx={{fontWeight: 'regular', fontSize: 'h5.fontSize', marginBottom: '1rem'}}>
             {props.title}
         </Typography>
     );

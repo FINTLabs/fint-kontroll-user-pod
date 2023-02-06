@@ -4,7 +4,6 @@ import {ThemeProvider} from "@mui/styles";
 import {Routes, Route} from 'react-router-dom';
 import FindUserContainer from './features/users/FindUserContainer';
 import UsersProvider from "./context/userContext/UsersContext";
-import UserInfo from "./features/user-info/UserInfo";
 import UserInfoContainer from "./features/user-info/UserInfoContainer";
 
 const theme = createTheme({

@@ -3,12 +3,12 @@ import * as React from 'react';
 import {Typography} from "@mui/material";
 
 type HeaderProps = {
-    title: string
+    title: string | any
 }
 
 const H2 = (props: HeaderProps) => {
     return (
-        <Typography variant="h1" sx={{ fontWeight: 'regular', fontSize: 'h6.fontSize', mx: 1}}>
+        <Typography variant="h2" sx={{fontWeight: 'light', fontSize: 'h6.fontSize', marginY: '2rem'}}>
             {props.title}
         </Typography>
     );
