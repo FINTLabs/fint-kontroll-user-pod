@@ -32,8 +32,8 @@ export default function FilterGroupUser() {
                 onChange={handleChange}
             >
                 <MenuItem value={"all"} onClick={updatePage}>Alle</MenuItem>
-                <MenuItem value={"students"} onClick={updatePage}>Elev</MenuItem>
-                <MenuItem value={"employees"} onClick={updatePage}>Ansatt</MenuItem>
+                <MenuItem value={"STUDENT"} onClick={updatePage}>Elev</MenuItem>
+                <MenuItem value={"EMPLOYEE"} onClick={updatePage}>Ansatt</MenuItem>
             </Select>
         </FormControl>
     );

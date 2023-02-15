@@ -33,12 +33,12 @@ export const UserTable: any = () => {
     }, [])
 
     const nextPage = () => {
-        getUserPage(currentPage + 1, size, userType);
+        getUserPage(currentPage, size, userType);
         updateCurrentPage(currentPage + 1);
     }
 
     const previousPage = () => {
-        getUserPage(currentPage - 1, size, userType);
+        getUserPage(currentPage, size, userType);
         updateCurrentPage(currentPage - 1);
     }
 
