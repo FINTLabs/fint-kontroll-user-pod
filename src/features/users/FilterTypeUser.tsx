@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Theme} from "@mui/material";
+import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent} from "@mui/material";
 import {useContext} from "react";
 import {UsersContext} from "../../context/userContext";
 

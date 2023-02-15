@@ -5,10 +5,10 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 export default function SearchFieldUser() {
     return (
-        <Stack sx={{width: 220, mr: '2rem'}}>
+        <Stack sx={{width: 220, mx: '2rem'}}>
             <Autocomplete
                 freeSolo
-                id="free-solo-2-demo"
+                id="free-solo-search-user"
                 disableClearable
                 options={users.map((option) => option.title)}
                 renderInput={(params) => (

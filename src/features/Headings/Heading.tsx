@@ -6,11 +6,11 @@ type HeaderProps = {
     title: string
 }
 
-const H1 = (props: HeaderProps) => {
+const Heading = (props: HeaderProps) => {
     return (
         <Typography variant="h1" sx={{fontWeight: 'regular', fontSize: 'h5.fontSize', marginBottom: '1rem'}}>
             {props.title}
         </Typography>
     );
 }
-export default H1;
+export default Heading;

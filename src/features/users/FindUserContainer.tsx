@@ -4,13 +4,12 @@ import {createStyles, makeStyles} from "@mui/styles";
 import FilterUnitUser from "./FilterUnitUser";
 import FilterTypeUser from "./FilterTypeUser";
 import {UserTable} from "./UserTable";
+import Heading from "../Headings/Heading";
+import * as React from "react";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         content: {
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
             [theme.breakpoints.up("sm")]: {
                 height: "calc(100% - 64px)",
                 margin: theme.spacing(10)
@@ -19,7 +18,10 @@ const useStyles = makeStyles((theme: Theme) =>
         filters: {
             display: "flex",
             flexDirection: "row",
-            margin: "10px",
+        },
+        table: {
+            display: "flex",
+            flexDirection: "column",
         },
     }));
 
@@ -28,15 +30,14 @@ function FindUserContainer() {
 
     return (
         <Box className={classes.content}>
-            <Box>
-                <Box className={classes.filters} my={6}>
-                    <SearchFieldUser/>
-                    <FilterUnitUser/>
-                    <FilterTypeUser/>
-                </Box>
-                <Box>
-                    <UserTable/>
-                </Box>
+            <Heading title={'Brukere'}/>
+            <Box className={classes.filters} my={6}>
+                <FilterUnitUser/>
+                <FilterTypeUser/>
+                <SearchFieldUser/>
+            </Box>
+            <Box className={classes.table}>
+                <UserTable/>
             </Box>
         </Box>
     );
