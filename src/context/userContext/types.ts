@@ -1,3 +1,12 @@
+export interface IUser {
+    "id": string;
+    "fullName": string;
+    "userName": string;
+    "organisationUnitName": string;
+    "mobilePhone": string;
+    "email": string;
+}
+
 export interface IUserItem {
     "id": number;
     "fullName": string;
@@ -13,7 +22,8 @@ export interface IUserPage {
 }
 
 export type UserContextState = {
-    user: IUserItem | null;
+    userDetailed: IUser | null;
+    userSimple: IUserItem | null;
     users: IUserItem[];
     page: IUserPage | null;
     currentPage: number;
@@ -28,7 +38,8 @@ export type UserContextState = {
 
 export const contextDefaultValues: UserContextState = {
     userType: "all",
-    user: null,
+    userDetailed: null,
+    userSimple: null,
     users: [],
     page: null,
     currentPage: 0,

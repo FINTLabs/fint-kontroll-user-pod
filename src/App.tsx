@@ -1,9 +1,10 @@
 import React from 'react';
 import {createTheme} from '@mui/material/styles';
-import {ThemeProvider} from "@mui/styles";
+import { ThemeProvider } from '@mui/material/styles';
 import {Routes, Route} from 'react-router-dom';
 import FindUserContainer from './features/users/FindUserContainer';
 import UsersProvider from "./context/userContext/UsersContext";
+import UserInfoContainer from "./features/user-info/UserInfoContainer";
 
 const theme = createTheme({
     palette: {
@@ -32,6 +33,7 @@ function App() {
             <UsersProvider>
                 <Routes>
                     <Route path="/" element={<FindUserContainer/>}/>
+                    <Route path="/info/:id" element={<UserInfoContainer/>}/>
                 </Routes>
             </UsersProvider>
         </ThemeProvider>

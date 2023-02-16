@@ -9,10 +9,10 @@ export default function FilterGroupUser() {
     let type;
     return (
         <FormControl style={{minWidth: 220}} sx={{mx: '2rem'}}>
-            <InputLabel id="demo-simple-select-label">Gruppetype</InputLabel>
+            <InputLabel id="select-user-group-label">Gruppetype</InputLabel>
             <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select-autowidth"
+                labelId="select-user-group"
+                id="select-user-group-autowidth"
                 value={type}
                 label="Gruppetype"
                 onChange={handleChange}

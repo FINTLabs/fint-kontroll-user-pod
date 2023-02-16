@@ -33,19 +33,19 @@ export const UserTable: any = () => {
     }, [])
 
     const nextPage = () => {
-        getUserPage(currentPage + 1, size, userType);
+        getUserPage(currentPage, size, userType);
         updateCurrentPage(currentPage + 1);
     }
 
     const previousPage = () => {
-        getUserPage(currentPage - 1, size, userType);
+        getUserPage(currentPage, size, userType);
         updateCurrentPage(currentPage - 1);
     }
 
     return (
-        <Box sx={{p: 1}}>
-            <TableContainer sx={{maxWidth: 1040}}>
-                <Table aria-label="Users">
+        <Box >
+            <TableContainer sx={{minWidth: 1040}}>
+                <Table aria-label="Users-table">
                     <TableHead>
                         <TableRow>
                             <TableCell align="left">Navn</TableCell>
@@ -58,6 +58,7 @@ export const UserTable: any = () => {
                         {page?.users.map((user) => (
                             <TableRow
                                 key={user.id}
+                                hover={true}
                                 sx={{'&:last-child td, &:last-child th': {border: 0}}}
                             >
                                 <TableCell align="left" component="th" scope="row">
@@ -67,7 +68,8 @@ export const UserTable: any = () => {
                                 <TableCell align="left">{user.userType}</TableCell>
                                 <TableCell align="left">
                                     <IconButton aria-label="settings"
-                                                component={Link} to="/info"
+                                                component={Link}
+                                                to={`/info/${user.id}`}
                                     >
                                         <SettingsRounded className={classes.icon}/>
                                     </IconButton>

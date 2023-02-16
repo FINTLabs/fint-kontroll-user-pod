@@ -1,6 +1,6 @@
 import React, {createContext, ReactNode, useState,} from "react";
 import UserRepository from "../../repositories/UserRepository";
-import {contextDefaultValues, IUserItem, IUserPage, UserContextState} from "./types";
+import {contextDefaultValues, IUser, IUserItem, IUserPage, UserContextState} from "./types";
 
 export const UsersContext = createContext<UserContextState>(
     contextDefaultValues
@@ -11,7 +11,8 @@ type Props = {
 };
 
 const UsersProvider = ({children}: Props) => {
-    const [user, setUser] = useState<IUserItem | null>(contextDefaultValues.user);
+    const [userSimple, setUserSimple] = useState<IUserItem | null>(contextDefaultValues.userSimple);
+    const [userDetailed, setUserDetailed] = useState<IUser | null>(contextDefaultValues.userDetailed);
     const [users, setUsers] = useState<IUserItem[]>(contextDefaultValues.users);
     const [page, setPage] = useState<IUserPage | null>(contextDefaultValues.page);
     const [userType, setUserType] = useState<string>(contextDefaultValues.userType)
@@ -21,7 +22,7 @@ const UsersProvider = ({children}: Props) => {
     const getUserById = (id: string) => {
         UserRepository.getUserByResourceId(id)
             .then(response => {
-                    setUser(response.data)
+                    setUserDetailed(response.data)
                 }
             )
             .catch((err) => {
@@ -54,7 +55,8 @@ const UsersProvider = ({children}: Props) => {
             value={{
                 userType,
                 page,
-                user,
+                userSimple: userSimple,
+                userDetailed,
                 users,
                 currentPage,
                 size,
