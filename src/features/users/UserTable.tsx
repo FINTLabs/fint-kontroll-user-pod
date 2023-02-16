@@ -43,7 +43,7 @@ export const UserTable: any = () => {
     }
 
     return (
-        <Box >
+        <Box>
             <TableContainer sx={{minWidth: 1040}}>
                 <Table aria-label="Users-table">
                     <TableHead>
