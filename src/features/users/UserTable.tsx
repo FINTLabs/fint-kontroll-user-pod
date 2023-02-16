@@ -43,7 +43,7 @@ export const UserTable: any = () => {
     }
 
     return (
-        <Box sx={{p: 1}}>
+        <Box >
             <TableContainer sx={{minWidth: 1040}}>
                 <Table aria-label="Users-table">
                     <TableHead>
@@ -58,6 +58,7 @@ export const UserTable: any = () => {
                         {page?.users.map((user) => (
                             <TableRow
                                 key={user.id}
+                                hover={true}
                                 sx={{'&:last-child td, &:last-child th': {border: 0}}}
                             >
                                 <TableCell align="left" component="th" scope="row">
