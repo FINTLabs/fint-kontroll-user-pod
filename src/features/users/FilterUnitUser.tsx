@@ -8,7 +8,7 @@ export default function FilterUnitUser() {
 
     let unit;
     return (
-        <FormControl style={{minWidth: 220}} sx={{mr: '2rem'}}>
+        <FormControl style={{minWidth: 220}} sx={{mr: '2rem', my: '1rem'}}>
             <InputLabel id="demo-simple-select-label">Enhet</InputLabel>
             <Select
                 labelId="demo-simple-select-label"
