@@ -11,13 +11,17 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         content: {
             [theme.breakpoints.up("sm")]: {
-                height: "calc(100% - 64px)",
                 margin: theme.spacing(10)
             }
         },
         filters: {
             display: "flex",
             flexDirection: "row",
+            [theme.breakpoints.down("md")]: {
+                display: "flex",
+                flexDirection: "column",
+                margin: theme.spacing(10)
+            }
         },
         table: {
             display: "flex",

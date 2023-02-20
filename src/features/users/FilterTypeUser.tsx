@@ -18,7 +18,7 @@ export default function FilterGroupUser() {
     }
 
     return (
-        <FormControl style={{minWidth: 220}} sx={{mx: '2rem'}}>
+        <FormControl style={{minWidth: 220}} sx={{mx: '2rem', my: '1rem'}}>
             <InputLabel
                 id="demo-simple-select-label"
             >

@@ -5,7 +5,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 export default function SearchFieldUser() {
     return (
-        <Stack sx={{width: 220, mx: '2rem'}}>
+        <Stack sx={{width: 220, mx: '2rem', my: '1rem'}}>
             <Autocomplete
                 freeSolo
                 id="free-solo-search-user"

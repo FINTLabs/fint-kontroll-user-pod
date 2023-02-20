@@ -6,24 +6,15 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
-import {Delete, Edit} from "@mui/icons-material";
-import {createStyles, makeStyles} from "@mui/styles";
-import {Box, Theme} from "@mui/material";
-import {Link} from "react-router-dom";
+import {Delete} from "@mui/icons-material";
+import {Box} from "@mui/material";
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        icon: {
-            color: theme.palette.primary.main
-        },
-    }));
 
 export const ResourceTable: any = () => {
-    const classes = useStyles();
 
     return (
         <Box>
-            <TableContainer sx={{minWidth: 1040}}>
+            <TableContainer sx={{maxWidth: 1536}}>
                 <Table aria-label="Resource-table">
                     <TableHead>
                         <TableRow>
@@ -43,7 +34,7 @@ export const ResourceTable: any = () => {
                             <TableCell align="left">
                                 En høyere i systemet
                             </TableCell>
-                            <TableCell>
+                            <TableCell align="center">
                                 <IconButton color={'error'} aria-label="delete">
                                     <Delete/>
                                 </IconButton>
