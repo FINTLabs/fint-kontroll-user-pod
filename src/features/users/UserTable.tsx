@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useContext, useEffect} from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -10,7 +11,6 @@ import {ArrowBackIos, ArrowForwardIos, SettingsRounded} from "@mui/icons-materia
 import {createStyles, makeStyles} from "@mui/styles";
 import {Box, Button, Theme, Typography,} from "@mui/material";
 import {Link} from "react-router-dom";
-import {useContext, useEffect} from "react";
 import {UsersContext} from "../../context/userContext/UsersContext";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -26,19 +26,17 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const UserTable: any = () => {
     const classes = useStyles();
-    const {getUserPage, page, userType, currentPage, updateCurrentPage, size} = useContext(UsersContext);
+    const {getUserPage, page, currentPage, updateCurrentPage} = useContext(UsersContext);
 
     useEffect(() => {
-        getUserPage(currentPage, size, userType);
-    }, [])
+        getUserPage();
+    }, [currentPage])
 
     const nextPage = () => {
-        getUserPage(currentPage, size, userType);
         updateCurrentPage(currentPage + 1);
     }
 
     const previousPage = () => {
-        getUserPage(currentPage, size, userType);
         updateCurrentPage(currentPage - 1);
     }
 

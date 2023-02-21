@@ -1,20 +1,22 @@
 import * as React from 'react';
 import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent} from "@mui/material";
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 import {UsersContext} from "../../context/userContext";
 
 export default function FilterGroupUser() {
 
-    const {userType, updateUserType, getUserPage, size, currentPage, updateCurrentPage} = useContext(UsersContext);
+    const {userType, updateUserType, getUserPage, updateCurrentPage, currentPage} = useContext(UsersContext);
+
+    useEffect(() => {
+        getUserPage();
+    }, [userType, currentPage]);
 
     function handleChange(event: SelectChangeEvent) {
         updateUserType(event.target.value as string);
-        getUserPage(0, size, event.target.value as string);
     }
 
     const updatePage = () => {
         updateCurrentPage(0)
-        getUserPage(currentPage - 1, size, userType);
     }
 
     return (

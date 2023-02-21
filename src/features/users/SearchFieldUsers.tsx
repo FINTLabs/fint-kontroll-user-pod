@@ -1,37 +1,32 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
-import Autocomplete from '@mui/material/Autocomplete';
+import {useContext, useState} from "react";
+import {UsersContext} from "../../context/userContext";
 
 export default function SearchFieldUser() {
+
+    const {findUser} = useContext(UsersContext);
+    const [searchString, setSearchString] = useState<string>("")
+
+
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+        setSearchString(event.target.value as string);
+        findUser(event.target.value as string);
+        console.log(event.target.value as string);
+    }
+
+
     return (
-        <Stack sx={{width: 220, mx: '2rem', my: '1rem'}}>
-            <Autocomplete
-                freeSolo
-                id="free-solo-search-user"
-                disableClearable
-                options={users.map((option) => option.title)}
-                renderInput={(params) => (
-                    <TextField
-                        {...params}
-                        label="Søk etter bruker.."
-                        InputProps={{
-                            ...params.InputProps,
-                            type: 'search',
-                        }}
-                    />
-                )}
-            />
-        </Stack>
+        <TextField
+            style={{minWidth: 220}} sx={{ml: '2rem', my: '1rem'}}
+            id="outlined-search"
+            label="Search field"
+            value={searchString}
+            type="search"
+            variant="outlined"
+            onChange={handleChange}
+        />
+
     );
-}
+};
 
-// Eksempeldata
-const users = [
-    {title: 'Ola Normann'},
-    {title: 'Kari Normann'},
-    {title: 'John Doe'},
-    {title: 'Jane Doe'},
-    {title: 'Mikke Mus'},
-
-];
