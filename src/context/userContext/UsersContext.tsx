@@ -18,6 +18,7 @@ const UsersProvider = ({children}: Props) => {
     const [userType, setUserType] = useState<string>(contextDefaultValues.userType)
     const [currentPage, setCurrentPage] = useState<number>(contextDefaultValues.currentPage);
     const [size] = useState<number>(contextDefaultValues.size);
+    const [searchString, setSearchString] = useState<string>("")
 
     const getUserById = (id: string) => {
         UserRepository.getUserByResourceId(id)
@@ -31,7 +32,6 @@ const UsersProvider = ({children}: Props) => {
     }
 
     const getUserPage = () => {
-
         UserRepository.getUserPage(currentPage, size, userType)
             .then(response => setPage(response.data))
             .catch((err) => console.error(err))
@@ -43,6 +43,10 @@ const UsersProvider = ({children}: Props) => {
 
     const updateCurrentPage = (currentPage: number) => {
         setCurrentPage(currentPage)
+    }
+
+    const searchValue = (searchString: string) => {
+        setSearchString(searchString)
     }
 
     const findUser = (queryString: string) => {
@@ -61,6 +65,8 @@ const UsersProvider = ({children}: Props) => {
                 users,
                 currentPage,
                 size,
+                searchString,
+                searchValue,
                 updateCurrentPage,
                 getUserById,
                 getUserPage,

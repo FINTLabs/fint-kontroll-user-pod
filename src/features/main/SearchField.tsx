@@ -1,16 +1,15 @@
 import * as React from 'react';
+import {useContext} from 'react';
 import TextField from '@mui/material/TextField';
-import {useContext, useState} from "react";
 import {UsersContext} from "../../context/userContext";
 
 export default function SearchFieldUser() {
 
-    const {findUser} = useContext(UsersContext);
-    const [searchString, setSearchString] = useState<string>("")
+    const {findUser, searchValue, searchString} = useContext(UsersContext);
 
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-        setSearchString(event.target.value as string);
+        searchValue(event.target.value as string);
         findUser(event.target.value as string);
         console.log(event.target.value as string);
     }
@@ -29,4 +28,3 @@ export default function SearchFieldUser() {
 
     );
 };
-
