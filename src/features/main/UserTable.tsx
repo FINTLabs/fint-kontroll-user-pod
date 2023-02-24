@@ -40,6 +40,12 @@ export const UserTable: any = () => {
         updateCurrentPage(currentPage - 1);
     }
 
+    const pageNumber = () => {
+        if (page?.totalPages === 0) {
+            return currentPage
+        } else return currentPage + 1
+    }
+
     return (
         <Box>
             <TableContainer sx={{maxWidth: 1536}}>
@@ -100,7 +106,7 @@ export const UserTable: any = () => {
                 </Button>
             </Box>
             <Typography align={"center"}>
-                side {currentPage + 1} av {page?.totalPages}
+                side {pageNumber()} av {page?.totalPages}
             </Typography>
         </Box>
     );
