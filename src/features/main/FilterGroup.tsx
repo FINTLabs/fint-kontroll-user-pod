@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 
-export default function FilterGroupUser() {
+export default function FilterGroup() {
 
     function handleChange() {
     }

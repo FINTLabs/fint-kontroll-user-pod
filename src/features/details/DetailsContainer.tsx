@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
         }
     }));
 
-function UserInfoContainer() {
+function DetailsContainer() {
 
     const classes = useStyles();
     const {userDetailed} = useContext(UsersContext);
@@ -61,4 +61,4 @@ function UserInfoContainer() {
     );
 }
 
-export default UserInfoContainer;
+export default DetailsContainer;

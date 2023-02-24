@@ -1,8 +1,8 @@
 import {Box, Theme} from "@mui/material";
-import SearchFieldUser from "./SearchFieldUsers";
+import SearchFieldUser from "./SearchField";
 import {createStyles, makeStyles} from "@mui/styles";
-import FilterUnitUser from "./FilterUnitUser";
-import FilterTypeUser from "./FilterTypeUser";
+import FilterUnit from "./FilterUnit";
+import FilterTypeUser from "./FilterType";
 import {UserTable} from "./UserTable";
 import Heading from "../Headings/Heading";
 import * as React from "react";
@@ -29,14 +29,14 @@ const useStyles = makeStyles((theme: Theme) =>
         },
     }));
 
-function FindUserContainer() {
+function MainContainer() {
     const classes = useStyles();
 
     return (
         <Box className={classes.content}>
             <Heading title={'Brukere'}/>
             <Box className={classes.filters} my={6}>
-                <FilterUnitUser/>
+                <FilterUnit/>
                 <FilterTypeUser/>
                 <SearchFieldUser/>
             </Box>
@@ -47,4 +47,4 @@ function FindUserContainer() {
     );
 }
 
-export default FindUserContainer;
+export default MainContainer;
