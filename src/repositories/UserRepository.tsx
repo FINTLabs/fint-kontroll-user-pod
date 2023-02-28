@@ -14,10 +14,23 @@ const getUserPage = (page: number, size: number, userType: string) => {
     return axios.get<IUserPage>(`/api/users?$filter=userType eq '${userType}'&page=${page}&size=${size}`);
 }
 
+const getUserByName = (firstName: string, page: number, size: number, userType: string) => {
+    const sanitizedQueryString = firstName.trim();
+    if (sanitizedQueryString.length === 0) {
+        return getUserPage(page, size, userType);
+    }
+    if (userType === "all") {
+        return axios.get<IUserPage>(`/api/users?$filter=firstName startswith '${sanitizedQueryString}'&page=${page}&size=${size}`);
+    }
+    return axios.get<IUserPage>(`/api/users?$filter=userType eq '${userType}' and firstName startswith '${sanitizedQueryString}'&page=${page}&size=${size}`);
+}
+
 const UserRepository = {
     getUsers,
     getUserByResourceId: getUserById,
-    getUserPage
+    getUserPage,
+    getUserByName
+
 
 };
 

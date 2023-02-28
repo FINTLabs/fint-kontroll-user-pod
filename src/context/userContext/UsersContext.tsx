@@ -11,13 +11,14 @@ type Props = {
 };
 
 const UsersProvider = ({children}: Props) => {
-    const [userSimple, setUserSimple] = useState<IUserItem | null>(contextDefaultValues.userSimple);
+    const [userSimple] = useState<IUserItem | null>(contextDefaultValues.userSimple);
     const [userDetailed, setUserDetailed] = useState<IUser | null>(contextDefaultValues.userDetailed);
-    const [users, setUsers] = useState<IUserItem[]>(contextDefaultValues.users);
+    const [users] = useState<IUserItem[]>(contextDefaultValues.users);
     const [page, setPage] = useState<IUserPage | null>(contextDefaultValues.page);
     const [userType, setUserType] = useState<string>(contextDefaultValues.userType)
     const [currentPage, setCurrentPage] = useState<number>(contextDefaultValues.currentPage);
-    const [size, setSize] = useState<number>(contextDefaultValues.size);
+    const [size] = useState<number>(contextDefaultValues.size);
+    const [searchString, setSearchString] = useState<string>("")
 
     const getUserById = (id: string) => {
         UserRepository.getUserByResourceId(id)
@@ -30,14 +31,8 @@ const UsersProvider = ({children}: Props) => {
             })
     }
 
-    const getAllUsers = () => {
-        UserRepository.getUsers()
-            .then(response => setUsers(response.data))
-            .catch((err) => console.error(err))
-    }
-
-    const getUserPage = (page: number, size: number, userType: string) => {
-        UserRepository.getUserPage(page, size, userType)
+    const getUserPage = () => {
+        UserRepository.getUserPage(currentPage, size, userType)
             .then(response => setPage(response.data))
             .catch((err) => console.error(err))
     }
@@ -50,6 +45,16 @@ const UsersProvider = ({children}: Props) => {
         setCurrentPage(currentPage)
     }
 
+    const searchValue = (searchString: string) => {
+        setSearchString(searchString)
+    }
+
+    const findUser = (queryString: string) => {
+        UserRepository.getUserByName(queryString, currentPage, size, userType)
+            .then(response => setPage(response.data))
+            .catch(err => console.error(err));
+    }
+
     return (
         <UsersContext.Provider
             value={{
@@ -60,11 +65,13 @@ const UsersProvider = ({children}: Props) => {
                 users,
                 currentPage,
                 size,
+                searchString,
+                searchValue,
                 updateCurrentPage,
-                getAllUsers,
                 getUserById,
                 getUserPage,
-                updateUserType
+                updateUserType,
+                findUser
             }}
         >
             {children}

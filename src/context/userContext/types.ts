@@ -28,12 +28,14 @@ export type UserContextState = {
     page: IUserPage | null;
     currentPage: number;
     size: number;
+    searchString: string;
+    searchValue: (searchString: string) => void;
     updateCurrentPage: (currentPage: number) => void;
     userType: string;
     getUserById: (id: string) => void;
-    getAllUsers: () => void;
-    getUserPage: (page: number, size: number, userType: string) => void;
+    getUserPage: () => void;
     updateUserType: (userType: string) => void;
+    findUser: (queryString: string) => void;
 };
 
 export const contextDefaultValues: UserContextState = {
@@ -43,15 +45,18 @@ export const contextDefaultValues: UserContextState = {
     users: [],
     page: null,
     currentPage: 0,
-    size: 5,
-    getAllUsers: () => {
+    size: 15,
+    searchString: "",
+    searchValue: () => {
     },
-    getUserById: (id: string) => {
+    getUserById: () => {
     },
-    getUserPage: (page: number, size: number, userType: string) => {
+    getUserPage: () => {
     },
-    updateUserType(userType: string): void {
+    updateUserType(): void {
     },
-    updateCurrentPage(currentPage: number): void {
+    updateCurrentPage(): void {
     },
+    findUser(): void {
+    }
 };
