@@ -8,25 +8,15 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
 import {ArrowBackIos, ArrowForwardIos, SettingsRounded} from "@mui/icons-material";
-import {createStyles, makeStyles} from "@mui/styles";
-import {Box, Button, Theme, Typography,} from "@mui/material";
+import {Box, Button, Tooltip, Typography,} from "@mui/material";
 import {Link} from "react-router-dom";
 import {UsersContext} from "../../context/userContext/UsersContext";
+import style from '../../template/style';
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        icon: {
-            color: theme.palette.primary.main
-        },
-        buttons: {
-            display: "flex",
-            justifyContent: "center",
-        },
-    }));
 
 export const UserTable: any = () => {
-    const classes = useStyles();
-    const {getUserPage, page, currentPage, updateCurrentPage} = useContext(UsersContext);
+
+    const {getUserPage, page, currentPage, updateCurrentPage, searchValue} = useContext(UsersContext);
 
     useEffect(() => {
         getUserPage();
@@ -46,16 +36,21 @@ export const UserTable: any = () => {
         } else return currentPage + 1
     }
 
+    const handleClick = (): void => {
+        searchValue("");
+        getUserPage();
+    };
+
     return (
         <Box>
             <TableContainer sx={{maxWidth: 1536}}>
                 <Table aria-label="Users-table">
                     <TableHead>
-                        <TableRow>
-                            <TableCell align="left">Navn</TableCell>
-                            <TableCell align="left">Enhet</TableCell>
-                            <TableCell align="left">Brukertype</TableCell>
-                            <TableCell align="left"></TableCell>
+                        <TableRow sx={{fontWeight: 'bold'}}>
+                            <TableCell align="left" sx={{fontWeight: 'bold'}}>Navn</TableCell>
+                            <TableCell align="left" sx={{fontWeight: 'bold'}}>Enhet</TableCell>
+                            <TableCell align="left" sx={{fontWeight: 'bold'}}>Brukertype</TableCell>
+                            <TableCell align="left" sx={{fontWeight: 'bold'}}></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -71,19 +66,22 @@ export const UserTable: any = () => {
                                 <TableCell align="left">{user.organisationUnitName}</TableCell>
                                 <TableCell align="left">{user.userType}</TableCell>
                                 <TableCell align="left">
-                                    <IconButton aria-label="settings"
-                                                component={Link}
-                                                to={`/info/${user.id}`}
-                                    >
-                                        <SettingsRounded className={classes.icon}/>
-                                    </IconButton>
+                                    <Tooltip title={"Se detaljer"}>
+                                        <IconButton aria-label="informasjon"
+                                                    component={Link}
+                                                    to={`/info/${user.id}`}
+                                                    onClick={handleClick}
+                                        >
+                                            <SettingsRounded color={"primary"}/>
+                                        </IconButton>
+                                    </Tooltip>
                                 </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Box className={classes.buttons}>
+            <Box sx={style.navigateButtons}>
                 <Button
                     variant="text"
                     color={"primary"}

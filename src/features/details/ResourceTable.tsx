@@ -7,8 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
 import {Delete} from "@mui/icons-material";
-import {Box} from "@mui/material";
-
+import {Box, Tooltip} from "@mui/material";
 
 export const ResourceTable: any = () => {
 
@@ -18,8 +17,8 @@ export const ResourceTable: any = () => {
                 <Table aria-label="Resource-table">
                     <TableHead>
                         <TableRow>
-                            <TableCell align="left">Ressurs</TableCell>
-                            <TableCell align="left">Tildelt av</TableCell>
+                            <TableCell align="left" sx={{fontWeight: 'bold'}}>Ressurs</TableCell>
+                            <TableCell align="left" sx={{fontWeight: 'bold'}}>Tildelt av</TableCell>
                             <TableCell></TableCell>
                         </TableRow>
                     </TableHead>
@@ -35,9 +34,11 @@ export const ResourceTable: any = () => {
                                 En høyere i systemet
                             </TableCell>
                             <TableCell align="center">
-                                <IconButton color={'error'} aria-label="delete">
-                                    <Delete/>
-                                </IconButton>
+                                <Tooltip title={"Slett"}>
+                                    <IconButton color={'error'} aria-label="slett">
+                                        <Delete/>
+                                    </IconButton>
+                                </Tooltip>
                             </TableCell>
                         </TableRow>
                     </TableBody>

@@ -1,47 +1,24 @@
-import {Box, Button, Theme, Typography} from "@mui/material";
+import {Box, Button, Typography} from "@mui/material";
 import * as React from "react";
+import {useContext} from "react";
 import {ResourceTable} from "./ResourceTable";
 import Heading from "../Headings/Heading";
 import UserInfo from "./UserInfo";
-import {createStyles, makeStyles} from "@mui/styles";
 import {UsersContext} from "../../context/userContext";
-import {useContext} from "react";
 import {Add} from "@mui/icons-material";
-
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        content: {
-            display: "flex",
-            flexDirection: "column",
-            flexGrow: 1,
-            [theme.breakpoints.up("sm")]: {
-                margin: theme.spacing(10)
-            }
-        },
-        buttonSection: {
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-            [theme.breakpoints.down("md")]: {
-                display: "flex",
-                flexDirection: "column",
-            }
-        }
-    }));
+import style from "../../template/style";
 
 function DetailsContainer() {
 
-    const classes = useStyles();
     const {userDetailed} = useContext(UsersContext);
 
     return (
-        <Box className={classes.content}>
+        <Box sx={style.content}>
             <Box>
                 <Heading title={'Brukerinformasjon'}/>
                 <UserInfo/>
             </Box>
-            <Box className={classes.buttonSection}>
+            <Box sx={style.addNewResourceSection}>
                 <Typography
                     variant="h2"
                     sx={{fontWeight: 'light', fontSize: 'h6.fontSize', marginY: '2rem'}}
