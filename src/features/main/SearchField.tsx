@@ -49,7 +49,7 @@ export default function SearchFieldUser() {
 
     const handleClick = (): void => {
         setShowClearIcon("none");
-        setShowSearchIcon("")
+        setShowSearchIcon("");
         searchValue("");
         getUserPage();
     };

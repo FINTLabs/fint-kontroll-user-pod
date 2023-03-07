@@ -21,6 +21,18 @@ export interface IUserPage {
     users: IUserItem[];
 }
 
+export interface IOrgUnit {
+    "id": number;
+    "name": string;
+}
+
+export interface IOrgUnitPage {
+    orgUnits: IOrgUnit[];
+    totalItems: number;
+    totalPages: number | any;
+    currentPage: number;
+}
+
 export type UserContextState = {
     userDetailed: IUser | null;
     userSimple: IUserItem | null;
@@ -29,6 +41,9 @@ export type UserContextState = {
     currentPage: number;
     size: number;
     searchString: string;
+    orgUnits: IOrgUnit[];
+    orgName: string;
+    orgUnitPage: IOrgUnitPage | null;
     searchValue: (searchString: string) => void;
     updateCurrentPage: (currentPage: number) => void;
     userType: string;
@@ -36,6 +51,9 @@ export type UserContextState = {
     getUserPage: () => void;
     updateUserType: (userType: string) => void;
     findUser: (queryString: string) => void;
+    getOrgUnit: () => void;
+    getOrgName: (orgName: string) => void;
+    getOrgUnitPage: () => void;
 };
 
 export const contextDefaultValues: UserContextState = {
@@ -47,6 +65,9 @@ export const contextDefaultValues: UserContextState = {
     currentPage: 0,
     size: 15,
     searchString: "",
+    orgUnits: [],
+    orgName: "",
+    orgUnitPage: null,
     searchValue: () => {
     },
     getUserById: () => {
@@ -58,5 +79,11 @@ export const contextDefaultValues: UserContextState = {
     updateCurrentPage(): void {
     },
     findUser(): void {
-    }
+    },
+    getOrgUnit: () => {
+    },
+    getOrgName(): void {
+    },
+    getOrgUnitPage: () => {
+    },
 };
