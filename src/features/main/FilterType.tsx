@@ -5,15 +5,16 @@ import {UsersContext} from "../../context/userContext";
 
 export default function FilterGroupUser() {
 
-    const {userType, updateUserType, updateCurrentPage, currentPage, findUser, searchString} = useContext(UsersContext);
+    const {userType, updateUserType, updateCurrentPage, currentPage, getUserPage} = useContext(UsersContext);
 
     useEffect(() => {
-        // getUserPage();
-        findUser(searchString)
+        //findUser(searchString)
+        getUserPage();
     }, [userType, currentPage]);
 
     function handleChange(event: SelectChangeEvent) {
         updateUserType(event.target.value as string);
+        console.log(event.target.value as string + "test")
     }
 
     const updatePage = () => {

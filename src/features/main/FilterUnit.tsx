@@ -1,39 +1,28 @@
 import * as React from 'react';
-import {useContext, useEffect} from 'react';
-import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent} from "@mui/material";
+import {useContext, useEffect, useState} from 'react';
+import {Autocomplete, FormControl} from "@mui/material";
 import {UsersContext} from "../../context/userContext";
+import TextField from "@mui/material/TextField";
 
 export default function FilterUnit() {
 
-    useEffect(() => {
-        // getUserPage();
-        getOrgUnitPage()
-        getOrgUnit()
-        console.log(orgUnits + "orgUnits")
-    }, []);
-
     const {
         userType,
-        updateUserType,
         updateCurrentPage,
         currentPage,
-        findUser,
-        searchString,
-        page,
-        orgName,
-        getOrgName,
-        orgUnits,
-        getOrgUnit,
         orgUnitPage,
         getOrgUnitPage,
-        getUserPage,
+        updateOrganisationUnitId,
+        organisationUnitId,
+        getUserPage
     } = useContext(UsersContext);
 
-    function handleChange(event: SelectChangeEvent) {
-        getOrgName(event.target.value as string);
 
-        console.log(event.target.value as string + "Org.navn")
-    }
+    useEffect(() => {
+        getUserPage();
+        getOrgUnitPage();
+        console.log( organisationUnitId + "orgUnits")
+    }, [userType, currentPage, organisationUnitId]);
 
     const updatePage = () => {
         updateCurrentPage(0)
@@ -41,6 +30,22 @@ export default function FilterUnit() {
 
     return (
         <FormControl style={{minWidth: 220}} sx={{mr: '2rem', my: '1rem'}}>
+            <Autocomplete
+                // multiple
+                id="tags-standard"
+                options={orgUnitPage ? orgUnitPage.orgUnits.map((orgUnit) => (orgUnit)) : []}
+                sx={{width: 340}}
+                onChange={(event, value) => updateOrganisationUnitId(value ? value.organisationUnitId : 0)}
+                isOptionEqualToValue={(option, value) => option.id === value.id}
+                onClick={updatePage}
+                getOptionLabel={(option) => option.name}
+                renderInput={(params) =>
+                    <TextField {...params} label="Enhet"
+                    />
+                }
+            />
+        </FormControl>
+        /*<FormControl style={{minWidth: 220}} sx={{mr: '2rem', my: '1rem'}}>
             <InputLabel id="demo-simple-select-label">Enhet</InputLabel>
             <Select
                 labelId="demo-simple-select-label"
@@ -56,6 +61,6 @@ export default function FilterUnit() {
                 ))}
 
             </Select>
-        </FormControl>
+        </FormControl>*/
     );
 }

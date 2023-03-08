@@ -16,12 +16,13 @@ const UsersProvider = ({children}: Props) => {
     const [users] = useState<IUserItem[]>(contextDefaultValues.users);
     const [page, setPage] = useState<IUserPage | null>(contextDefaultValues.page);
     const [orgUnitPage, setOrgUnitPage] = useState<IOrgUnitPage | null>(contextDefaultValues.orgUnitPage);
-    const [userType, setUserType] = useState<string>(contextDefaultValues.userType)
+    const [userType, setUserType] = useState<string>(contextDefaultValues.userType);
     const [currentPage, setCurrentPage] = useState<number>(contextDefaultValues.currentPage);
     const [size] = useState<number>(contextDefaultValues.size);
-    const [searchString, setSearchString] = useState<string>("")
+    const [searchString, setSearchString] = useState<string>("");
     const [orgUnits, setOrgUnits] = useState<IOrgUnit[]>(contextDefaultValues.orgUnits);
-    const [orgName, setOrgName] = useState<string>(contextDefaultValues.orgName)
+    const [orgName, setOrgName] = useState<string>(contextDefaultValues.orgName);
+    const [organisationUnitId, setOrganisationUnitId] = useState<number>(contextDefaultValues.organisationUnitId);
 
     const getUserById = (id: string) => {
         UserRepository.getUserByResourceId(id)
@@ -35,19 +36,23 @@ const UsersProvider = ({children}: Props) => {
     }
 
     const getUserPage = () => {
-        UserRepository.getUserPage(currentPage, size, userType, orgName)
+        UserRepository.getUserPage(currentPage, size, userType, organisationUnitId, searchString)
             .then(response => setPage(response.data))
             .catch((err) => console.error(err))
     }
 
     const getOrgUnitPage = () => {
-        UserRepository.getOrgUnitPage(orgName, currentPage, size)
+        UserRepository.getOrgUnitPage(orgName, currentPage, size, userType)
             .then(response => setOrgUnitPage(response.data))
             .catch((err) => console.error(err))
     }
 
     const updateUserType = (userType: string) => {
         setUserType(userType)
+    }
+
+    const updateOrganisationUnitId = (id: number) => {
+        setOrganisationUnitId(id);
     }
 
     const updateCurrentPage = (currentPage: number) => {
@@ -58,17 +63,17 @@ const UsersProvider = ({children}: Props) => {
         setSearchString(searchString)
     }
 
-    const findUser = (queryString: string) => {
-        UserRepository.getUserByName(queryString, currentPage, size, userType, orgName)
-            .then(response => setPage(response.data))
-            .catch(err => console.error(err));
-    }
+    // const findUser = (queryString: string) => {
+    //     UserRepository.getUserByName(queryString, currentPage, size, userType, organisationUnitId)
+    //         .then(response => setPage(response.data))
+    //         .catch(err => console.error(err));
+    // }
 
-    const getOrgUnit = () => {
+    /*const getOrgUnit = () => {
         UserRepository.getOrgUnits()
             .then(response => setOrgUnits(response.data))
             .catch(err => console.error(err));
-    }
+    }*/
 
     const getOrgName = (orgName: string) => {
         setOrgName(orgName)
@@ -88,15 +93,17 @@ const UsersProvider = ({children}: Props) => {
                 orgUnits,
                 orgName,
                 orgUnitPage,
+                organisationUnitId,
                 searchValue,
                 updateCurrentPage,
                 getUserById,
                 getUserPage,
                 updateUserType,
-                findUser,
-                getOrgUnit,
+                //findUser,
+               // getOrgUnit,
                 getOrgName,
                 getOrgUnitPage,
+                updateOrganisationUnitId
             }}
         >
             {children}
