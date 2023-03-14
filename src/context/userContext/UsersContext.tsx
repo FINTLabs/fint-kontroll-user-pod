@@ -41,8 +41,8 @@ const UsersProvider = ({children}: Props) => {
             .catch((err) => console.error(err))
     }
 
-    const getOrgUnitPage = () => {
-        UserRepository.getOrgUnitPage(orgName, currentPage, size, userType)
+    const getOrgUnitForList = () => {
+        UserRepository.getOrgUnitForList(orgName, currentPage, size, userType)
             .then(response => setOrgUnitPage(response.data))
             .catch((err) => console.error(err))
     }
@@ -62,18 +62,6 @@ const UsersProvider = ({children}: Props) => {
     const searchValue = (searchString: string) => {
         setSearchString(searchString)
     }
-
-    // const findUser = (queryString: string) => {
-    //     UserRepository.getUserByName(queryString, currentPage, size, userType, organisationUnitId)
-    //         .then(response => setPage(response.data))
-    //         .catch(err => console.error(err));
-    // }
-
-    /*const getOrgUnit = () => {
-        UserRepository.getOrgUnits()
-            .then(response => setOrgUnits(response.data))
-            .catch(err => console.error(err));
-    }*/
 
     const getOrgName = (orgName: string) => {
         setOrgName(orgName)
@@ -99,11 +87,9 @@ const UsersProvider = ({children}: Props) => {
                 getUserById,
                 getUserPage,
                 updateUserType,
-                //findUser,
-               // getOrgUnit,
                 getOrgName,
-                getOrgUnitPage,
-                updateOrganisationUnitId
+                updateOrganisationUnitId,
+                getOrgUnitForList,
             }}
         >
             {children}

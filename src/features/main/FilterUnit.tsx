@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useContext, useEffect, useState} from 'react';
+import {useContext, useEffect} from 'react';
 import {Autocomplete, FormControl} from "@mui/material";
 import {UsersContext} from "../../context/userContext";
 import TextField from "@mui/material/TextField";
@@ -11,17 +11,21 @@ export default function FilterUnit() {
         updateCurrentPage,
         currentPage,
         orgUnitPage,
-        getOrgUnitPage,
         updateOrganisationUnitId,
         organisationUnitId,
-        getUserPage
+        getUserPage,
+        getOrgUnitForList
     } = useContext(UsersContext);
 
 
     useEffect(() => {
         getUserPage();
-        getOrgUnitPage();
-        console.log( organisationUnitId + "orgUnits")
+        getOrgUnitForList();
+        console.log(organisationUnitId + "orgUnits")
+
+        return () => {
+            console.log("Hey")
+        }
     }, [userType, currentPage, organisationUnitId]);
 
     const updatePage = () => {
@@ -31,8 +35,7 @@ export default function FilterUnit() {
     return (
         <FormControl style={{minWidth: 220}} sx={{mr: '2rem', my: '1rem'}}>
             <Autocomplete
-                // multiple
-                id="tags-standard"
+                id="enheter"
                 options={orgUnitPage ? orgUnitPage.orgUnits.map((orgUnit) => (orgUnit)) : []}
                 sx={{width: 340}}
                 onChange={(event, value) => updateOrganisationUnitId(value ? value.organisationUnitId : 0)}
@@ -40,27 +43,16 @@ export default function FilterUnit() {
                 onClick={updatePage}
                 getOptionLabel={(option) => option.name}
                 renderInput={(params) =>
-                    <TextField {...params} label="Enhet"
+                    <TextField
+                        {...params}
+                        label="Enhet"
+                        inputProps={{
+                            ...params.inputProps,
+                            'aria-label': 'sok enhet',
+                        }}
                     />
                 }
             />
         </FormControl>
-        /*<FormControl style={{minWidth: 220}} sx={{mr: '2rem', my: '1rem'}}>
-            <InputLabel id="demo-simple-select-label">Enhet</InputLabel>
-            <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select-autowidth"
-                value={orgName}
-                label="Enhet"
-                onChange={handleChange}
-            >
-                {orgUnitPage?.orgUnits.map((orgUnit) => (
-                    <MenuItem key={orgUnit.id} value={orgUnit.name} onClick={updatePage}>
-                        {orgUnit.name}
-                    </MenuItem>
-                ))}
-
-            </Select>
-        </FormControl>*/
     );
 }

@@ -52,12 +52,10 @@ export type UserContextState = {
     getUserById: (id: string) => void;
     getUserPage: () => void;
     updateUserType: (userType: string) => void;
-    //findUser: (queryString: string) => void;
-   // getOrgUnit: () => void;
     getOrgName: (orgName: string) => void;
-    getOrgUnitPage: () => void;
     organisationUnitId: number;
     updateOrganisationUnitId: (id: number) => void;
+    getOrgUnitForList: () => void;
 };
 
 export const contextDefaultValues: UserContextState = {
@@ -67,7 +65,7 @@ export const contextDefaultValues: UserContextState = {
     users: [],
     page: null,
     currentPage: 0,
-    size: 15,
+    size: 10,
     searchString: "",
     orgUnits: [],
     orgName: "",
@@ -83,13 +81,9 @@ export const contextDefaultValues: UserContextState = {
     },
     updateCurrentPage(): void {
     },
-    //findUser(): void {
-    //},
-    /*getOrgUnit: () => {
-    },*/
     getOrgName(): void {
     },
-    getOrgUnitPage: () => {
+    updateOrganisationUnitId(): void {
     },
-    updateOrganisationUnitId(): void {}
+    getOrgUnitForList: () => void {},
 };

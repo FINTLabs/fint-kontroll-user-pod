@@ -16,11 +16,10 @@ import style from '../../template/style';
 
 export const UserTable: any = () => {
 
-    const {getUserPage, page, currentPage, updateCurrentPage, searchValue, getOrgUnitPage} = useContext(UsersContext);
+    const {getUserPage, page, currentPage, updateCurrentPage, searchValue} = useContext(UsersContext);
 
     useEffect(() => {
         getUserPage();
-        // getOrgUnitPage();
     }, [currentPage])
 
     const nextPage = () => {

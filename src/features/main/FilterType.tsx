@@ -8,7 +8,6 @@ export default function FilterGroupUser() {
     const {userType, updateUserType, updateCurrentPage, currentPage, getUserPage} = useContext(UsersContext);
 
     useEffect(() => {
-        //findUser(searchString)
         getUserPage();
     }, [userType, currentPage]);
 
@@ -24,13 +23,13 @@ export default function FilterGroupUser() {
     return (
         <FormControl style={{minWidth: 220}} sx={{mx: '2rem', my: '1rem'}}>
             <InputLabel
-                id="demo-simple-select-label"
+                id="valg-brukertype"
             >
                 Brukertype
             </InputLabel>
             <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select-autowidth"
+                labelId="valg-brukertype"
+                id="brukertype"
                 value={userType}
                 label="Brukertype"
                 onChange={handleChange}

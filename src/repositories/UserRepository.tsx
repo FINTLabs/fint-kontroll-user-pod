@@ -37,19 +37,8 @@ const getUserPage = (page: number, size: number, userType: string, organisationU
     return axios.get<IUserPage>(`/api/users?page=${page}&size=${size}`);
 }
 
-// const getUserByName = (firstName: string, page: number, size: number, userType: string, organisationUnitId: number) => {
-//     const sanitizedQueryString = firstName.trim();
-//     if (sanitizedQueryString.length === 0) {
-//         return getUserPage(page, size, userType, organisationUnitId);
-//     }
-//     if (userType === "all") {
-//         return axios.get<IUserPage>(`/api/users?$filter=firstName startswith '${sanitizedQueryString}'&page=${page}&size=${size}`);
-//     }
-//     return axios.get<IUserPage>(`/api/users?$filter=userType eq '${userType}' and firstName startswith '${sanitizedQueryString}' and mainOrganisationUnitId eq '${organisationUnitId}&page=${page}&size=${size}`);
-// }
-
-const getOrgUnitPage = (organisationUnitName: string, page: number, size: number, userType: string) => {
-    return axios.get<IOrgUnitPage>(`/api/orgunits?page=${page}&size=${size}`);
+const getOrgUnitForList = (organisationUnitName: string, page: number, size: number, userType: string) => {
+    return axios.get<IOrgUnitPage>(`/api/orgunits?page=${page}&size=1000`);
 }
 
 const getOrgUnitByFilter = (organisationUnitId: number, page: number, size: number) => {
@@ -60,11 +49,8 @@ const UserRepository = {
     getUsers,
     getUserByResourceId: getUserById,
     getUserPage,
-    //getUserByName,
-    getOrgUnitPage,
-    getOrgUnitByFilter
-
-
+    getOrgUnitByFilter,
+    getOrgUnitForList
 };
 
 export default UserRepository;
