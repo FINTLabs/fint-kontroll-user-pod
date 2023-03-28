@@ -13,13 +13,13 @@ export default function FilterUnit() {
         orgUnitPage,
         updateOrganisationUnitId,
         organisationUnitId,
-        getUserPage,
+       // getUserPage,
         getOrgUnitForList
     } = useContext(UsersContext);
 
 
     useEffect(() => {
-        getUserPage();
+       // getUserPage();
         getOrgUnitForList();
         console.log(organisationUnitId + "orgUnits")
 

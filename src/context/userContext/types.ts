@@ -35,6 +35,22 @@ export interface IOrgUnitPage {
     currentPage: number;
 }
 
+export interface IUnitItem {
+    id: number;
+    resourceId: string;
+    name: string;
+    organisationUnitId: number;
+    parentRef: number;
+    childrenRef: number[];
+}
+
+export interface IUnitTree {
+    totalItems: number;
+    totalPages: number | any;
+    currentPage: number;
+    orgUnits: IUnitItem[];
+}
+
 export type UserContextState = {
     userDetailed: IUser | null;
     userSimple: IUserItem | null;
@@ -56,6 +72,9 @@ export type UserContextState = {
     organisationUnitId: number;
     updateOrganisationUnitId: (id: number) => void;
     getOrgUnitForList: () => void;
+    unitTree: IUnitTree | null;
+    selected: string[];
+    setSelected: (selected: string[]) => void;
 };
 
 export const contextDefaultValues: UserContextState = {
@@ -86,4 +105,7 @@ export const contextDefaultValues: UserContextState = {
     updateOrganisationUnitId(): void {
     },
     getOrgUnitForList: () => void {},
+    unitTree: null,
+    selected: [],
+    setSelected(selected:string[]): void {},
 };

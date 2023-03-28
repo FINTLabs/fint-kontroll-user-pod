@@ -35,6 +35,16 @@ const style = {
             flexDirection: "column",
         }
     },
+    treecontent: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+    },
+    tree: {
+        display: "flex",
+        marginRight: "50px",
+        marginTop: "20px",
+    },
 }
 
 export default style;

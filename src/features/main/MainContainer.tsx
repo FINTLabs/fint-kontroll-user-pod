@@ -11,12 +11,12 @@ function MainContainer() {
 
     return (
         <Box sx={style.content}>
-            <Heading title={'Brukere'}/>
+            {/* <Heading title={'Brukere'}/>
             <Box sx={style.filters} my={6}>
                 <FilterUnit/>
                 <FilterTypeUser/>
                 <SearchFieldUser/>
-            </Box>
+            </Box>*/}
             <Box sx={style.table}>
                 <UserTable/>
             </Box>

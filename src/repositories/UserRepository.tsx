@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {IOrgUnitPage, IUser, IUserItem, IUserPage} from "../context/userContext/types";
+import {IOrgUnitPage, IUnitTree, IUser, IUserItem, IUserPage} from "../context/userContext/types";
 
 const getUsers = () => {
     return axios.get<IUserItem[]>('/api/users');
@@ -7,30 +7,30 @@ const getUsers = () => {
 
 const getUserById = (id: string) => axios.get<IUser>(`/api/users/${id}`);
 
-const getUserPage = (page: number, size: number, userType: string, organisationUnitId: number, searchString: string) => {
+const getUserPage = (page: number, size: number, userType: string, organisationUnitId: string[], searchString: string) => {
 
-    if (userType !== "all" && organisationUnitId === 0 && searchString.length === 0) {
+    if (userType !== "all" && organisationUnitId.length === 0 && searchString.length === 0) {
         return axios.get<IUserPage>(`/api/users?$filter=userType eq '${userType}'&page=${page}&size=${size}`);
     }
-    if (organisationUnitId !== 0 && userType === "all" && searchString.length === 0) {
+    if (organisationUnitId.length !== 0 && userType === "all" && searchString.length === 0) {
         return axios.get<IUserPage>(`/api/users?$filter=mainOrganisationUnitId eq '${organisationUnitId}'&page=${page}&size=${size}`);
     }
-    if (userType !== "all" && organisationUnitId !== 0 && searchString.length === 0) {
+    if (userType !== "all" && organisationUnitId.length !== 0 && searchString.length === 0) {
         return axios.get<IUserPage>(`/api/users?$filter=userType eq '${userType}' and mainOrganisationUnitId eq '${organisationUnitId}'&page=${page}&size=${size}`);
     }
 
-    if (userType !== "all" && organisationUnitId !== 0 && searchString.length > 0) {
+    if (userType !== "all" && organisationUnitId.length !== 0 && searchString.length > 0) {
         return axios.get<IUserPage>(`/api/users?$filter=firstName startswith '${searchString}' and userType eq '${userType}' and mainOrganisationUnitId eq '${organisationUnitId}'&page=${page}&size=${size}`);
     }
 
-    if (userType === "all" && organisationUnitId !== 0 && searchString.length > 0) {
+    if (userType === "all" && organisationUnitId.length !== 0 && searchString.length > 0) {
         return axios.get<IUserPage>(`/api/users?$filter=firstName startswith '${searchString}' and mainOrganisationUnitId eq '${organisationUnitId}'&page=${page}&size=${size}`);
     }
 
-    if (userType !== "all" && organisationUnitId === 0 && searchString.length > 0) {
+    if (userType !== "all" && organisationUnitId.length === 0 && searchString.length > 0) {
         return axios.get<IUserPage>(`/api/users?$filter=firstName startswith '${searchString}' and userType eq '${userType}'&page=${page}&size=${size}`);
     }
-    if (userType === "all" && organisationUnitId === 0 && searchString.length > 0) {
+    if (userType === "all" && organisationUnitId.length === 0 && searchString.length > 0) {
         return axios.get<IUserPage>(`/api/users?$filter=firstName startswith '${searchString}'&page=${page}&size=${size}`);
     }
 
@@ -45,12 +45,17 @@ const getOrgUnitByFilter = (organisationUnitId: number, page: number, size: numb
     return axios.get<IOrgUnitPage>(`/api/orgunits?$filter=organisationUnitId eq '${organisationUnitId}'&page=${page}&size=${size}`);
 }
 
+const getUnitTree = () => {
+    return axios.get<IUnitTree>('/api/orgunits')
+}
+
 const UserRepository = {
     getUsers,
     getUserByResourceId: getUserById,
     getUserPage,
     getOrgUnitByFilter,
-    getOrgUnitForList
+    getOrgUnitForList,
+    getUnitTree,
 };
 
 export default UserRepository;

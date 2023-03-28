@@ -12,11 +12,11 @@ function UserInfo() {
     const {getUserById, userDetailed} = useContext(UsersContext);
     const {id} = useParams<string>();
 
-    useEffect(() => {
-        if (id) {
-            getUserById(id);
-        }
-    }, [])
+        useEffect(() => {
+            if (id) {
+                getUserById(id);
+            }
+        }, [])
 
     return (
         <Box sx={{flexGrow: 1, maxWidth: 752}}>

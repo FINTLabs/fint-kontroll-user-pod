@@ -1,6 +1,16 @@
-import React, {createContext, ReactNode, useState,} from "react";
+import React, {createContext, ReactNode, useEffect, useState,} from "react";
 import UserRepository from "../../repositories/UserRepository";
-import {contextDefaultValues, IOrgUnit, IOrgUnitPage, IUser, IUserItem, IUserPage, UserContextState} from "./types";
+import {
+    contextDefaultValues,
+    IOrgUnit,
+    IOrgUnitPage,
+    IUnitTree,
+    IUser,
+    IUserItem,
+    IUserPage,
+    UserContextState
+} from "./types";
+//import UnitRepository from "../../repositories/UnitRepository";
 
 export const UsersContext = createContext<UserContextState>(
     contextDefaultValues
@@ -23,6 +33,8 @@ const UsersProvider = ({children}: Props) => {
     const [orgUnits, setOrgUnits] = useState<IOrgUnit[]>(contextDefaultValues.orgUnits);
     const [orgName, setOrgName] = useState<string>(contextDefaultValues.orgName);
     const [organisationUnitId, setOrganisationUnitId] = useState<number>(contextDefaultValues.organisationUnitId);
+    const [unitTree, setUnitTree] = useState<IUnitTree | null>(contextDefaultValues.unitTree);
+    const [selected, setSelected] = useState<string[]>(contextDefaultValues.selected);
 
     const getUserById = (id: string) => {
         UserRepository.getUserByResourceId(id)
@@ -35,11 +47,27 @@ const UsersProvider = ({children}: Props) => {
             })
     }
 
+    // useEffect(() => {
+    //     const getUserPage = () => {
+    //         UserRepository.getUserPage(currentPage, size, userType, organisationUnitId, searchString)
+    //             .then(response => setPage(response.data))
+    //             .catch((err) => console.error(err))
+    //     }
+    //     getUserPage();
+    // }, [currentPage, size, userType, organisationUnitId, searchString, unitTree]);
+
+
     const getUserPage = () => {
-        UserRepository.getUserPage(currentPage, size, userType, organisationUnitId, searchString)
+        UserRepository.getUserPage(currentPage, size, userType, selected, searchString)
             .then(response => setPage(response.data))
             .catch((err) => console.error(err))
     }
+
+    useEffect(() => {
+        if (searchString.length >= 3 || searchString.length === 0) {
+            getUserPage();
+        }
+    }, [currentPage, size, userType, organisationUnitId, searchString, selected]);
 
     const getOrgUnitForList = () => {
         UserRepository.getOrgUnitForList(orgName, currentPage, size, userType)
@@ -67,6 +95,20 @@ const UsersProvider = ({children}: Props) => {
         setOrgName(orgName)
     }
 
+    const getUnitTree = () => {
+        console.log(`Getting a the units stree:`);
+        UserRepository.getUnitTree()
+            .then(response => {
+                console.log("Returned tree data: ", response.data);
+                setUnitTree(response.data);
+            })
+            .catch((err) => console.error(err))
+    }
+
+    useEffect(() => {
+        getUnitTree();
+    }, []);
+
     return (
         <UsersContext.Provider
             value={{
@@ -83,6 +125,7 @@ const UsersProvider = ({children}: Props) => {
                 orgUnitPage,
                 organisationUnitId,
                 searchValue,
+                //setSearchValue,
                 updateCurrentPage,
                 getUserById,
                 getUserPage,
@@ -90,6 +133,9 @@ const UsersProvider = ({children}: Props) => {
                 getOrgName,
                 updateOrganisationUnitId,
                 getOrgUnitForList,
+                unitTree,
+                selected,
+                setSelected,
             }}
         >
             {children}

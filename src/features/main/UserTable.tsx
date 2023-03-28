@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useContext, useEffect} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -12,15 +12,18 @@ import {Box, Button, Tooltip, Typography,} from "@mui/material";
 import {Link} from "react-router-dom";
 import {UsersContext} from "../../context/userContext/UsersContext";
 import style from '../../template/style';
+import DialogUnit from "./DialogUnit";
+import ToolBar from "./ToolBar";
 
 
 export const UserTable: any = () => {
 
-    const {getUserPage, page, currentPage, updateCurrentPage, searchValue} = useContext(UsersContext);
+    const { page, currentPage, updateCurrentPage, searchValue} = useContext(UsersContext);
+    const [openDialog, setOpenDialog] = useState(false);
 
-    useEffect(() => {
+   /* useEffect(() => {
         getUserPage();
-    }, [currentPage])
+    }, [currentPage])*/
 
     const nextPage = () => {
         updateCurrentPage(currentPage + 1);
@@ -38,12 +41,23 @@ export const UserTable: any = () => {
 
     const handleClick = (): void => {
         searchValue("");
-        getUserPage();
+       // getUserPage();
     };
+
+    const handleTypeSelect = () => {
+        setOpenDialog(false);
+        console.log("selected");
+    }
 
     return (
         <Box>
-            <TableContainer sx={{maxWidth: 1536}}>
+            <DialogUnit
+               // data={data}
+                onClose={handleTypeSelect}
+                open={openDialog}
+            />
+            <TableContainer sx={{minWidth: 1040, maxWidth: 1536}}>
+                <ToolBar onShowDialog={() => setOpenDialog(true)}/>
                 <Table aria-label="Users-table">
                     <TableHead>
                         <TableRow sx={{fontWeight: 'bold'}}>
