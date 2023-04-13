@@ -1,0 +1,14 @@
+{
+  "users": [
+    {
+      "id": 442,
+      "fullName": "Karen Berg",
+      "organisationUnitName": "VGMIDT Midtbyen videregående skole",
+      "organisationUnitId": "194",
+      "userType": "STUDENT"
+    }
+  ],
+  "currentPage": 0,
+  "totalPages": 1,
+  "totalItems": 1
+}

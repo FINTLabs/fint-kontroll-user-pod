@@ -28,13 +28,13 @@ const UsersProvider = ({children}: Props) => {
     const [orgUnitPage, setOrgUnitPage] = useState<IOrgUnitPage | null>(contextDefaultValues.orgUnitPage);
     const [userType, setUserType] = useState<string>(contextDefaultValues.userType);
     const [currentPage, setCurrentPage] = useState<number>(contextDefaultValues.currentPage);
-    const [size] = useState<number>(contextDefaultValues.size);
+    const [size, setSize] = useState<number>(contextDefaultValues.size);
     const [searchString, setSearchString] = useState<string>("");
     const [orgUnits, setOrgUnits] = useState<IOrgUnit[]>(contextDefaultValues.orgUnits);
     const [orgName, setOrgName] = useState<string>(contextDefaultValues.orgName);
     const [organisationUnitId, setOrganisationUnitId] = useState<number>(contextDefaultValues.organisationUnitId);
     const [unitTree, setUnitTree] = useState<IUnitTree | null>(contextDefaultValues.unitTree);
-    const [selected, setSelected] = useState<string[]>(contextDefaultValues.selected);
+    const [selected, setSelected] = useState<number[]>(contextDefaultValues.selected);
 
     const getUserById = (id: string) => {
         UserRepository.getUserByResourceId(id)
@@ -46,16 +46,6 @@ const UsersProvider = ({children}: Props) => {
                 console.error(err);
             })
     }
-
-    // useEffect(() => {
-    //     const getUserPage = () => {
-    //         UserRepository.getUserPage(currentPage, size, userType, organisationUnitId, searchString)
-    //             .then(response => setPage(response.data))
-    //             .catch((err) => console.error(err))
-    //     }
-    //     getUserPage();
-    // }, [currentPage, size, userType, organisationUnitId, searchString, unitTree]);
-
 
     const getUserPage = () => {
         UserRepository.getUserPage(currentPage, size, userType, selected, searchString)
@@ -119,6 +109,7 @@ const UsersProvider = ({children}: Props) => {
                 users,
                 currentPage,
                 size,
+                setSize,
                 searchString,
                 orgUnits,
                 orgName,

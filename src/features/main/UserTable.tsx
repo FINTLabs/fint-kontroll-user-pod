@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useContext, useEffect, useState} from 'react';
+import {useContext, useState} from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -18,12 +18,14 @@ import ToolBar from "./ToolBar";
 
 export const UserTable: any = () => {
 
-    const { page, currentPage, updateCurrentPage, searchValue} = useContext(UsersContext);
+    const {page, currentPage, updateCurrentPage, searchValue, size, setSize} = useContext(UsersContext);
     const [openDialog, setOpenDialog] = useState(false);
 
-   /* useEffect(() => {
-        getUserPage();
-    }, [currentPage])*/
+    /*const {page, roleType, currentPage, setCurrentPage, size, searchValue, setSize} = useContext(RolesContext);
+*/
+    /* useEffect(() => {
+         getUserPage();
+     }, [currentPage])*/
 
     const nextPage = () => {
         updateCurrentPage(currentPage + 1);
@@ -41,7 +43,7 @@ export const UserTable: any = () => {
 
     const handleClick = (): void => {
         searchValue("");
-       // getUserPage();
+        // getUserPage();
     };
 
     const handleTypeSelect = () => {
@@ -49,10 +51,26 @@ export const UserTable: any = () => {
         console.log("selected");
     }
 
+    const handleChangePage = (
+        event: React.MouseEvent<HTMLButtonElement> | null,
+        newPage: number,
+    ) => {
+        console.log("new page:", newPage)
+        updateCurrentPage(newPage)
+    };
+
+    const handleChangeRowsPerPage = (
+        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+        // setRowsPerPage(parseInt(event.target.value, 10));
+        setSize(parseInt(event.target.value, 10));
+        updateCurrentPage(0);
+    };
+
     return (
         <Box>
             <DialogUnit
-               // data={data}
+                // data={data}
                 onClose={handleTypeSelect}
                 open={openDialog}
             />
@@ -93,6 +111,26 @@ export const UserTable: any = () => {
                             </TableRow>
                         ))}
                     </TableBody>
+                    {/*<TableFooter>
+                        <TableRow>
+                            <TablePagination
+                                rowsPerPageOptions={[5, 10, 25, 50]}
+                                colSpan={4}
+                                count={page ? page.totalItems : 0}
+                                rowsPerPage={size}
+                                page={currentPage}
+                                SelectProps={{
+                                    inputProps: {
+                                        'aria-label': 'rows per page',
+                                    },
+                                    native: true,
+                                }}
+                                onPageChange={handleChangePage}
+                                onRowsPerPageChange={handleChangeRowsPerPage}
+                                ActionsComponent={TablePaginationActions}
+                            />
+                        </TableRow>
+                    </TableFooter>*/}
                 </Table>
             </TableContainer>
             <Box sx={style.navigateButtons}>

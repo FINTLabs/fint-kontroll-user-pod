@@ -58,6 +58,7 @@ export type UserContextState = {
     page: IUserPage | null;
     currentPage: number;
     size: number;
+    setSize: (size: number) => void;
     searchString: string;
     orgUnits: IOrgUnit[];
     orgName: string;
@@ -73,12 +74,12 @@ export type UserContextState = {
     updateOrganisationUnitId: (id: number) => void;
     getOrgUnitForList: () => void;
     unitTree: IUnitTree | null;
-    selected: string[];
-    setSelected: (selected: string[]) => void;
+    selected: number[];
+    setSelected: (selected: number[]) => void;
 };
 
 export const contextDefaultValues: UserContextState = {
-    userType: "all",
+    userType: "",
     userDetailed: null,
     userSimple: null,
     users: [],
@@ -107,5 +108,8 @@ export const contextDefaultValues: UserContextState = {
     getOrgUnitForList: () => void {},
     unitTree: null,
     selected: [],
-    setSelected(selected:string[]): void {},
+    setSelected(selected: number[]): void {
+    },
+    setSize(size: number): void {
+    },
 };
