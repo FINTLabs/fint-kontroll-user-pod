@@ -74,7 +74,7 @@ export const UserTable: any = () => {
                 onClose={handleTypeSelect}
                 open={openDialog}
             />
-            <TableContainer sx={{minWidth: 1040, maxWidth: 1536}}>
+            <TableContainer sx={{minWidth: 1040, maxWidth: 1536}} id={"userTable"}>
                 <ToolBar onShowDialog={() => setOpenDialog(true)}/>
                 <Table aria-label="Users-table">
                     <TableHead>

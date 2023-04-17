@@ -18,7 +18,6 @@ import {SelectChangeEvent} from "@mui/material";
 
 
 const DialogUnit = ({ open, onClose }) => {
-  //  const [selected, setSelected] = useState([]);
 
     const {unitTree, userType, currentPage, selected, setSelected, getUserPage, updateOrganisationUnitId, getOrgUnitForList, organisationUnitId} = useContext(UsersContext);
 
@@ -35,6 +34,7 @@ const DialogUnit = ({ open, onClose }) => {
     };
 
     const handleSave = () => {
+        onClose(selected);
        // updateOrganisationUnitId();
         console.log('Valgt:', selected);
     };

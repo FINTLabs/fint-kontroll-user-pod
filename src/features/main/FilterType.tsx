@@ -20,6 +20,12 @@ export default function FilterGroupUser() {
         updateCurrentPage(0)
     }
 
+    const options = [
+        { value: "", label: "Alle" },
+        { value: "STUDENT", label: "Elev" },
+        { value: "EMPLOYEE", label: "Ansatt" }
+    ];
+
     return (
         <FormControl style={{minWidth: 220}} sx={{mx: '2rem', my: '1rem'}}>
             <InputLabel
@@ -34,9 +40,14 @@ export default function FilterGroupUser() {
                 label="Brukertype"
                 onChange={handleChange}
             >
-                <MenuItem value={"all"} onClick={updatePage}>Alle</MenuItem>
+                {options.map((option) => (
+                    <MenuItem key={option.value} value={option.value} onClick={updatePage}>
+                        {option.label}
+                    </MenuItem>
+                ))}
+                {/*<MenuItem value={"all"} onClick={updatePage}>Alle</MenuItem>
                 <MenuItem value={"STUDENT"} onClick={updatePage}>Elev</MenuItem>
-                <MenuItem value={"EMPLOYEE"} onClick={updatePage}>Ansatt</MenuItem>
+                <MenuItem value={"EMPLOYEE"} onClick={updatePage}>Ansatt</MenuItem>*/}
             </Select>
         </FormControl>
     );

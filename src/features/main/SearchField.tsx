@@ -59,7 +59,7 @@ export default function SearchFieldUser() {
                             }}
                             onClick={handleClick}
                         >
-                            <Clear/>
+                            <Clear id="showClearIcon"/>
                         </InputAdornment>
                     )
                 }}

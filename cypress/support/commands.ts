@@ -36,6 +36,32 @@
 //   }
 // }
 
+import { Method } from "cypress/types/net-stubbing";
+
+declare global {
+    namespace Cypress {
+        interface Chainable {
+            goToHome: typeof goToHome
+            interceptAndReturnFile: typeof interceptAndReturnFile
+        }
+    }
+}
+
+export function interceptAndReturnFile(method: Method, url: string, fixturePath: string) {
+    cy.intercept(method, url, {
+        fixture: fixturePath,
+    }).as(fixturePath);
+}
+Cypress.Commands.add('interceptAndReturnFile', interceptAndReturnFile)
+
+
+export function goToHome() {
+    return cy.visit('http://localhost:3000');
+}
+Cypress.Commands.add('goToHome', goToHome)
+
+
+/*
 declare global {
     namespace Cypress {
         interface Chainable {
@@ -66,4 +92,4 @@ export function apiInterceptOrg() {
         url: 'http://localhost:3000/api/orgunits',
     }, {statusCode: 200, fixture: 'orgunits.json'});
 }
-Cypress.Commands.add('apiInterceptOrg', apiInterceptOrg)
+Cypress.Commands.add('apiInterceptOrg', apiInterceptOrg)*/
