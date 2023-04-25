@@ -59,12 +59,6 @@ const UsersProvider = ({children}: Props) => {
         }
     }, [currentPage, size, userType, organisationUnitId, searchString, selected]);
 
-    const getOrgUnitForList = () => {
-        UserRepository.getOrgUnitForList(orgName, currentPage, size, userType)
-            .then(response => setOrgUnitPage(response.data))
-            .catch((err) => console.error(err))
-    }
-
     const updateUserType = (userType: string) => {
         setUserType(userType)
     }
@@ -123,7 +117,6 @@ const UsersProvider = ({children}: Props) => {
                 updateUserType,
                 getOrgName,
                 updateOrganisationUnitId,
-                getOrgUnitForList,
                 unitTree,
                 selected,
                 setSelected,

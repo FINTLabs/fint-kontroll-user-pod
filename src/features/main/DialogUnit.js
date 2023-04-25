@@ -1,18 +1,12 @@
 import React, {useContext} from "react";
-import {
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogActions,
-    Button, Checkbox,
-} from "@mui/material";
+import {Button, Checkbox, Dialog, DialogActions, DialogContent, DialogTitle,} from "@mui/material";
 import TreeView from '@mui/lab/TreeView';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import TreeItem from '@mui/lab/TreeItem';
 import {UsersContext} from "../../context/userContext";
 
-const DialogUnit = ({ open, onClose }) => {
+const DialogUnit = ({open, onClose}) => {
 
     const {unitTree, selected, setSelected} = useContext(UsersContext);
 
@@ -23,9 +17,8 @@ const DialogUnit = ({ open, onClose }) => {
         backgroundColor: '#fff',
         boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
     };
-
     const handleClose = () => {
-        onClose(selected);
+        onClose(setSelected([]))
     };
 
     const handleSave = () => {
@@ -86,7 +79,7 @@ const DialogUnit = ({ open, onClose }) => {
     };
 
     return (
-        <Dialog id={'unitsSelectDialog'} open={open} onClose={handleClose} sx={{ '& .MuiPaper-root': customDialogStyle }}>
+        <Dialog id={'unitsSelectDialog'} open={open} onClose={handleClose} sx={{'& .MuiPaper-root': customDialogStyle}}>
             <DialogTitle>Velg enhet(er)</DialogTitle>
             <DialogContent>
                 <TreeView

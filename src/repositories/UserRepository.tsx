@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {IOrgUnitPage, IUnitTree, IUser, IUserItem, IUserPage} from "../context/userContext/types";
+import {IUnitTree, IUser, IUserItem, IUserPage} from "../context/userContext/types";
 
 const getUsers = () => {
     return axios.get<IUserItem[]>('/api/users');
@@ -37,14 +37,6 @@ const getUserPage = (page: number, size: number, userType: string, organisationU
     return axios.get<IUserPage>(url);
 }
 
-const getOrgUnitForList = (organisationUnitName: string, page: number, size: number, userType: string) => {
-    return axios.get<IOrgUnitPage>(`/api/orgunits?page=${page}&size=1000`);
-}
-
-const getOrgUnitByFilter = (organisationUnitId: number, page: number, size: number) => {
-    return axios.get<IOrgUnitPage>(`/api/orgunits?$filter=organisationUnitId eq '${organisationUnitId}'&page=${page}&size=${size}`);
-}
-
 const getUnitTree = () => {
     return axios.get<IUnitTree>('/api/orgunits')
 }
@@ -53,8 +45,6 @@ const UserRepository = {
     getUsers,
     getUserByResourceId: getUserById,
     getUserPage,
-    getOrgUnitByFilter,
-    getOrgUnitForList,
     getUnitTree,
 };
 
