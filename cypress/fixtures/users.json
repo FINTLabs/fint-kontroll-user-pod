@@ -1,4 +1,8 @@
 {
+  "totalItems": 55,
+  "size": 5,
+  "totalPages": 11,
+  "currentPage": 0,
   "users": [
     {
       "id": 442,
@@ -35,8 +39,6 @@
       "organisationUnitId": "204",
       "userType": "EMPLOYEE"
     }
-  ],
-  "currentPage": 0,
-  "totalPages": 1,
-  "totalItems": 1
+  ]
+
 }

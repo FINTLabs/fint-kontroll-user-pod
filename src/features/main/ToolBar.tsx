@@ -36,6 +36,7 @@ function CustomTableToolbar(props:CustomTableToolbarProps) {
             <FilterType />
             <Tooltip title={"Select Units"}>
                 <IconButton
+                    id={'selectUnitsIcon'}
                     aria-label="settings"
                     onClick={onShowDialog}
                 >

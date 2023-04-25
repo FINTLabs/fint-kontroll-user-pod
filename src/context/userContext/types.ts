@@ -85,7 +85,7 @@ export const contextDefaultValues: UserContextState = {
     users: [],
     page: null,
     currentPage: 0,
-    size: 10,
+    size: 5,
     searchString: "",
     orgUnits: [],
     orgName: "",

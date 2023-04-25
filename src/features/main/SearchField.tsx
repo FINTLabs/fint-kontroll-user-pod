@@ -40,6 +40,7 @@ export default function SearchFieldUser() {
                 InputLabelProps={{
                     shrink: true,
                 }}
+
                 InputProps={{
                     startAdornment: (
                         <InputAdornment
@@ -56,6 +57,7 @@ export default function SearchFieldUser() {
                             position="end"
                             style={{
                                 display: showClearIcon,
+                                cursor: 'pointer'
                             }}
                             onClick={handleClick}
                         >
