@@ -5,38 +5,49 @@ import {UsersContext} from "../../context/userContext";
 
 export default function FilterGroupUser() {
 
-    const {userType, updateUserType, updateCurrentPage, currentPage, findUser, searchString} = useContext(UsersContext);
+    const {userType, updateUserType, updateCurrentPage, currentPage, } = useContext(UsersContext);
 
-    useEffect(() => {
-        // getUserPage();
-        findUser(searchString)
-    }, [userType, currentPage]);
+    /*useEffect(() => {
+        getUserPage();
+    }, [userType, currentPage]);*/
 
     function handleChange(event: SelectChangeEvent) {
         updateUserType(event.target.value as string);
+        console.log(event.target.value as string + "test")
     }
 
     const updatePage = () => {
         updateCurrentPage(0)
     }
 
+    const options = [
+        { value: "", label: "Alle" },
+        { value: "STUDENT", label: "Elev" },
+        { value: "EMPLOYEE", label: "Ansatt" }
+    ];
+
     return (
         <FormControl style={{minWidth: 220}} sx={{mx: '2rem', my: '1rem'}}>
             <InputLabel
-                id="demo-simple-select-label"
+                id="valg-brukertype"
             >
                 Brukertype
             </InputLabel>
             <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select-autowidth"
+                labelId="valg-brukertype"
+                id="brukertype"
                 value={userType}
                 label="Brukertype"
                 onChange={handleChange}
             >
-                <MenuItem value={"all"} onClick={updatePage}>Alle</MenuItem>
+                {options.map((option) => (
+                    <MenuItem key={option.value} value={option.value} onClick={updatePage}>
+                        {option.label}
+                    </MenuItem>
+                ))}
+                {/*<MenuItem value={"all"} onClick={updatePage}>Alle</MenuItem>
                 <MenuItem value={"STUDENT"} onClick={updatePage}>Elev</MenuItem>
-                <MenuItem value={"EMPLOYEE"} onClick={updatePage}>Ansatt</MenuItem>
+                <MenuItem value={"EMPLOYEE"} onClick={updatePage}>Ansatt</MenuItem>*/}
             </Select>
         </FormControl>
     );

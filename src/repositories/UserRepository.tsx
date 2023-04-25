@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {IUser, IUserItem, IUserPage} from "../context/userContext/types";
+import {IUnitTree, IUser, IUserItem, IUserPage} from "../context/userContext/types";
 
 const getUsers = () => {
     return axios.get<IUserItem[]>('/api/users');
@@ -7,31 +7,45 @@ const getUsers = () => {
 
 const getUserById = (id: string) => axios.get<IUser>(`/api/users/${id}`);
 
-const getUserPage = (page: number, size: number, userType: string) => {
-    if (userType === "all") {
-        return axios.get<IUserPage>(`/api/users?page=${page}&size=${size}`);
+const getUserPage = (page: number, size: number, userType: string, organisationUnitId: number[], searchString: string) => {
+    const baseUrl = '/api/users/';
+    let queryParams = [];
+
+    const sanitizedQueryString = searchString.trim();
+    if (sanitizedQueryString.length !== 0) {
+        queryParams.push(`search=${searchString}`);
     }
-    return axios.get<IUserPage>(`/api/users?$filter=userType eq '${userType}'&page=${page}&size=${size}`);
+
+    if (userType) {
+        queryParams.push(`userType=${userType}`);
+    }
+
+    if (organisationUnitId && organisationUnitId.length > 0) {
+        queryParams.push(`orgUnits=${organisationUnitId}`);
+    }
+
+    if (page) {
+        queryParams.push(`page=${page}`);
+    }
+
+    if (size) {
+        queryParams.push(`size=${size}`);
+    }
+
+    const url = `${baseUrl}${queryParams.length > 0 ? '?' : ''}${queryParams.join('&')}`;
+
+    return axios.get<IUserPage>(url);
 }
 
-const getUserByName = (firstName: string, page: number, size: number, userType: string) => {
-    const sanitizedQueryString = firstName.trim();
-    if (sanitizedQueryString.length === 0) {
-        return getUserPage(page, size, userType);
-    }
-    if (userType === "all") {
-        return axios.get<IUserPage>(`/api/users?$filter=firstName startswith '${sanitizedQueryString}'&page=${page}&size=${size}`);
-    }
-    return axios.get<IUserPage>(`/api/users?$filter=userType eq '${userType}' and firstName startswith '${sanitizedQueryString}'&page=${page}&size=${size}`);
+const getUnitTree = () => {
+    return axios.get<IUnitTree>('/api/orgunits')
 }
 
 const UserRepository = {
     getUsers,
     getUserByResourceId: getUserById,
     getUserPage,
-    getUserByName
-
-
+    getUnitTree,
 };
 
 export default UserRepository;

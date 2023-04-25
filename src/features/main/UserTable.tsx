@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useContext, useEffect} from 'react';
+import {useContext, useState} from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,43 +7,59 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
-import {ArrowBackIos, ArrowForwardIos, SettingsRounded} from "@mui/icons-material";
-import {Box, Button, Tooltip, Typography,} from "@mui/material";
+import {SettingsRounded} from "@mui/icons-material";
+import {Box, TableFooter, TablePagination, Tooltip} from "@mui/material";
 import {Link} from "react-router-dom";
 import {UsersContext} from "../../context/userContext/UsersContext";
-import style from '../../template/style';
+import DialogUnit from "./DialogUnit";
+import ToolBar from "./ToolBar";
+import TablePaginationActions from "./UserTableFooter";
 
 
 export const UserTable: any = () => {
 
-    const {getUserPage, page, currentPage, updateCurrentPage, searchValue} = useContext(UsersContext);
+    const {page, currentPage, updateCurrentPage, searchValue, size, setSize} = useContext(UsersContext);
+    const [openDialog, setOpenDialog] = useState(false);
 
-    useEffect(() => {
-        getUserPage();
-    }, [currentPage])
-
-    const nextPage = () => {
-        updateCurrentPage(currentPage + 1);
-    }
-
-    const previousPage = () => {
-        updateCurrentPage(currentPage - 1);
-    }
-
-    const pageNumber = () => {
-        if (page?.totalPages === 0) {
-            return currentPage
-        } else return currentPage + 1
-    }
+    /* useEffect(() => {
+         getUserPage();
+     }, [currentPage])*/
 
     const handleClick = (): void => {
         searchValue("");
-        getUserPage();
+        // getUserPage();
+    };
+
+    const handleTypeSelect = () => {
+        setOpenDialog(false);
+        console.log("selected");
+    }
+
+    const handleChangePage = (
+        event: React.MouseEvent<HTMLButtonElement> | null,
+        newPage: number,
+    ) => {
+        console.log("new page:", newPage)
+        updateCurrentPage(newPage)
+    };
+
+    const handleChangeRowsPerPage = (
+        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+        // setRowsPerPage(parseInt(event.target.value, 10));
+        setSize(parseInt(event.target.value, 10));
+        updateCurrentPage(0);
     };
 
     return (
         <Box>
-            <TableContainer sx={{maxWidth: 1536}}>
+            <DialogUnit
+                // data={data}
+                onClose={handleTypeSelect}
+                open={openDialog}
+            />
+            <TableContainer sx={{minWidth: 1040, maxWidth: 1536}} id={"userTable"}>
+                <ToolBar onShowDialog={() => setOpenDialog(true)}/>
                 <Table aria-label="Users-table">
                     <TableHead>
                         <TableRow sx={{fontWeight: 'bold'}}>
@@ -79,33 +95,29 @@ export const UserTable: any = () => {
                             </TableRow>
                         ))}
                     </TableBody>
+                    <TableFooter>
+                        <TableRow>
+                            <TablePagination
+                                id={"pagination"}
+                                rowsPerPageOptions={[5, 10, 25, 50]}
+                                colSpan={4}
+                                count={page ? page.totalItems : 0}
+                                rowsPerPage={size}
+                                page={currentPage}
+                                SelectProps={{
+                                    inputProps: {
+                                        'aria-label': 'rows per page',
+                                    },
+                                    native: true,
+                                }}
+                                onPageChange={handleChangePage}
+                                onRowsPerPageChange={handleChangeRowsPerPage}
+                                ActionsComponent={TablePaginationActions}
+                            />
+                        </TableRow>
+                    </TableFooter>
                 </Table>
             </TableContainer>
-            <Box sx={style.navigateButtons}>
-                <Button
-                    variant="text"
-                    color={"primary"}
-                    startIcon={<ArrowBackIos/>}
-                    onClick={previousPage}
-                    disabled={currentPage === 0}
-                    sx={{mr: 4, mt: 5}}
-                >
-                    Forrige
-                </Button>
-                <Button
-                    variant="text"
-                    color={"primary"}
-                    endIcon={<ArrowForwardIos/>}
-                    onClick={nextPage}
-                    disabled={currentPage === page?.totalPages - 1}
-                    sx={{mt: 5}}
-                >
-                    Neste
-                </Button>
-            </Box>
-            <Typography align={"center"}>
-                side {pageNumber()} av {page?.totalPages}
-            </Typography>
         </Box>
     );
 };

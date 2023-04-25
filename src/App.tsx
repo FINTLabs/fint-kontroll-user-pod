@@ -5,15 +5,18 @@ import {Route, Routes} from 'react-router-dom';
 import MainContainer from './features/main/MainContainer';
 import UsersProvider from "./context/userContext/UsersContext";
 import DetailsContainer from "./features/details/DetailsContainer";
+//import UnitProvider from "./context/unitContext";
 
 function App() {
     return (
         <ThemeProvider theme={theme}>
             <UsersProvider>
+
                 <Routes>
                     <Route path="/" element={<MainContainer/>}/>
                     <Route path="/info/:id" element={<DetailsContainer/>}/>
                 </Routes>
+
             </UsersProvider>
         </ThemeProvider>
     );

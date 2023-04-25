@@ -1,4 +1,5 @@
 import { createTheme } from '@mui/material/styles';
+import type {} from '@mui/lab/themeAugmentation';
 
 const theme = createTheme({
     palette: {
@@ -16,7 +17,7 @@ const theme = createTheme({
     spacing: 8,
     typography: {
         h2: {
-            fontSize: '5em',
+            fontSize: '1.5rem',
             fontWeight: "bold",
         },
         fontFamily: [
@@ -52,7 +53,14 @@ const theme = createTheme({
                    // textAlign: "right"
                 }
             }
-        }
+        },
+        // MuiTimeline: {
+        //     styleOverrides: {
+        //         root: {
+        //             backgroundColor: 'red',
+        //         },
+        //     },
+        // },
     }
 });
 
