@@ -3,6 +3,7 @@ import * as React from 'react';
 import {Typography} from "@mui/material";
 
 type HeaderProps = {
+    id: string
     title: string
 }
 

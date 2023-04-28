@@ -83,10 +83,12 @@ export const UserTable: any = () => {
                                 <TableCell align="left">{user.userType}</TableCell>
                                 <TableCell align="left">
                                     <Tooltip title={"Se detaljer"}>
-                                        <IconButton aria-label="informasjon"
-                                                    component={Link}
-                                                    to={`/info/${user.id}`}
-                                                    onClick={handleClick}
+                                        <IconButton
+                                            id={`iconUserInfo-${user.id}`}
+                                            aria-label="informasjon"
+                                            component={Link}
+                                            to={`/info/${user.id}`}
+                                            onClick={handleClick}
                                         >
                                             <SettingsRounded color={"primary"}/>
                                         </IconButton>

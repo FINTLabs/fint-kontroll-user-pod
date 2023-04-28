@@ -47,6 +47,15 @@ declare global {
     }
 }
 
+declare global {
+    namespace Cypress {
+        interface Chainable {
+            goToInfo: typeof goToInfo
+            interceptAndReturnFile: typeof interceptAndReturnFile
+        }
+    }
+}
+
 export function interceptAndReturnFile(method: Method, url: string, fixturePath: string) {
     cy.intercept(method, url, {
         fixture: fixturePath,
@@ -58,7 +67,12 @@ Cypress.Commands.add('interceptAndReturnFile', interceptAndReturnFile)
 export function goToHome() {
     return cy.visit('http://localhost:3000');
 }
+
+export function goToInfo() {
+    return cy.visit('http://localhost:3000/info/442');
+}
 Cypress.Commands.add('goToHome', goToHome)
+Cypress.Commands.add('goToInfo', goToInfo)
 
 
 /*
