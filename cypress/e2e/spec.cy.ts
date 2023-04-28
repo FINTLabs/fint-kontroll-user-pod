@@ -10,10 +10,7 @@ describe('Check the user page with no backend', () => {
         cy.interceptAndReturnFile("GET", `${baseUrl}/users/?search=${searchText}&orgUnits=36`, "users.json");
         cy.interceptAndReturnFile("GET", `${baseUrl}/users/?userType=${userType}`, "users.json");
         cy.interceptAndReturnFile("GET", `${baseUrl}/users`, "users.json");
-        /* cy.interceptAndReturnFile("GET", `${baseUrl}/users/?$filter=aggregatedRole eq 'true'&size=5`, "rolesAggregated.json");
-         cy.interceptAndReturnFile("GET", `${baseUrl}/users/?$filter=aggregatedRole%20eq%20%27true%27&size=10`, "rolesMoreLines.json");*/
     });
-
 
     it('Connect to localhost', () => {
         cy.visit('http://localhost:3000')
@@ -71,7 +68,6 @@ describe('Check the user page with no backend', () => {
             .should('have.length', 5);
     });
 
-
     it('Check Select Units (tooltip, dialog, dialog check)', () => {
         cy.goToHome();
         cy.get('#selectUnitsIcon').trigger('mouseover')
@@ -95,7 +91,6 @@ describe('Check the user page with no backend', () => {
         cy.get('.MuiTooltip-popper').invoke('hide')
         // cy.get('.MuiTooltip-popper').should('not.be.visible')
     })
-
 
     it('Pagination (select number of rows in table)', () => {
         cy.goToHome();
@@ -177,5 +172,58 @@ describe('Check the user page with no backend', () => {
             })
         }
         goToFirstPage()
+    });
+
+
+})
+describe('Check the user detail page with no backend', () => {
+
+    beforeEach(() => {
+        const baseUrl = "http://localhost:3000/";
+        cy.interceptAndReturnFile("GET", `${baseUrl}api/users/?size=5`, "users.json");
+        cy.interceptAndReturnFile("GET", `${baseUrl}api/users/442/?size=5`, "users.json");
+        cy.interceptAndReturnFile("GET", `${baseUrl}api/users/442`, "user.json");
+    });
+
+    it('Select user and go to page for user details', () => {
+        cy.goToHome();
+        cy.get('#iconUserInfo-442').should('exist')
+        cy.wait(2000)
+        cy.get('#iconUserInfo-442').click()
+        cy.wait(2000)
+    });
+
+    it('Connect to localhost for user info', () => {
+        cy.visit('http://localhost:3000/info/442')
+    })
+
+    it('Check heading on user info page', () => {
+        cy.goToInfo();
+        cy.get('h1').should('have.text', 'Brukerinformasjon')
+        cy.wait(2000)
+    });
+
+    it('Check list of user info(Fullname and orgUnit)', () => {
+        cy.goToInfo();
+        cy.get('#userFullNameText').should('exist')
+        cy.get('#userFullNameText').should('contain.text', 'Karen Berg')
+        cy.get('#orgUnitText').should('exist')
+        cy.get('#orgUnitText').should('contain.text', 'VGMIDT Midtbyen videregående skole')
+        cy.wait(2000)
+    });
+
+    it('Check table heading on user info page', () => {
+        cy.goToInfo();
+        cy.get('h2').should('have.text', 'Karen Berg er tildelt følgende ressurser:')
+        cy.wait(2000)
+    });
+
+    it('Check resource table (exists, has edit icon)', () => {
+        cy.goToInfo();
+        cy.get('#resourceTable')
+            .should('be.visible')
+            .find('tbody tr')
+            .should('exist')
+        cy.get('#editIcon').should('exist')
     });
 })

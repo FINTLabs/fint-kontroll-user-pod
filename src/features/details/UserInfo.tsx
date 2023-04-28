@@ -35,6 +35,7 @@ function UserInfo() {
                                 </Avatar>
                             </ListItemAvatar>
                             <ListItemText
+                                id={'userFullNameText'}
                                 primary={userDetailed?.fullName}
                                 secondary={'Navn'}
                             />
@@ -49,6 +50,7 @@ function UserInfo() {
                                 </Avatar>
                             </ListItemAvatar>
                             <ListItemText
+                                id={'userNameText'}
                                 primary={userDetailed?.userName}
                                 secondary={'Brukernavn'}
                             />
@@ -63,6 +65,7 @@ function UserInfo() {
                                 </Avatar>
                             </ListItemAvatar>
                             <ListItemText
+                                id={'orgUnitText'}
                                 primary={userDetailed?.organisationUnitName}
                                 secondary={'Enhet'}
                             />
