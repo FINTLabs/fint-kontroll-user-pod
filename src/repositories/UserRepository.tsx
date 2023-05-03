@@ -8,7 +8,7 @@ const getBaseUrl = () => {
 */
 
 const getUsers = () => {
-    return axios.get<IUserItem[]>('/api/users');
+    return axios.get<IUserItem[]>('api/users');
 }
 
 const getUserById = (id: string) => axios.get<IUser>(`api/users/${id}`);
