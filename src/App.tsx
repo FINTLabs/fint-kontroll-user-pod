@@ -12,7 +12,7 @@ function App() {
 
     useEffect(() => {
         getBasePath()
-    }, [basePath])
+    }, [basePath, getBasePath])
 
     return (
         <ThemeProvider theme={theme}>

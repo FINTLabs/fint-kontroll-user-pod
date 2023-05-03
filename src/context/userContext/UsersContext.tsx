@@ -26,32 +26,21 @@ const UsersProvider = ({children}: Props) => {
     const [userDetailed, setUserDetailed] = useState<IUser | null>(contextDefaultValues.userDetailed);
     const [users] = useState<IUserItem[]>(contextDefaultValues.users);
     const [page, setPage] = useState<IUserPage | null>(contextDefaultValues.page);
-    const [orgUnitPage, setOrgUnitPage] = useState<IOrgUnitPage | null>(contextDefaultValues.orgUnitPage);
+    const [orgUnitPage] = useState<IOrgUnitPage | null>(contextDefaultValues.orgUnitPage);
     const [userType, setUserType] = useState<string>(contextDefaultValues.userType);
     const [currentPage, setCurrentPage] = useState<number>(contextDefaultValues.currentPage);
     const [size, setSize] = useState<number>(contextDefaultValues.size);
     const [searchString, setSearchString] = useState<string>("");
-    const [orgUnits, setOrgUnits] = useState<IOrgUnit[]>(contextDefaultValues.orgUnits);
+    const [orgUnits] = useState<IOrgUnit[]>(contextDefaultValues.orgUnits);
     const [orgName, setOrgName] = useState<string>(contextDefaultValues.orgName);
     const [organisationUnitId, setOrganisationUnitId] = useState<number>(contextDefaultValues.organisationUnitId);
     const [unitTree, setUnitTree] = useState<IUnitTree | null>(contextDefaultValues.unitTree);
     const [selected, setSelected] = useState<number[]>(contextDefaultValues.selected);
 
-    /*const getBasePath = () => {
+    const getBasePath = () => {
         UserRepository.getBaseUrl()
             .then(response => {
                     setBasePath(response.data)
-                }
-            )
-            .catch((err) => {
-                console.error(err);
-            })
-    }*/
-
-    const getBasePath = () => {
-        UserRepository.getBaseUrl()
-            .then(value => {
-                    console.log('Dette er basepath: ' + value.data.basePath)
                 }
             )
             .catch((err) => {
@@ -70,13 +59,15 @@ const UsersProvider = ({children}: Props) => {
             })
     }
 
-    const getUserPage = () => {
-        UserRepository.getUserPage(currentPage, size, userType, selected, searchString)
-            .then(response => setPage(response.data))
-            .catch((err) => console.error(err))
-    }
+
 
     useEffect(() => {
+        const getUserPage = () => {
+            UserRepository.getUserPage(currentPage, size, userType, selected, searchString)
+                .then(response => setPage(response.data))
+                .catch((err) => console.error(err))
+        }
+
         if (searchString.length >= 3 || searchString.length === 0) {
             getUserPage();
         }
@@ -139,7 +130,7 @@ const UsersProvider = ({children}: Props) => {
                 //setSearchValue,
                 updateCurrentPage,
                 getUserById,
-                getUserPage,
+                //getUserPage,
                 updateUserType,
                 getOrgName,
                 updateOrganisationUnitId,

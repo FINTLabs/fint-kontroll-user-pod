@@ -1,11 +1,10 @@
-import {Box, Button, Typography} from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import * as React from "react";
 import {useContext} from "react";
 import {ResourceTable} from "./ResourceTable";
 import Heading from "../Headings/Heading";
 import UserInfo from "./UserInfo";
 import {UsersContext} from "../../context/userContext";
-import {Add} from "@mui/icons-material";
 import style from "../../template/style";
 
 function DetailsContainer() {

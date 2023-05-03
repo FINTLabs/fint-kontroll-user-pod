@@ -68,7 +68,7 @@ export type UserContextState = {
     updateCurrentPage: (currentPage: number) => void;
     userType: string;
     getUserById: (id: string) => void;
-    getUserPage: () => void;
+    //getUserPage: () => void;
     updateUserType: (userType: string) => void;
     getOrgName: (orgName: string) => void;
     organisationUnitId: number;
@@ -97,8 +97,8 @@ export const contextDefaultValues: UserContextState = {
     },
     getUserById: () => {
     },
-    getUserPage: () => {
-    },
+    // getUserPage: () => {
+    // },
     updateUserType(): void {
     },
     updateCurrentPage(): void {

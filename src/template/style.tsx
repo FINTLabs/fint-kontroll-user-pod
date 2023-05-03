@@ -1,5 +1,4 @@
 import theme from "./theme";
-import {grey} from "@mui/material/colors";
 
 const style = {
     content: {

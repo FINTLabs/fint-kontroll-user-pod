@@ -16,7 +16,7 @@ function UserInfo() {
             if (id) {
                 getUserById(id);
             }
-        }, [])
+        }, [id, getUserById])
 
     return (
         <Box sx={{flexGrow: 1, maxWidth: 752}}>

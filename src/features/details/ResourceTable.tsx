@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
-import {Delete, Edit} from "@mui/icons-material";
+import {Edit} from "@mui/icons-material";
 import {Box, Tooltip} from "@mui/material";
 
 export const ResourceTable: any = () => {
