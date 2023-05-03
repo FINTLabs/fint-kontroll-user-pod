@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import theme from './template/theme';
 import {ThemeProvider} from '@mui/material/styles';
 import {Route, Routes} from 'react-router-dom';
@@ -8,11 +8,7 @@ import DetailsContainer from "./features/details/DetailsContainer";
 
 function App() {
 
-    const {basePath, getBasePath} = useContext(UsersContext);
-
-    useEffect(() => {
-        getBasePath()
-    }, [basePath, getBasePath])
+    const {basePath} = useContext(UsersContext);
 
     return (
         <ThemeProvider theme={theme}>

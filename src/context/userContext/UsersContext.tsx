@@ -37,16 +37,22 @@ const UsersProvider = ({children}: Props) => {
     const [unitTree, setUnitTree] = useState<IUnitTree | null>(contextDefaultValues.unitTree);
     const [selected, setSelected] = useState<number[]>(contextDefaultValues.selected);
 
-    const getBasePath = () => {
-        UserRepository.getBaseUrl()
-            .then(response => {
-                    setBasePath(response.data)
-                }
-            )
-            .catch((err) => {
-                console.error(err);
-            })
-    }
+
+
+    useEffect(() => {
+        const getBasePath = () => {
+            UserRepository.getBaseUrl()
+                .then(response => {
+                        setBasePath(response.data.basePath)
+                        console.log("basePath", response.data.basePath)
+                    }
+                )
+                .catch((err) => {
+                    console.error(err);
+                })
+        }
+        getBasePath()
+    })
 
     const getUserById = (id: string) => {
         UserRepository.getUserByResourceId(id)
@@ -135,7 +141,7 @@ const UsersProvider = ({children}: Props) => {
                 getOrgName,
                 updateOrganisationUnitId,
                 setSelected,
-                getBasePath,
+                //getBasePath,
             }}
         >
             {children}
