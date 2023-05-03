@@ -21,7 +21,7 @@ type Props = {
 };
 
 const UsersProvider = ({children}: Props) => {
-    const [basePath, setBasePath] = useState<string>("");
+   // const [basePath, setBasePath] = useState<string>("");
     const [userSimple] = useState<IUserItem | null>(contextDefaultValues.userSimple);
     const [userDetailed, setUserDetailed] = useState<IUser | null>(contextDefaultValues.userDetailed);
     const [users] = useState<IUserItem[]>(contextDefaultValues.users);
@@ -39,7 +39,7 @@ const UsersProvider = ({children}: Props) => {
 
 
 
-    useEffect(() => {
+   /* useEffect(() => {
         const getBasePath = () => {
             UserRepository.getBaseUrl()
                 .then(response => {
@@ -53,7 +53,7 @@ const UsersProvider = ({children}: Props) => {
         }
         getBasePath()
     })
-
+*/
     const getUserById = (id: string) => {
         UserRepository.getUserByResourceId(id)
             .then(response => {
@@ -116,7 +116,7 @@ const UsersProvider = ({children}: Props) => {
     return (
         <UsersContext.Provider
             value={{
-                basePath,
+               // basePath,
                 userType,
                 page,
                 userSimple: userSimple,
