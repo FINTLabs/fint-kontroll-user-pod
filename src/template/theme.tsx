@@ -1,5 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 import type {} from '@mui/lab/themeAugmentation';
+import { nbNO } from '@mui/material/locale';
 
 const theme = createTheme({
     palette: {
@@ -16,9 +17,13 @@ const theme = createTheme({
     },
     spacing: 8,
     typography: {
+        h1: {
+            fontSize: '2rem',
+            fontWeight: "normal",
+        },
         h2: {
             fontSize: '1.5rem',
-            fontWeight: "bold",
+            fontWeight: "normal",
         },
         fontFamily: [
             "Nunito Sans", 'sans-serif'
@@ -54,14 +59,9 @@ const theme = createTheme({
                 }
             }
         },
-        // MuiTimeline: {
-        //     styleOverrides: {
-        //         root: {
-        //             backgroundColor: 'red',
-        //         },
-        //     },
-        // },
     }
-});
+},
+nbNO,
+);
 
 export default theme;

@@ -22,7 +22,7 @@ function DetailsContainer() {
                 <Typography
                     id={'tableHeadingInfo'}
                     variant="h2"
-                    sx={{fontWeight: 'light', fontSize: 'h6.fontSize', marginY: '2rem'}}
+                    sx={{marginY: '2rem'}}
                 >
                     {userDetailed?.fullName + ' er tildelt følgende ressurser:'}
                 </Typography>

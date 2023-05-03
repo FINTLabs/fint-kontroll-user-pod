@@ -21,6 +21,7 @@ type Props = {
 };
 
 const UsersProvider = ({children}: Props) => {
+    const [basePath, setBasePath] = useState<string>("");
     const [userSimple] = useState<IUserItem | null>(contextDefaultValues.userSimple);
     const [userDetailed, setUserDetailed] = useState<IUser | null>(contextDefaultValues.userDetailed);
     const [users] = useState<IUserItem[]>(contextDefaultValues.users);
@@ -35,6 +36,28 @@ const UsersProvider = ({children}: Props) => {
     const [organisationUnitId, setOrganisationUnitId] = useState<number>(contextDefaultValues.organisationUnitId);
     const [unitTree, setUnitTree] = useState<IUnitTree | null>(contextDefaultValues.unitTree);
     const [selected, setSelected] = useState<number[]>(contextDefaultValues.selected);
+
+    /*const getBasePath = () => {
+        UserRepository.getBaseUrl()
+            .then(response => {
+                    setBasePath(response.data)
+                }
+            )
+            .catch((err) => {
+                console.error(err);
+            })
+    }*/
+
+    const getBasePath = () => {
+        UserRepository.getBaseUrl()
+            .then(value => {
+                    console.log('Dette er basepath: ' + value.data.basePath)
+                }
+            )
+            .catch((err) => {
+                console.error(err);
+            })
+    }
 
     const getUserById = (id: string) => {
         UserRepository.getUserByResourceId(id)
@@ -96,6 +119,7 @@ const UsersProvider = ({children}: Props) => {
     return (
         <UsersContext.Provider
             value={{
+                basePath,
                 userType,
                 page,
                 userSimple: userSimple,
@@ -109,6 +133,8 @@ const UsersProvider = ({children}: Props) => {
                 orgName,
                 orgUnitPage,
                 organisationUnitId,
+                unitTree,
+                selected,
                 searchValue,
                 //setSearchValue,
                 updateCurrentPage,
@@ -117,9 +143,8 @@ const UsersProvider = ({children}: Props) => {
                 updateUserType,
                 getOrgName,
                 updateOrganisationUnitId,
-                unitTree,
-                selected,
                 setSelected,
+                getBasePath,
             }}
         >
             {children}

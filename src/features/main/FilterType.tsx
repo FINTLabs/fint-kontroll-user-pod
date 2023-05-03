@@ -1,15 +1,11 @@
 import * as React from 'react';
-import {useContext, useEffect} from 'react';
+import {useContext} from 'react';
 import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent} from "@mui/material";
 import {UsersContext} from "../../context/userContext";
 
 export default function FilterGroupUser() {
 
-    const {userType, updateUserType, updateCurrentPage, currentPage, } = useContext(UsersContext);
-
-    /*useEffect(() => {
-        getUserPage();
-    }, [userType, currentPage]);*/
+    const {userType, updateUserType, updateCurrentPage} = useContext(UsersContext);
 
     function handleChange(event: SelectChangeEvent) {
         updateUserType(event.target.value as string);
@@ -21,9 +17,9 @@ export default function FilterGroupUser() {
     }
 
     const options = [
-        { value: "", label: "Alle" },
-        { value: "STUDENT", label: "Elev" },
-        { value: "EMPLOYEE", label: "Ansatt" }
+        {value: "", label: "Alle"},
+        {value: "STUDENT", label: "Elev"},
+        {value: "EMPLOYEE", label: "Ansatt"}
     ];
 
     return (
@@ -45,9 +41,6 @@ export default function FilterGroupUser() {
                         {option.label}
                     </MenuItem>
                 ))}
-                {/*<MenuItem value={"all"} onClick={updatePage}>Alle</MenuItem>
-                <MenuItem value={"STUDENT"} onClick={updatePage}>Elev</MenuItem>
-                <MenuItem value={"EMPLOYEE"} onClick={updatePage}>Ansatt</MenuItem>*/}
             </Select>
         </FormControl>
     );

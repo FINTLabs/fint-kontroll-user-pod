@@ -26,21 +26,7 @@ const DialogUnit = ({open, onClose}) => {
         console.log('Valgt:', selected);
     };
 
-
-    // const handleCheckboxChange = (event, nodeId) => {
-    //     if (event.target.checked) {
-    //         setSelected([...selected, nodeId]);
-    //     } else {
-    //         setSelected(selected.filter((id) => id !== nodeId));
-    //     }
-    //     getUserPage();
-    //     console.log('Selected node(s):', selected);
-    // };
-
     const renderTree = (nodes) => {
-        // if (nodes.parentRef !== parentId) {
-        //     return null;
-        // }
 
         return (
             <TreeItem
@@ -85,14 +71,7 @@ const DialogUnit = ({open, onClose}) => {
                 <TreeView
                     defaultCollapseIcon={<ExpandMoreIcon id={'expandMoreIcon'}/>}
                     defaultExpandIcon={<ChevronRightIcon id={'expandIcon'}/>}
-
-                    // onNodeSelect={}
-                    // onNodeSelect={handleNodeSelect}
-                    // multiSelect
-                    // sx={{ height: 216, flexGrow: 1, maxWidth: 800, overflowY: 'auto' }}
                 >
-                    {/*{data.orgUnits.map((orgUnit) => renderTree(orgUnit))}*/}
-                    {/*{renderTree(data[0])}*/}
                     {unitTree?.orgUnits?.map((node) => {
                         if (node.parentRef !== node.organisationUnitId) {
                             return null;
