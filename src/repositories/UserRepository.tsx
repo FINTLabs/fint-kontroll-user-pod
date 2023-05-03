@@ -11,10 +11,10 @@ const getUsers = () => {
     return axios.get<IUserItem[]>('/api/users');
 }
 
-const getUserById = (id: string) => axios.get<IUser>(`/api/users/${id}`);
+const getUserById = (id: string) => axios.get<IUser>(`api/users/${id}`);
 
 const getUserPage = (page: number, size: number, userType: string, organisationUnitId: number[], searchString: string) => {
-    const baseUrl = '/api/users/';
+    const baseUrl = 'api/users/';
     let queryParams = [];
 
     const sanitizedQueryString = searchString.trim();
@@ -44,7 +44,7 @@ const getUserPage = (page: number, size: number, userType: string, organisationU
 }
 
 const getUnitTree = () => {
-    return axios.get<IUnitTree>('/api/orgunits')
+    return axios.get<IUnitTree>('api/orgunits')
 }
 
 const UserRepository = {
