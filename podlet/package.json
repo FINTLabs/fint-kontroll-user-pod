@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@fintlabs/fint-podium-react-podlet": "^2.0.0",
+    "@fintlabs/fint-podium-react-podlet": "^3.0.0",
     "@podium/podlet": "^4.4.69",
     "express": "^4.18.2"
   }
