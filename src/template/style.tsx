@@ -1,4 +1,5 @@
 import theme from "./theme";
+import {grey} from "@mui/material/colors";
 
 const style = {
     content: {
@@ -20,10 +21,11 @@ const style = {
         display: "flex",
         flexDirection: "column",
     },
-    navigateButtons: {
-        display: "flex",
-        justifyContent: "center",
+    changeOrgButton: {
         textTransform: 'none',
+        height: 56,
+        width: 300,
+        color: 'grey',
     },
     addNewResourceSection: {
         display: "flex",

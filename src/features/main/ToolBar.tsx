@@ -1,40 +1,46 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import {Tooltip} from "@mui/material";
-import IconButton from "@mui/material/IconButton";
+import {Button} from "@mui/material";
 import SearchField from "./SearchField";
-import LayersIcon from '@mui/icons-material/Layers';
-import LayersClearIcon from '@mui/icons-material/LayersClear';
-import PeopleIcon from '@mui/icons-material/People';
 import FilterType from "./FilterType";
+import {Apartment} from "@mui/icons-material";
+import style from "../../template/style";
 
 interface CustomTableToolbarProps {
     onShowDialog: (event: React.MouseEvent<unknown>) => void;
 }
 
-function CustomTableToolbar(props:CustomTableToolbarProps) {
-    const { onShowDialog } = props;
-    const [showLayers, setShowLayers] = useState(true);
+function CustomTableToolbar(props: CustomTableToolbarProps) {
+    const {onShowDialog} = props;
 
     return (
         <Toolbar
             sx={{
-                pl: { sm: 2 },
-                pr: { xs: 1, sm: 1 },
+                pl: {sm: 2},
+                pr: {xs: 1, sm: 1},
             }}
         >
             <Typography
-                sx={{ flex: '1 1 100%' }}
-                variant="h4"
+                sx={{flex: '1 1 100%'}}
+                variant="h1"
                 id="tableTitle"
-                component="div"
             >
                 Brukere
             </Typography>
-            <SearchField />
-            <FilterType />
-            <Tooltip title={"Select Units"}>
+            <SearchField/>
+            <FilterType/>
+            <Button
+                id={'selectUnitsIcon'}
+                variant="outlined"
+                endIcon={<Apartment/>}
+                onClick={onShowDialog}
+                sx={style.changeOrgButton}
+                style={{ fontSize: '1em' }}
+            >
+                Velg enhet
+            </Button>
+            {/*<Tooltip title={"Velg organisasjonsenhet"}>
                 <IconButton
                     id={'selectUnitsIcon'}
                     aria-label="settings"
@@ -42,28 +48,7 @@ function CustomTableToolbar(props:CustomTableToolbarProps) {
                 >
                     <PeopleIcon color={"primary"}/>
                 </IconButton>
-            </Tooltip>
-
-            {showLayers ? (
-                <Tooltip title={"Show subgroups (click to turn off)"}>
-                    <IconButton
-                        aria-label="settings"
-                        onClick={() => setShowLayers(false)}
-                    >
-                        <LayersIcon color={"primary"}/>
-                    </IconButton>
-                </Tooltip>
-
-            ) : (
-                <Tooltip title="Show subgroups (click to turn on)">
-                    <IconButton
-                        aria-label="settings"
-                        onClick={() => setShowLayers(true)}
-                    >
-                        <LayersClearIcon color={"primary"}/>
-                    </IconButton>
-                </Tooltip>
-            )}
+            </Tooltip>*/}
         </Toolbar>
     );
 }

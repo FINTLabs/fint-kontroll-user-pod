@@ -21,13 +21,8 @@ export const UserTable: any = () => {
     const {page, currentPage, updateCurrentPage, searchValue, size, setSize} = useContext(UsersContext);
     const [openDialog, setOpenDialog] = useState(false);
 
-    /* useEffect(() => {
-         getUserPage();
-     }, [currentPage])*/
-
     const handleClick = (): void => {
         searchValue("");
-        // getUserPage();
     };
 
     const handleTypeSelect = () => {
@@ -46,7 +41,6 @@ export const UserTable: any = () => {
     const handleChangeRowsPerPage = (
         event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     ) => {
-        // setRowsPerPage(parseInt(event.target.value, 10));
         setSize(parseInt(event.target.value, 10));
         updateCurrentPage(0);
     };
@@ -54,7 +48,6 @@ export const UserTable: any = () => {
     return (
         <Box>
             <DialogUnit
-                // data={data}
                 onClose={handleTypeSelect}
                 open={openDialog}
             />

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useContext, useEffect, useState} from 'react';
+import {useContext, useState} from 'react';
 import TextField from '@mui/material/TextField';
 import {UsersContext} from "../../context/userContext";
 import {FormControl, InputAdornment} from "@mui/material";
@@ -10,11 +10,7 @@ export default function SearchFieldUser() {
     const [showClearIcon, setShowClearIcon] = useState("none");
     const [showSearchIcon, setShowSearchIcon] = useState("");
 
-    const {searchValue, searchString, } = useContext(UsersContext);
-
-    /*useEffect(() => {
-        getUserPage();
-    }, [searchString])*/
+    const {searchValue, searchString,} = useContext(UsersContext);
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
         setShowClearIcon(event.target.value === "" ? "none" : "flex");

@@ -52,6 +52,7 @@ export interface IUnitTree {
 }
 
 export type UserContextState = {
+    basePath: string;
     userDetailed: IUser | null;
     userSimple: IUserItem | null;
     users: IUserItem[];
@@ -75,9 +76,11 @@ export type UserContextState = {
     unitTree: IUnitTree | null;
     selected: number[];
     setSelected: (selected: number[]) => void;
+    getBasePath: () => void;
 };
 
 export const contextDefaultValues: UserContextState = {
+    basePath: "",
     userType: "",
     userDetailed: null,
     userSimple: null,
@@ -109,5 +112,7 @@ export const contextDefaultValues: UserContextState = {
     setSelected(selected: number[]): void {
     },
     setSize(size: number): void {
+    },
+    getBasePath: () => {
     },
 };
