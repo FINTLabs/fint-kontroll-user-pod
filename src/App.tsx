@@ -10,7 +10,7 @@ import axios from "axios";
 function App() {
 
     //const {basePath} = useContext(UsersContext);
-    const [basePath, setBasePath] = useState("")
+    const [basePath, setBasePath] = useState(undefined)
 
     useEffect(() => {
         axios.get('api/layout/configuration')
@@ -19,7 +19,9 @@ function App() {
             });
     }, [])
 
-    return (
+    console.log("basePath", basePath);
+    return basePath ?
+     (
         <ThemeProvider theme={theme}>
             <UsersProvider>
                 <Routes>
@@ -28,7 +30,8 @@ function App() {
                 </Routes>
             </UsersProvider>
         </ThemeProvider>
-    );
+    )
+    :  <div/>
 }
 
 export default App;
