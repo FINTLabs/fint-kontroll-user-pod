@@ -52,7 +52,7 @@ export interface IUnitTree {
 }
 
 export type UserContextState = {
-  //  basePath: string;
+      basePath: string | undefined;
     userDetailed: IUser | null;
     userSimple: IUserItem | null;
     users: IUserItem[];
@@ -80,7 +80,7 @@ export type UserContextState = {
 };
 
 export const contextDefaultValues: UserContextState = {
-   // basePath: "",
+    basePath: undefined,
     userType: "",
     userDetailed: null,
     userSimple: null,

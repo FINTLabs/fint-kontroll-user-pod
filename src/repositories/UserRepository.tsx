@@ -1,20 +1,24 @@
 import axios from 'axios';
 import {IUnitTree, IUser, IUserItem, IUserPage} from "../context/userContext/types";
+import {useContext} from "react";
+import {UsersContext} from "../context/userContext";
 
-/*
+const {basePath} = useContext(UsersContext);
+
+
 const getBaseUrl = () => {
     return axios.get('api/layout/configuration');
 }
-*/
+
 
 const getUsers = () => {
-    return axios.get<IUserItem[]>('api/users');
+    return axios.get<IUserItem[]>(`${basePath}/api/users`);
 }
 
-const getUserById = (id: string) => axios.get<IUser>(`api/users/${id}`);
+const getUserById = (id: string) => axios.get<IUser>(`${basePath}/api/users/${id}`);
 
 const getUserPage = (page: number, size: number, userType: string, organisationUnitId: number[], searchString: string) => {
-    const baseUrl = 'api/users/';
+    const baseUrl = `${basePath}/api/users/`;
     let queryParams = [];
 
     const sanitizedQueryString = searchString.trim();
@@ -52,7 +56,7 @@ const UserRepository = {
     getUserByResourceId: getUserById,
     getUserPage,
     getUnitTree,
-   // getBaseUrl,
+    getBaseUrl,
 };
 
 export default UserRepository;
