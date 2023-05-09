@@ -9,14 +9,14 @@ import {useParams} from "react-router-dom";
 
 function UserInfo() {
 
-    const {getUserById, userDetailed} = useContext(UsersContext);
+    const {basePath, getUserById, userDetailed} = useContext(UsersContext);
     const {id} = useParams<string>();
 
-        useEffect(() => {
-            if (id) {
-                getUserById(id);
-            }
-        }, [id, getUserById])
+    useEffect(() => {
+        if (id) {
+            getUserById(`${basePath}/api/users/${id}`);
+        }
+    }, [id, getUserById])
 
     return (
         <Box sx={{flexGrow: 1, maxWidth: 752}}>

@@ -1,9 +1,5 @@
 import axios from 'axios';
 import {IUnitTree, IUser, IUserItem, IUserPage} from "../context/userContext/types";
-import {useContext} from "react";
-import {UsersContext} from "../context/userContext";
-
-const {basePath} = useContext(UsersContext);
 
 
 const getBaseUrl = () => {
@@ -11,13 +7,13 @@ const getBaseUrl = () => {
 }
 
 
-const getUsers = () => {
-    return axios.get<IUserItem[]>(`${basePath}/api/users`);
-}
+// const getUsers = () => {
+//     return axios.get<IUserItem[]>(`api/users`);
+// }
 
-const getUserById = (id: string) => axios.get<IUser>(`${basePath}/api/users/${id}`);
+const getUserById = (uri: string) => axios.get<IUser>(uri);
 
-const getUserPage = (page: number, size: number, userType: string, organisationUnitId: number[], searchString: string) => {
+const getUserPage = (basePath: string, page: number, size: number, userType: string, organisationUnitId: number[], searchString: string) => {
     const baseUrl = `${basePath}/api/users/`;
     let queryParams = [];
 
@@ -47,13 +43,13 @@ const getUserPage = (page: number, size: number, userType: string, organisationU
     return axios.get<IUserPage>(url);
 }
 
-const getUnitTree = () => {
-    return axios.get<IUnitTree>('api/orgunits')
+const getUnitTree = (basePath: string) => {
+    return axios.get<IUnitTree>(`${basePath}/api/orgunits`)
 }
 
 const UserRepository = {
-    getUsers,
-    getUserByResourceId: getUserById,
+    //getUsers,
+    getUserById,
     getUserPage,
     getUnitTree,
     getBaseUrl,

@@ -39,22 +39,22 @@ const UsersProvider = ({children}: Props) => {
 
 
     useEffect(() => {
-         const getBasePath = () => {
-             UserRepository.getBaseUrl()
-                 .then(response => {
-                         setBasePath(response.data.basePath)
-                         console.log("basePath", response.data.basePath)
-                     }
-                 )
-                 .catch((err) => {
-                     console.error(err);
-                 })
-         }
-         getBasePath()
-     })
+        const getBasePath = () => {
+            UserRepository.getBaseUrl()
+                .then(response => {
+                        setBasePath(response.data.basePath)
+                        console.log("basePath", response.data.basePath)
+                    }
+                )
+                .catch((err) => {
+                    console.error(err);
+                })
+        }
+        getBasePath()
+    })
 
-    const getUserById = (id: string) => {
-        UserRepository.getUserByResourceId(id)
+    const getUserById = (uri: string) => {
+        UserRepository.getUserById(uri)
             .then(response => {
                     setUserDetailed(response.data)
                 }
@@ -67,15 +67,17 @@ const UsersProvider = ({children}: Props) => {
 
     useEffect(() => {
         const getUserPage = () => {
-            UserRepository.getUserPage(currentPage, size, userType, selected, searchString)
-                .then(response => setPage(response.data))
-                .catch((err) => console.error(err))
+            if (basePath) {
+                UserRepository.getUserPage(basePath, currentPage, size, userType, selected, searchString)
+                    .then(response => setPage(response.data))
+                    .catch((err) => console.error(err))
+            }
         }
 
         if (searchString.length >= 3 || searchString.length === 0) {
             getUserPage();
         }
-    }, [currentPage, size, userType, organisationUnitId, searchString, selected]);
+    }, [basePath, currentPage, size, userType, organisationUnitId, searchString, selected]);
 
     const updateUserType = (userType: string) => {
         setUserType(userType)
@@ -97,19 +99,22 @@ const UsersProvider = ({children}: Props) => {
         setOrgName(orgName)
     }
 
-    const getUnitTree = () => {
-        console.log(`Getting a the units stree:`);
-        UserRepository.getUnitTree()
-            .then(response => {
-                console.log("Returned tree data: ", response.data);
-                setUnitTree(response.data);
-            })
-            .catch((err) => console.error(err))
-    }
-
     useEffect(() => {
+        const getUnitTree = () => {
+            console.log(`Getting a the units stree:`);
+            if (basePath) {
+
+                UserRepository.getUnitTree(basePath)
+                    .then(response => {
+                        console.log("Returned tree data: ", response.data);
+                        setUnitTree(response.data);
+                    })
+                    .catch((err) => console.error(err))
+            }
+        }
+
         getUnitTree();
-    }, []);
+    }, [basePath]);
 
     return (
         <UsersContext.Provider
