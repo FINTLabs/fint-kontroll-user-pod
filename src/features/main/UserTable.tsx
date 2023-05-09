@@ -80,7 +80,7 @@ export const UserTable: any = () => {
                                             id={`iconUserInfo-${user.id}`}
                                             aria-label="informasjon"
                                             component={Link}
-                                            to={`/info/${user.id}`}
+                                            to={`info/${user.id}`}
                                             onClick={handleClick}
                                         >
                                             <SettingsRounded color={"primary"}/>
