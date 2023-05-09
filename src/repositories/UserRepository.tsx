@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {IUnitTree, IUser, IUserItem, IUserPage} from "../context/userContext/types";
+import {IUnitTree, IUser, IUserPage} from "../context/userContext/types";
 
 
 const getBaseUrl = () => {
