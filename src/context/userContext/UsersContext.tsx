@@ -43,7 +43,7 @@ const UsersProvider = ({children}: Props) => {
             UserRepository.getBaseUrl()
                 .then(response => {
                         setBasePath(response.data.basePath)
-                        console.log("basePath", response.data.basePath)
+                        console.log("basePath i context", response.data.basePath)
                     }
                 )
                 .catch((err) => {
@@ -51,7 +51,7 @@ const UsersProvider = ({children}: Props) => {
                 })
         }
         getBasePath()
-    })
+    }, [basePath])
 
     const getUserById = (uri: string) => {
         UserRepository.getUserById(uri)
