@@ -18,7 +18,7 @@ import TablePaginationActions from "./UserTableFooter";
 
 export const UserTable: any = () => {
 
-    const {page, currentPage, updateCurrentPage, searchValue, size, setSize} = useContext(UsersContext);
+    const {page, size, currentPage, updateCurrentPage, searchValue, setSize} = useContext(UsersContext);
     const [openDialog, setOpenDialog] = useState(false);
 
     const handleClick = (): void => {

@@ -14,7 +14,7 @@ const getBaseUrl = () => {
 const getUserById = (uri: string) => axios.get<IUser>(uri);
 
 const getUserPage = (basePath: string, page: number, size: number, userType: string, organisationUnitId: number[], searchString: string) => {
-    const baseUrl = `${basePath}/api/users/`;
+    const baseUrl = `${basePath === '/' ? '' : basePath}/api/users/`;
     let queryParams = [];
 
     const sanitizedQueryString = searchString.trim();

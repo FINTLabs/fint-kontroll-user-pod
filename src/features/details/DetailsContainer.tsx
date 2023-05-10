@@ -1,15 +1,25 @@
 import {Box, Typography} from "@mui/material";
 import * as React from "react";
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 import {ResourceTable} from "./ResourceTable";
 import Heading from "../Headings/Heading";
 import UserInfo from "./UserInfo";
 import {UsersContext} from "../../context/userContext";
 import style from "../../template/style";
+import {useParams} from "react-router-dom";
 
 function DetailsContainer() {
 
-    const {userDetailed} = useContext(UsersContext);
+
+    const {basePath, getUserById, userDetailed} = useContext(UsersContext);
+    const {id} = useParams<string>();
+
+    useEffect(() => {
+        if (id) {
+            getUserById(`${basePath === '/' ? '' : basePath}/api/users/${id}`);
+        }
+    // eslint-disable-next-line
+    }, [])
 
     return (
         <Box sx={style.content}>

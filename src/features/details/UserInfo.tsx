@@ -1,22 +1,22 @@
 import {Avatar, Box, List, ListItem, ListItemAvatar, ListItemText} from "@mui/material";
 import * as React from "react";
-import {useContext, useEffect} from "react";
+import {useContext} from "react";
 import FormGroup from '@mui/material/FormGroup';
 import Grid from '@mui/material/Grid';
 import {UsersContext} from "../../context/userContext";
 import {AlternateEmail, Apartment, Person, PersonOutline, Phone} from "@mui/icons-material";
-import {useParams} from "react-router-dom";
 
 function UserInfo() {
 
-    const {basePath, getUserById, userDetailed} = useContext(UsersContext);
-    const {id} = useParams<string>();
-
-    useEffect(() => {
-        if (id) {
-            getUserById(`${basePath}/api/users/${id}`);
-        }
-    }, [])
+    const {/*basePath, getUserById,*/ userDetailed} = useContext(UsersContext);
+    // const {id} = useParams<string>();
+    //
+    // useEffect(() => {
+    //     if (id) {
+    //         getUserById(`${basePath === '/' ? '' : basePath}/api/users/${id}`);
+    //     }
+    // // eslint-disable-next-line
+    // }, [])
 
     return (
         <Box sx={{flexGrow: 1, maxWidth: 752}}>

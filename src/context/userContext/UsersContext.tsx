@@ -21,7 +21,7 @@ type Props = {
 };
 
 const UsersProvider = ({children}: Props) => {
-    const [basePath, setBasePath] = useState<string | undefined>(contextDefaultValues.basePath);
+    const [basePath, setBasePath] = useState<string>(contextDefaultValues.basePath);
     const [userSimple] = useState<IUserItem | null>(contextDefaultValues.userSimple);
     const [userDetailed, setUserDetailed] = useState<IUser | null>(contextDefaultValues.userDetailed);
     const [users] = useState<IUserItem[]>(contextDefaultValues.users);
@@ -56,7 +56,7 @@ const UsersProvider = ({children}: Props) => {
     const getUserById = (uri: string) => {
         UserRepository.getUserById(uri)
             .then(response => {
-                    setUserDetailed(response.data)
+                setUserDetailed(response.data)
                 }
             )
             .catch((err) => {
