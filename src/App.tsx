@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import theme from './template/theme';
 import {ThemeProvider} from '@mui/material/styles';
 import {Route, Routes} from 'react-router-dom';
@@ -8,29 +8,26 @@ import DetailsContainer from "./features/details/DetailsContainer";
 
 function App() {
 
-    const {basePath} = useContext(UsersContext);
-    // const [basePath, setBasePath] = useState(undefined)
+    const {basePath, getBasePath} = useContext(UsersContext);
+    //const [path, setBasePath] = useState(basePath)
     //
-    // useEffect(() => {
-    //     axios.get('api/layout/configuration')
-    //         .then(value => {
-    //             setBasePath(value.data.basePath);
-    //         });
-    // }, [])
+    useEffect(() => {
+        console.log(`${basePath === undefined ? "" : basePath}/brukere`)
+        getBasePath();
+        console.log(basePath)
+    })
+    return (
+        <ThemeProvider theme={theme}>
+            <UsersProvider>
+                <Routes>
+                    <Route path={`${basePath === undefined ? "" : basePath}/brukere`} element={<MainContainer/>}/>
+                    <Route path={`${basePath === undefined ? "" : basePath}/brukere/info/:id`}
+                           element={<DetailsContainer/>}/>
+                </Routes>
+            </UsersProvider>
+        </ThemeProvider>
+    )
 
-    console.log("basePath", basePath);
-    return basePath ?
-        (
-            <ThemeProvider theme={theme}>
-                <UsersProvider>
-                    <Routes>
-                        <Route path={`${basePath}/brukere`} element={<MainContainer/>}/>
-                        <Route path={`${basePath}/brukere/info/:id`} element={<DetailsContainer/>}/>
-                    </Routes>
-                </UsersProvider>
-            </ThemeProvider>
-        )
-        : <div/>
 }
 
 export default App;

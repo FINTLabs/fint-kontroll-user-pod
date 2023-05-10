@@ -76,7 +76,7 @@ export type UserContextState = {
     unitTree: IUnitTree | null;
     selected: number[];
     setSelected: (selected: number[]) => void;
-    //getBasePath: () => void;
+    getBasePath: () => void;
 };
 
 export const contextDefaultValues: UserContextState = {
@@ -113,6 +113,6 @@ export const contextDefaultValues: UserContextState = {
     },
     setSize(size: number): void {
     },
-    //getBasePath: () => {
-    //},
+    getBasePath: () => {
+    },
 };
