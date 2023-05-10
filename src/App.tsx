@@ -6,17 +6,6 @@ import RouteList from "./features/routes/RouteList";
 
 function App() {
 
-    //const {basePath} = useContext(UsersContext);
-    // const [basePath, setBasePath] = useState("")
-    //
-    //  useEffect(() => {
-    //      axios.get('api/layout/configuration')
-    //          .then(value => {
-    //              setBasePath(value.data.basePath);
-    //          });
-    //  }, [basePath])
-
-    // console.log("basePath i app", basePath);
     return (
         <ThemeProvider theme={theme}>
             <UsersProvider>

@@ -51,7 +51,7 @@ const UsersProvider = ({children}: Props) => {
                 })
         }
         getBasePath()
-    }, [basePath])
+    }, [])
 
     const getUserById = (uri: string) => {
         UserRepository.getUserById(uri)
