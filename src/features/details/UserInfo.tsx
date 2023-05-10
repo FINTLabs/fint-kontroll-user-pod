@@ -16,7 +16,7 @@ function UserInfo() {
         if (id) {
             getUserById(`${basePath}/api/users/${id}`);
         }
-    }, [])
+    })
 
     return (
         <Box sx={{flexGrow: 1, maxWidth: 752}}>
