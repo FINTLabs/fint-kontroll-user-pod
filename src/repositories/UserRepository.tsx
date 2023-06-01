@@ -1,11 +1,15 @@
 import axios from 'axios';
-import {IUnitTree, IUser, IUserPage} from "../context/userContext/types";
+import {IResource, IUnitTree, IUser, IUserPage} from "../context/userContext/types";
 
 
 const getBaseUrl = () => {
     return axios.get('api/layout/configuration');
 }
 
+const getResources = (basePath: string) => {
+    const url = `${basePath === '/' ? '' : basePath}/api/resources/`;
+    return axios.get<IResource[]>(url);
+}
 
 // const getUsers = () => {
 //     return axios.get<IUserItem[]>(`api/users`);
@@ -53,6 +57,7 @@ const UserRepository = {
     getUserPage,
     getUnitTree,
     getBaseUrl,
+    getResources,
 };
 
 export default UserRepository;

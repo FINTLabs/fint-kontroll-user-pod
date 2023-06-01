@@ -4,6 +4,7 @@ import {
     contextDefaultValues,
     IOrgUnit,
     IOrgUnitPage,
+    IResource,
     IUnitTree,
     IUser,
     IUserItem,
@@ -36,6 +37,7 @@ const UsersProvider = ({children}: Props) => {
     const [organisationUnitId, setOrganisationUnitId] = useState<number>(contextDefaultValues.organisationUnitId);
     const [unitTree, setUnitTree] = useState<IUnitTree | null>(contextDefaultValues.unitTree);
     const [selected, setSelected] = useState<number[]>(contextDefaultValues.selected);
+    const [resources, setResources] = useState<IResource[] | null>(contextDefaultValues.resources);
 
 
     useEffect(() => {
@@ -56,13 +58,24 @@ const UsersProvider = ({children}: Props) => {
     const getUserById = (uri: string) => {
         UserRepository.getUserById(uri)
             .then(response => {
-                setUserDetailed(response.data)
+                    setUserDetailed(response.data)
                 }
             )
             .catch((err) => {
                 console.error(err);
             })
     }
+
+    useEffect(() => {
+        const getResources = () => {
+            if (basePath) {
+                UserRepository.getResources(basePath)
+                    .then(response => setResources(response.data))
+                    .catch((err) => console.error(err))
+            }
+        }
+        getResources()
+    }, [basePath]);
 
 
     useEffect(() => {
@@ -144,7 +157,7 @@ const UsersProvider = ({children}: Props) => {
                 getOrgName,
                 updateOrganisationUnitId,
                 setSelected,
-                //setBasePath,
+                resources,
             }}
         >
             {children}
