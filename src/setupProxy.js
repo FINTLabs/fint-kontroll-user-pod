@@ -13,7 +13,7 @@ module.exports = function (app) {
     );
     app.use(
         createProxyMiddleware('/api/orgunits', {
-            target: 'http://localhost:8081', // API endpoint 5
+            target: 'http://localhost:8060/beta/fintlabs-no', // API endpoint 5
             changeOrigin: true,
             //pathRewrite: {"^/api5": ""},
             headers: {

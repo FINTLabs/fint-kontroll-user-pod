@@ -51,6 +51,11 @@ export interface IUnitTree {
     orgUnits: IUnitItem[];
 }
 
+export interface IResource {
+    id: number;
+    resourceName: string;
+}
+
 export type UserContextState = {
     basePath: string;
     userDetailed: IUser | null;
@@ -76,7 +81,7 @@ export type UserContextState = {
     unitTree: IUnitTree | null;
     selected: number[];
     setSelected: (selected: number[]) => void;
-    //getBasePath: () => void;
+    resources: IResource[] | null;
 };
 
 export const contextDefaultValues: UserContextState = {
@@ -113,6 +118,5 @@ export const contextDefaultValues: UserContextState = {
     },
     setSize(size: number): void {
     },
-    //getBasePath: () => {
-    //},
+    resources: [],
 };
