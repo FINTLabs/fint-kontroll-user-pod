@@ -48,7 +48,8 @@ const getUserPage = (basePath: string, page: number, size: number, userType: str
 }
 
 const getUnitTree = (basePath: string) => {
-    return axios.get<IUnitTree>(`${basePath}/api/orgunits`)
+    const url = `${basePath === '/' ? '' : basePath}/api/orgunits`;
+    return axios.get<IUnitTree>(url);
 }
 
 const UserRepository = {
