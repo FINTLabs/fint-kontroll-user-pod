@@ -3,7 +3,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 module.exports = function (app) {
     app.use(
         createProxyMiddleware('/api/users', {
-            target: 'http://localhost:8080', // API endpoint 1
+            target: 'http://localhost:8061/beta/fintlabs-no', // API endpoint 1
             changeOrigin: true,
             //pathRewrite: {"^/api1": ""},
             headers: {

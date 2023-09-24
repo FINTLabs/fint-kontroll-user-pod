@@ -37,6 +37,7 @@ const UsersProvider = ({children}: Props) => {
     const [organisationUnitId, setOrganisationUnitId] = useState<number>(contextDefaultValues.organisationUnitId);
     const [unitTree, setUnitTree] = useState<IUnitTree | null>(contextDefaultValues.unitTree);
     const [selected, setSelected] = useState<number[]>(contextDefaultValues.selected);
+   // const [selected, setSelected] = useState<IOrgUnit[]>(contextDefaultValues.selected);
     const [resources, setResources] = useState<IResource[] | null>(contextDefaultValues.resources);
 
 
@@ -56,14 +57,16 @@ const UsersProvider = ({children}: Props) => {
     }, [])
 
     const getUserById = (uri: string) => {
-        UserRepository.getUserById(uri)
-            .then(response => {
-                    setUserDetailed(response.data)
-                }
-            )
-            .catch((err) => {
-                console.error(err);
-            })
+        if (basePath) {
+            UserRepository.getUserById(uri)
+                .then(response => {
+                        setUserDetailed(response.data)
+                    }
+                )
+                .catch((err) => {
+                    console.error(err);
+                })
+        }
     }
 
     useEffect(() => {
