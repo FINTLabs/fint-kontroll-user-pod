@@ -7,7 +7,7 @@ const getBaseUrl = () => {
 }
 
 const getResources = (basePath: string) => {
-    const url = `${basePath === '/' ? '' : basePath}/api/resources/`;
+    const url = `${basePath === '/' ? '' : basePath}/api/resources`;
     return axios.get<IResource[]>(url);
 }
 
@@ -17,8 +17,8 @@ const getResources = (basePath: string) => {
 
 const getUserById = (uri: string) => axios.get<IUser>(uri);
 
-const getUserPage = (basePath: string, page: number, size: number, userType: string, organisationUnitId: number[], searchString: string) => {
-    const baseUrl = `${basePath === '/' ? '' : basePath}/api/users/`;
+const getUserPage = (basePath: string, page: number, size: number, userType: string, organisationUnitId: string[], searchString: string) => {
+    const baseUrl = `${basePath === '/' ? '' : basePath}/api/users`;
     let queryParams = [];
 
     const sanitizedQueryString = searchString.trim();
@@ -47,7 +47,7 @@ const getUserPage = (basePath: string, page: number, size: number, userType: str
     return axios.get<IUserPage>(url);
 }
 
-const getUnitTree = (basePath: string) => {
+export const getUnitTree = (basePath: string) => {
     const url = `${basePath === '/' ? '' : basePath}/api/orgunits`;
     return axios.get<IUnitTree>(url);
 }

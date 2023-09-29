@@ -5,13 +5,13 @@ import {
     IOrgUnit,
     IOrgUnitPage,
     IResource,
+    IUnitItem,
     IUnitTree,
     IUser,
     IUserItem,
     IUserPage,
     UserContextState
 } from "./types";
-//import UnitRepository from "../../repositories/UnitRepository";
 
 export const UsersContext = createContext<UserContextState>(
     contextDefaultValues
@@ -36,10 +36,9 @@ const UsersProvider = ({children}: Props) => {
     const [orgName, setOrgName] = useState<string>(contextDefaultValues.orgName);
     const [organisationUnitId, setOrganisationUnitId] = useState<number>(contextDefaultValues.organisationUnitId);
     const [unitTree, setUnitTree] = useState<IUnitTree | null>(contextDefaultValues.unitTree);
-    const [selected, setSelected] = useState<number[]>(contextDefaultValues.selected);
-   // const [selected, setSelected] = useState<IOrgUnit[]>(contextDefaultValues.selected);
+    const [selected, setSelected] = useState<string[]>(contextDefaultValues.selected);
     const [resources, setResources] = useState<IResource[] | null>(contextDefaultValues.resources);
-
+    const [selectedOrgUnits, setSelectedOrgUnits] = useState<IUnitItem[]>(contextDefaultValues.selectedOrgUnits);
 
     useEffect(() => {
         const getBasePath = () => {
@@ -150,6 +149,7 @@ const UsersProvider = ({children}: Props) => {
                 orgUnitPage,
                 organisationUnitId,
                 unitTree,
+                setUnitTree,
                 selected,
                 searchValue,
                 //setSearchValue,
@@ -161,6 +161,8 @@ const UsersProvider = ({children}: Props) => {
                 updateOrganisationUnitId,
                 setSelected,
                 resources,
+                selectedOrgUnits,
+                setSelectedOrgUnits
             }}
         >
             {children}

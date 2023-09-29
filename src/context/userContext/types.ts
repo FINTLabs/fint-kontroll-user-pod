@@ -35,20 +35,20 @@ export interface IOrgUnitPage {
     currentPage: number;
 }
 
-export interface IUnitItem {
-    id: number;
-    resourceId: string;
-    name: string;
-    organisationUnitId: number;
-    parentRef: number;
-    childrenRef: number[];
-}
-
 export interface IUnitTree {
     totalItems: number;
     totalPages: number | any;
     currentPage: number;
     orgUnits: IUnitItem[];
+}
+
+export interface IUnitItem {
+    id: number;
+    name: string;
+    organisationUnitId: string;
+    parentRef: string;
+    parentName: null | string;
+    childrenRef: string[];
 }
 
 export interface IResource {
@@ -79,9 +79,12 @@ export type UserContextState = {
     organisationUnitId: number;
     updateOrganisationUnitId: (id: number) => void;
     unitTree: IUnitTree | null;
-    selected: number[];
-    setSelected: (selected: number[]) => void;
+    setUnitTree: (unitTree: IUnitTree) => void;
+    selected: string[];
+    setSelected: (selected: string[]) => void;
     resources: IResource[] | null;
+    selectedOrgUnits: IUnitItem[];
+    setSelectedOrgUnits: (selectedOrgUnits: IUnitItem[]) => void;
 };
 
 export const contextDefaultValues: UserContextState = {
@@ -113,10 +116,15 @@ export const contextDefaultValues: UserContextState = {
     updateOrganisationUnitId(): void {
     },
     unitTree: null,
+    setUnitTree(unitTree): void {
+    },
     selected: [],
-    setSelected(selected: number[]): void {
+    setSelected(selected: string[]): void {
     },
     setSize(size: number): void {
     },
     resources: [],
+    selectedOrgUnits: [],
+    setSelectedOrgUnits(selectedOrgUnits: IUnitItem[]): void {
+    },
 };
