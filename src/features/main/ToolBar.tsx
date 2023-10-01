@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import {Box, Button} from "@mui/material";
+import {Button} from "@mui/material";
 import SearchField from "./SearchField";
 import FilterType from "./FilterType";
 import {Apartment} from "@mui/icons-material";
