@@ -81,10 +81,6 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - uses: azure/use-kubelogin@v1.1
-        with:
-          kubelogin-version: 'v0.0.26'
-
 #      ## Alpha cluster ##
 #      - name: Bake alpha manifests with Kustomize
 #        uses: azure/k8s-bake@v2.2
@@ -116,6 +112,14 @@ jobs:
           renderEngine: 'kustomize'
           kustomizationPath: 'kustomize/overlays/beta'
         id: bake-beta
+
+      - uses: azure/login@v1
+        with:
+          creds: '${{ secrets.AKS_BETA_FINT_GITHUB }}'
+
+      - uses: azure/use-kubelogin@v1.1
+        with:
+          kubelogin-version: 'v0.0.26'
 
       - name: Set the target Beta cluster.
         uses: azure/aks-set-context@v3
