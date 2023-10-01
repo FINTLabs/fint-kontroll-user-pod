@@ -36,19 +36,10 @@ function CustomTableToolbar(props: CustomTableToolbarProps) {
                 endIcon={<Apartment/>}
                 onClick={onShowDialog}
                 sx={style.changeOrgButton}
-                style={{ fontSize: '1em' }}
+                style={{fontSize: '1em'}}
             >
                 Velg enhet
             </Button>
-            {/*<Tooltip title={"Velg organisasjonsenhet"}>
-                <IconButton
-                    id={'selectUnitsIcon'}
-                    aria-label="settings"
-                    onClick={onShowDialog}
-                >
-                    <PeopleIcon color={"primary"}/>
-                </IconButton>
-            </Tooltip>*/}
         </Toolbar>
     );
 }

@@ -2,7 +2,6 @@
   "name": "fint-kontroll-user-pod",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:8080",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -11,6 +10,7 @@
     "@mui/lab": "^5.0.0-alpha.123",
     "@mui/material": "^5.11.13",
     "@mui/styles": "^5.11.0",
+    "@mui/x-tree-view": "^6.0.0-alpha.3",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -32,7 +32,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "port-forward-user": "kubectl -n fintlabs-no port-forward services/fint-kontroll-user-catalog 8061:8080",
+    "port-forward-org": "kubectl -n fintlabs-no port-forward services/fint-kontroll-orgunit-catalog 8060:8080"
   },
   "eslintConfig": {
     "extends": [

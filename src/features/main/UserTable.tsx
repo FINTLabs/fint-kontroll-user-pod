@@ -18,7 +18,16 @@ import TablePaginationActions from "./UserTableFooter";
 
 export const UserTable: any = () => {
 
-    const {page, size, currentPage, updateCurrentPage, searchValue, setSize} = useContext(UsersContext);
+    const {
+        page,
+        size,
+        currentPage,
+        updateCurrentPage,
+        searchValue,
+        setSize,
+        selectedOrgUnits,
+        setSelected
+    } = useContext(UsersContext);
     const [openDialog, setOpenDialog] = useState(false);
 
     const handleClick = (): void => {
@@ -27,7 +36,9 @@ export const UserTable: any = () => {
 
     const handleTypeSelect = () => {
         setOpenDialog(false);
-        console.log("selected");
+        const orgunitIds = selectedOrgUnits.map(orgunit => orgunit.organisationUnitId);
+        setSelected(orgunitIds);
+        console.log("selected", orgunitIds);
     }
 
     const handleChangePage = (
