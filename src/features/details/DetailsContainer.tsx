@@ -15,6 +15,7 @@ function DetailsContainer() {
     const {id} = useParams<any>();
 
     useEffect(() => {
+        console.log("DatailsContainer", "useEffetct", id);
         if (id) {
             getUserById(`${basePath === '/' ? '' : basePath}/api/users/${id}`);
         }
