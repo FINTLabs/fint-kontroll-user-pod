@@ -1,7 +1,6 @@
 import {Box, Typography} from "@mui/material";
 import * as React from "react";
 import {useContext, useEffect} from "react";
-import {ResourceTable} from "./ResourceTable";
 import Heading from "../Headings/Heading";
 import UserInfo from "./UserInfo";
 import {UsersContext} from "../../context/userContext";
@@ -12,7 +11,7 @@ function DetailsContainer() {
 
 
     const {basePath, getUserById, userDetailed} = useContext(UsersContext);
-    const {id} = useParams<any>();
+    const {id} = useParams<string>();
 
     useEffect(() => {
         console.log("DatailsContainer", "useEffetct", id);
@@ -20,7 +19,7 @@ function DetailsContainer() {
             getUserById(`${basePath === '/' ? '' : basePath}/api/users/${id}`);
         }
         // eslint-disable-next-line
-    }, [])
+    }, [id])
 
     return (
         <Box sx={style.content}>
@@ -37,7 +36,7 @@ function DetailsContainer() {
                     {userDetailed?.fullName + ' er tildelt følgende ressurser:'}
                 </Typography>
             </Box>
-            <ResourceTable/>
+            {/*<ResourceTable/>*/}
         </Box>
     );
 }
