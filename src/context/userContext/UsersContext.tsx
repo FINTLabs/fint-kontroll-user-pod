@@ -56,7 +56,7 @@ const UsersProvider = ({children}: Props) => {
     }, [])
 
     const getUserById = (uri: string) => {
-        console.log('Deet er heer')
+        console.log('Deet er heer', uri)
         if (basePath) {
             UserRepository.getUserById(uri)
                 .then(response => {
