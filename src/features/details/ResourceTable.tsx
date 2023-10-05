@@ -27,7 +27,7 @@ export const ResourceTable: any = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {resources?.map((resources) => (
+                        {resources.map((resources) => (
 
                             <TableRow
                                 key={resources.id}

@@ -37,7 +37,7 @@ const UsersProvider = ({children}: Props) => {
     const [organisationUnitId, setOrganisationUnitId] = useState<number>(contextDefaultValues.organisationUnitId);
     const [unitTree, setUnitTree] = useState<IUnitTree | null>(contextDefaultValues.unitTree);
     const [selected, setSelected] = useState<string[]>(contextDefaultValues.selected);
-    const [resources, setResources] = useState<IResource[] | null>(contextDefaultValues.resources);
+    const [resources, setResources] = useState<IResource[]>(contextDefaultValues.resources);
     const [selectedOrgUnits, setSelectedOrgUnits] = useState<IUnitItem[]>(contextDefaultValues.selectedOrgUnits);
 
     useEffect(() => {

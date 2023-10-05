@@ -82,7 +82,7 @@ export type UserContextState = {
     setUnitTree: (unitTree: IUnitTree) => void;
     selected: string[];
     setSelected: (selected: string[]) => void;
-    resources: IResource[] | null;
+    resources: IResource[];
     selectedOrgUnits: IUnitItem[];
     setSelectedOrgUnits: (selectedOrgUnits: IUnitItem[]) => void;
 };

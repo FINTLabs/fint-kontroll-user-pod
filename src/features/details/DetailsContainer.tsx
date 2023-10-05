@@ -6,6 +6,7 @@ import UserInfo from "./UserInfo";
 import {UsersContext} from "../../context/userContext";
 import style from "../../template/style";
 import {useParams} from "react-router-dom";
+import {ResourceTable} from "./ResourceTable";
 
 function DetailsContainer() {
 
@@ -36,7 +37,7 @@ function DetailsContainer() {
                     {userDetailed?.fullName + ' er tildelt følgende ressurser:'}
                 </Typography>
             </Box>
-            {/*<ResourceTable/>*/}
+            <ResourceTable/>
         </Box>
     );
 }
