@@ -24,7 +24,7 @@ const style = {
         textTransform: 'none',
         height: 56,
         width: 300,
-        color: 'grey',
+       // color: 'grey',
     },
     addNewResourceSection: {
         display: "flex",

@@ -34,7 +34,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "port-forward-user": "kubectl -n fintlabs-no port-forward services/fint-kontroll-user-catalog 8061:8080",
-    "port-forward-org": "kubectl -n fintlabs-no port-forward services/fint-kontroll-orgunit-catalog 8060:8080"
+    "port-forward-org": "kubectl -n fintlabs-no port-forward services/fint-kontroll-orgunit-catalog 8060:8080",
+    "port-forward-assignments": "kubectl -n fintlabs-no port-forward services/fint-kontroll-assignment-catalog 8062:8080"
   },
   "eslintConfig": {
     "extends": [

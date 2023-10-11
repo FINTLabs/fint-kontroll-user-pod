@@ -6,14 +6,34 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import IconButton from '@mui/material/IconButton';
-import {Edit} from "@mui/icons-material";
-import {Box, Tooltip} from "@mui/material";
+import {Box, TableFooter, TablePagination} from "@mui/material";
 import {UsersContext} from "../../context/userContext";
+import TablePaginationActions from "../main/UserTableFooter";
 
 export const ResourceTable: any = () => {
 
-    const {resources} = useContext(UsersContext);
+    const {
+        assignmentPage,
+        assignmentSize,
+        setAssignmentSize,
+        currentAssignmentPage,
+        updateCurrentAssignmentPage
+    } = useContext(UsersContext);
+
+    const handleChangePage = (
+        event: React.MouseEvent<HTMLButtonElement> | null,
+        newPage: number,
+    ) => {
+        console.log("new page:", newPage)
+        updateCurrentAssignmentPage(newPage)
+    };
+
+    const handleChangeRowsPerPage = (
+        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+        setAssignmentSize(parseInt(event.target.value, 10));
+        updateCurrentAssignmentPage(0);
+    };
 
     return (
         <Box>
@@ -22,12 +42,12 @@ export const ResourceTable: any = () => {
                     <TableHead>
                         <TableRow>
                             <TableCell align="left" sx={{fontWeight: 'bold'}}>Ressurs</TableCell>
+                            <TableCell align="left" sx={{fontWeight: 'bold'}}>Ressurstype</TableCell>
                             <TableCell align="left" sx={{fontWeight: 'bold'}}>Tildelt av</TableCell>
-                            <TableCell></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {resources.map((resources) => (
+                        {assignmentPage?.resources.map((resources) => (
 
                             <TableRow
                                 key={resources.id}
@@ -37,19 +57,36 @@ export const ResourceTable: any = () => {
                                 <TableCell align="left" component="th" scope="row">
                                     {resources.resourceName}
                                 </TableCell>
-                                <TableCell align="left">
-                                    En høyere i systemet
+                                <TableCell align="left" component="th" scope="row">
+                                    {resources.resourceType}
                                 </TableCell>
-                                <TableCell align="center">
-                                    <Tooltip title={"Rediger"}>
-                                        <IconButton color={'primary'} aria-label="edit" id={'editIcon'}>
-                                            <Edit/>
-                                        </IconButton>
-                                    </Tooltip>
+                                <TableCell align="left">
+
                                 </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
+                    <TableFooter>
+                        <TableRow>
+                            <TablePagination
+                                id={"pagination"}
+                                rowsPerPageOptions={[5, 10, 25, 50]}
+                                colSpan={4}
+                                count={assignmentPage ? assignmentPage.totalItems : 0}
+                                rowsPerPage={assignmentSize}
+                                page={currentAssignmentPage}
+                                SelectProps={{
+                                    inputProps: {
+                                        'aria-label': 'rows per page',
+                                    },
+                                    native: true,
+                                }}
+                                onPageChange={handleChangePage}
+                                onRowsPerPageChange={handleChangeRowsPerPage}
+                                ActionsComponent={TablePaginationActions}
+                            />
+                        </TableRow>
+                    </TableFooter>
                 </Table>
             </TableContainer>
         </Box>

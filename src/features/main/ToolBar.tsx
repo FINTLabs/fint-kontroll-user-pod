@@ -37,6 +37,7 @@ function CustomTableToolbar(props: CustomTableToolbarProps) {
                 onClick={onShowDialog}
                 sx={style.changeOrgButton}
                 style={{fontSize: '1em'}}
+                color={"primary"}
             >
                 Velg enhet
             </Button>

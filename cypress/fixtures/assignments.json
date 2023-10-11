@@ -1,0 +1,20 @@
+{
+  "currentPage": 0,
+  "totalPages": 1,
+  "size": 50,
+  "resources": [
+    {
+      "id": 1,
+      "resourceId": "adobek12",
+      "resourceName": "Adobe K12 Utdanning",
+      "resourceType": "ApplicationResource"
+    },
+    {
+      "id": 2,
+      "resourceId": "msproject",
+      "resourceName": "Microsoft Project Enterprise",
+      "resourceType": "ApplicationResource"
+    }
+  ],
+  "totalItems": 2
+}
