@@ -5,7 +5,7 @@ import Heading from "../Headings/Heading";
 import UserInfo from "./UserInfo";
 import {UsersContext} from "../../context/userContext";
 import style from "../../template/style";
-import {Link, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {ResourceTable} from "./ResourceTable";
 
 function DetailsContainer() {
@@ -22,10 +22,6 @@ function DetailsContainer() {
         }
         // eslint-disable-next-line
     }, [id])
-
-    const handleClick = (): void => {
-        // searchValue("");
-    };
 
     return (
         <Box sx={style.content}>
@@ -47,9 +43,7 @@ function DetailsContainer() {
                     variant={"contained"}
                     aria-label="Toggle"
                     color={"primary"}
-                    component={Link}
-                    to={`rediger`}
-                    onClick={handleClick}
+                    href={`${basePath}/ressurser/info/${id}`}
                 >
                     Rediger ressurser
                 </Button>
