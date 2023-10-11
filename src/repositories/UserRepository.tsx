@@ -1,19 +1,27 @@
 import axios from 'axios';
-import {IResource, IUnitTree, IUser, IUserPage} from "../context/userContext/types";
+import {IAssignmentPage, IUnitTree, IUser, IUserPage} from "../context/userContext/types";
 
 
 const getBaseUrl = () => {
     return axios.get('api/layout/configuration');
 }
 
-const getResources = (basePath: string) => {
-    const url = `${basePath === '/' ? '' : basePath}/api/resources`;
-    return axios.get<IResource[]>(url);
-}
+const getAssignmentPage = (basePath: string, id: number, assignmentPage: number, assignmentSize: number) => {
+    const baseUrl = `${basePath === '/' ? '' : basePath}/api/assignments/user/${id}/resources`;
+    let queryParams = [];
 
-// const getUsers = () => {
-//     return axios.get<IUserItem[]>(`api/users`);
-// }
+    if (assignmentSize) {
+        queryParams.push(`size=${assignmentSize}`);
+    }
+
+    if (assignmentPage) {
+        queryParams.push(`page=${assignmentPage}`);
+    }
+
+    const url = `${baseUrl}${queryParams.length > 0 ? '?' : ''}${queryParams.join('&')}`;
+
+    return axios.get<IAssignmentPage>(url);
+}
 
 const getUserById = (uri: string) => axios.get<IUser>(uri);
 
@@ -53,12 +61,11 @@ export const getUnitTree = (basePath: string) => {
 }
 
 const UserRepository = {
-    //getUsers,
     getUserById,
     getUserPage,
     getUnitTree,
     getBaseUrl,
-    getResources,
+    getAssignmentPage,
 };
 
 export default UserRepository;

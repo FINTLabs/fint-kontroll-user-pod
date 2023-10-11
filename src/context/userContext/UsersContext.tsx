@@ -2,6 +2,7 @@ import React, {createContext, ReactNode, useEffect, useState,} from "react";
 import UserRepository from "../../repositories/UserRepository";
 import {
     contextDefaultValues,
+    IAssignmentPage,
     IOrgUnit,
     IOrgUnitPage,
     IResource,
@@ -37,8 +38,11 @@ const UsersProvider = ({children}: Props) => {
     const [organisationUnitId, setOrganisationUnitId] = useState<number>(contextDefaultValues.organisationUnitId);
     const [unitTree, setUnitTree] = useState<IUnitTree | null>(contextDefaultValues.unitTree);
     const [selected, setSelected] = useState<string[]>(contextDefaultValues.selected);
-    const [resources, setResources] = useState<IResource[]>(contextDefaultValues.resources);
+    const [resources] = useState<IResource[]>(contextDefaultValues.resources);
     const [selectedOrgUnits, setSelectedOrgUnits] = useState<IUnitItem[]>(contextDefaultValues.selectedOrgUnits);
+    const [assignmentPage, setAssignmentPage] = useState<IAssignmentPage | null>(contextDefaultValues.assignmentPage);
+    const [currentAssignmentPage, setCurrentAssignmentPage] = useState<number>(contextDefaultValues.currentAssignmentPage);
+    const [assignmentSize, setAssignmentSize] = useState<number>(contextDefaultValues.assignmentSize);
 
     useEffect(() => {
         const getBasePath = () => {
@@ -70,18 +74,6 @@ const UsersProvider = ({children}: Props) => {
     }
 
     useEffect(() => {
-        const getResources = () => {
-            if (basePath) {
-                UserRepository.getResources(basePath)
-                    .then(response => setResources(response.data))
-                    .catch((err) => console.error(err))
-            }
-        }
-        getResources()
-    }, [basePath]);
-
-
-    useEffect(() => {
         const getUserPage = () => {
             if (basePath) {
                 UserRepository.getUserPage(basePath, currentPage, size, userType, selected, searchString)
@@ -94,6 +86,14 @@ const UsersProvider = ({children}: Props) => {
             getUserPage();
         }
     }, [basePath, currentPage, size, userType, organisationUnitId, searchString, selected]);
+
+    const getAssignmentPage = (id: number) => {
+        if (basePath) {
+            UserRepository.getAssignmentPage(basePath, id, currentPage, size)
+                .then(response => setAssignmentPage(response.data))
+                .catch((err) => console.error(err))
+        }
+    }
 
     const updateUserType = (userType: string) => {
         setUserType(userType)
@@ -113,6 +113,10 @@ const UsersProvider = ({children}: Props) => {
 
     const getOrgName = (orgName: string) => {
         setOrgName(orgName)
+    }
+
+    const updateCurrentAssignmentPage = (currentAssignmentPage: number) => {
+        setCurrentAssignmentPage(currentAssignmentPage)
     }
 
     useEffect(() => {
@@ -163,7 +167,13 @@ const UsersProvider = ({children}: Props) => {
                 setSelected,
                 resources,
                 selectedOrgUnits,
-                setSelectedOrgUnits
+                setSelectedOrgUnits,
+                assignmentPage,
+                getAssignmentPage,
+                assignmentSize,
+                setAssignmentSize,
+                currentAssignmentPage,
+                updateCurrentAssignmentPage,
             }}
         >
             {children}

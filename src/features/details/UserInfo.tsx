@@ -8,15 +8,7 @@ import {AlternateEmail, Apartment, Person, PersonOutline, Phone} from "@mui/icon
 
 function UserInfo() {
 
-    const {/*basePath, getUserById,*/ userDetailed} = useContext(UsersContext);
-    // const {id} = useParams<string>();
-    //
-    // useEffect(() => {
-    //     if (id) {
-    //         getUserById(`${basePath === '/' ? '' : basePath}/api/users/${id}`);
-    //     }
-    // // eslint-disable-next-line
-    // }, [])
+    const {userDetailed} = useContext(UsersContext);
 
     return (
         <Box sx={{flexGrow: 1, maxWidth: 752}}>

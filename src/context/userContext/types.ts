@@ -53,7 +53,16 @@ export interface IUnitItem {
 
 export interface IResource {
     id: number;
+    resourceId: string;
     resourceName: string;
+    resourceType: string;
+}
+
+export interface IAssignmentPage {
+    totalItems: number;
+    totalPages: number | any;
+    currentPage: number;
+    resources: IResource[];
 }
 
 export type UserContextState = {
@@ -85,6 +94,12 @@ export type UserContextState = {
     resources: IResource[];
     selectedOrgUnits: IUnitItem[];
     setSelectedOrgUnits: (selectedOrgUnits: IUnitItem[]) => void;
+    assignmentPage: IAssignmentPage | null;
+    getAssignmentPage: (id: number) => void;
+    currentAssignmentPage: number;
+    assignmentSize: number;
+    setAssignmentSize: (size: number) => void;
+    updateCurrentAssignmentPage: (currentAssignmentPage: number) => void;
 };
 
 export const contextDefaultValues: UserContextState = {
@@ -126,5 +141,14 @@ export const contextDefaultValues: UserContextState = {
     resources: [],
     selectedOrgUnits: [],
     setSelectedOrgUnits(selectedOrgUnits: IUnitItem[]): void {
+    },
+    assignmentPage: null,
+    getAssignmentPage: () => {
+    },
+    currentAssignmentPage: 0,
+    assignmentSize: 5,
+    setAssignmentSize(size: number): void {
+    },
+    updateCurrentAssignmentPage(): void {
     },
 };

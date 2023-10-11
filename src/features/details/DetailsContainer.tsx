@@ -1,26 +1,31 @@
-import {Box, Typography} from "@mui/material";
+import {Box, Button, Typography} from "@mui/material";
 import * as React from "react";
 import {useContext, useEffect} from "react";
 import Heading from "../Headings/Heading";
 import UserInfo from "./UserInfo";
 import {UsersContext} from "../../context/userContext";
 import style from "../../template/style";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {ResourceTable} from "./ResourceTable";
 
 function DetailsContainer() {
 
 
-    const {basePath, getUserById, userDetailed} = useContext(UsersContext);
+    const {basePath, getUserById, userDetailed, getAssignmentPage} = useContext(UsersContext);
     const {id} = useParams<string>();
 
     useEffect(() => {
         console.log("DatailsContainer", "useEffetct", id);
         if (id) {
             getUserById(`${basePath === '/' ? '' : basePath}/api/users/${id}`);
+            getAssignmentPage(parseInt(id))
         }
         // eslint-disable-next-line
     }, [id])
+
+    const handleClick = (): void => {
+        // searchValue("");
+    };
 
     return (
         <Box sx={style.content}>
@@ -36,6 +41,18 @@ function DetailsContainer() {
                 >
                     {userDetailed?.fullName + ' er tildelt følgende ressurser:'}
                 </Typography>
+                <Button
+                    sx={{minWidth: '80px'}}
+                    id={"button-to-edit-resources"}
+                    variant={"contained"}
+                    aria-label="Toggle"
+                    color={"primary"}
+                    component={Link}
+                    to={`rediger`}
+                    onClick={handleClick}
+                >
+                    Rediger ressurser
+                </Button>
             </Box>
             <ResourceTable/>
         </Box>

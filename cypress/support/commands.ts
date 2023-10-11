@@ -65,11 +65,11 @@ Cypress.Commands.add('interceptAndReturnFile', interceptAndReturnFile)
 
 
 export function goToHome() {
-    return cy.visit('http://localhost:3000');
+    return cy.visit('http://localhost:3001/brukere');
 }
 
 export function goToInfo() {
-    return cy.visit('http://localhost:3000/info/442');
+    return cy.visit('http://localhost:3001/brukere/info/442');
 }
 Cypress.Commands.add('goToHome', goToHome)
 Cypress.Commands.add('goToInfo', goToInfo)

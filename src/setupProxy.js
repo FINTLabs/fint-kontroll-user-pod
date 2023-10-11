@@ -21,4 +21,14 @@ module.exports = function (app) {
             }
         })
     );
+    app.use(
+        createProxyMiddleware('/api/assignments', {
+            target: 'http://localhost:8062/beta/fintlabs-no',
+            changeOrigin: true,
+            //pathRewrite: {"^/api5": ""},
+            headers: {
+                Connection: "keep-alive"
+            }
+        })
+    );
 }
