@@ -9,7 +9,7 @@ const RouteList = () => {
 
     return (
         <Routes>
-            <Route path={`${basePath}/brukere/`} element={<MainContainer/>}/>
+            <Route path={`${basePath}/brukere`} element={<MainContainer/>}/>
             <Route path={`${basePath}/brukere/info/:id`} element={<DetailsContainer/>}/>
         </Routes>
     )
