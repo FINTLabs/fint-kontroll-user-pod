@@ -100,6 +100,7 @@ export type UserContextState = {
     assignmentSize: number;
     setAssignmentSize: (size: number) => void;
     updateCurrentAssignmentPage: (currentAssignmentPage: number) => void;
+    error: string | null;
 };
 
 export const contextDefaultValues: UserContextState = {
@@ -151,4 +152,5 @@ export const contextDefaultValues: UserContextState = {
     },
     updateCurrentAssignmentPage(): void {
     },
+    error:null,
 };

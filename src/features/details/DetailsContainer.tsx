@@ -1,4 +1,4 @@
-import {Box, Button, Typography} from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import * as React from "react";
 import {useContext, useEffect} from "react";
 import Heading from "../Headings/Heading";
@@ -37,16 +37,16 @@ function DetailsContainer() {
                 >
                     {userDetailed?.fullName + ' er tildelt følgende ressurser:'}
                 </Typography>
-                <Button
-                    sx={{minWidth: '80px'}}
-                    id={"button-to-edit-resources"}
-                    variant={"contained"}
-                    aria-label="Toggle"
-                    color={"primary"}
-                    href={`${basePath}/ressurser/info/${id}`}
-                >
-                    Rediger ressurser
-                </Button>
+                {/*<Button*/}
+                {/*    sx={{minWidth: '80px'}}*/}
+                {/*    id={"button-to-edit-resources"}*/}
+                {/*    variant={"contained"}*/}
+                {/*    aria-label="Toggle"*/}
+                {/*    color={"primary"}*/}
+                {/*    href={`${basePath}/ressurser/info/${id}`}*/}
+                {/*>*/}
+                {/*    Rediger ressurser*/}
+                {/*</Button>*/}
             </Box>
             <ResourceTable/>
         </Box>

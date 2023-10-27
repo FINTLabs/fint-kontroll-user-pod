@@ -8,7 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
 import {SettingsRounded} from "@mui/icons-material";
-import {Box, TableFooter, TablePagination, Tooltip} from "@mui/material";
+import {Alert, Box, TableFooter, TablePagination, Tooltip} from "@mui/material";
 import {Link} from "react-router-dom";
 import {UsersContext} from "../../context/userContext/UsersContext";
 import DialogUnit from "./DialogUnit";
@@ -26,7 +26,8 @@ export const UserTable: any = () => {
         searchValue,
         setSize,
         selectedOrgUnits,
-        setSelected
+        setSelected,
+        error
     } = useContext(UsersContext);
     const [openDialog, setOpenDialog] = useState(false);
 
@@ -62,6 +63,11 @@ export const UserTable: any = () => {
                 onClose={handleTypeSelect}
                 open={openDialog}
             />
+
+            {error && (
+                <Alert severity="warning">{error}</Alert>
+            )}
+
             <TableContainer sx={{minWidth: 1040, maxWidth: 1536}} id={"userTable"}>
                 <ToolBar onShowDialog={() => setOpenDialog(true)}/>
                 <Table aria-label="Users-table">
