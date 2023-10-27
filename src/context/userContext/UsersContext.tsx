@@ -43,6 +43,7 @@ const UsersProvider = ({children}: Props) => {
     const [assignmentPage, setAssignmentPage] = useState<IAssignmentPage | null>(contextDefaultValues.assignmentPage);
     const [currentAssignmentPage, setCurrentAssignmentPage] = useState<number>(contextDefaultValues.currentAssignmentPage);
     const [assignmentSize, setAssignmentSize] = useState<number>(contextDefaultValues.assignmentSize);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const getBasePath = () => {
@@ -53,6 +54,8 @@ const UsersProvider = ({children}: Props) => {
                     }
                 )
                 .catch((err) => {
+                    const errorObject = new Error((err as Error).message);
+                    setError(errorObject.message);
                     console.error(err);
                 })
         }
@@ -68,6 +71,8 @@ const UsersProvider = ({children}: Props) => {
                     }
                 )
                 .catch((err) => {
+                    const errorObject = new Error((err as Error).message);
+                    setError(errorObject.message);
                     console.error(err);
                 })
         }
@@ -78,7 +83,11 @@ const UsersProvider = ({children}: Props) => {
             if (basePath) {
                 UserRepository.getUserPage(basePath, currentPage, size, userType, selected, searchString)
                     .then(response => setPage(response.data))
-                    .catch((err) => console.error(err))
+                    .catch((err) => {
+                        const errorObject = new Error((err as Error).message);
+                        setError(errorObject.message);
+                        console.error(err);
+                    })
             }
         }
 
@@ -91,7 +100,11 @@ const UsersProvider = ({children}: Props) => {
         if (basePath) {
             UserRepository.getAssignmentPage(basePath, id, currentPage, size)
                 .then(response => setAssignmentPage(response.data))
-                .catch((err) => console.error(err))
+                .catch((err) => {
+                    const errorObject = new Error((err as Error).message);
+                    setError(errorObject.message);
+                    console.error(err);
+                })
         }
     }
 
@@ -129,7 +142,11 @@ const UsersProvider = ({children}: Props) => {
                         console.log("Returned tree data: ", response.data);
                         setUnitTree(response.data);
                     })
-                    .catch((err) => console.error(err))
+                    .catch((err) => {
+                        const errorObject = new Error((err as Error).message);
+                        setError(errorObject.message);
+                        console.error(err);
+                    })
             }
         }
 
@@ -174,6 +191,7 @@ const UsersProvider = ({children}: Props) => {
                 setAssignmentSize,
                 currentAssignmentPage,
                 updateCurrentAssignmentPage,
+                error
             }}
         >
             {children}

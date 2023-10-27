@@ -6,7 +6,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import {Box, TableFooter, TablePagination} from "@mui/material";
+import {Alert, Box, TableFooter, TablePagination} from "@mui/material";
 import {UsersContext} from "../../context/userContext";
 import TablePaginationActions from "../main/UserTableFooter";
 
@@ -17,7 +17,8 @@ export const ResourceTable: any = () => {
         assignmentSize,
         setAssignmentSize,
         currentAssignmentPage,
-        updateCurrentAssignmentPage
+        updateCurrentAssignmentPage,
+        error
     } = useContext(UsersContext);
 
     const handleChangePage = (
@@ -37,6 +38,10 @@ export const ResourceTable: any = () => {
 
     return (
         <Box>
+            {error && (
+                <Alert severity="warning">{error}</Alert>
+            )}
+
             <TableContainer sx={{maxWidth: 1536}} id={'resourceTable'}>
                 <Table aria-label="Resource-table">
                     <TableHead>
