@@ -1,11 +1,11 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {Route, Routes} from 'react-router-dom';
 import MainContainer from '../../features/main/MainContainer';
 import DetailsContainer from '../../features/details/DetailsContainer';
-import {UsersContext} from '../../context/userContext';
+import {useBasePath} from "../../context/BasePathContext";
 
 const RouteList = () => {
-    const {basePath} = useContext(UsersContext);
+    const basePath = useBasePath() || '';
 
     return (
         <Routes>
