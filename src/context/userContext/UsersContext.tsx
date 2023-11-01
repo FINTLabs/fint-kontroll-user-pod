@@ -23,7 +23,7 @@ type Props = {
 };
 
 const UsersProvider = ({children}: Props) => {
-    const [basePath, setBasePath] = useState<string>(contextDefaultValues.basePath);
+    const [basePath] = useState<string>(contextDefaultValues.basePath);
     const [userSimple] = useState<IUserItem | null>(contextDefaultValues.userSimple);
     const [userDetailed, setUserDetailed] = useState<IUser | null>(contextDefaultValues.userDetailed);
     const [users] = useState<IUserItem[]>(contextDefaultValues.users);
@@ -45,22 +45,22 @@ const UsersProvider = ({children}: Props) => {
     const [assignmentSize, setAssignmentSize] = useState<number>(contextDefaultValues.assignmentSize);
     const [error, setError] = useState<string | null>(null);
 
-    useEffect(() => {
-        const getBasePath = () => {
-            UserRepository.getBaseUrl()
-                .then(response => {
-                        setBasePath(response.data.basePath)
-                        console.log("basePath i context", response.data.basePath)
-                    }
-                )
-                .catch((err) => {
-                    const errorObject = new Error((err as Error).message);
-                    setError(errorObject.message);
-                    console.error(err);
-                })
-        }
-        getBasePath()
-    }, [])
+    // useEffect(() => {
+    //     const getBasePath = () => {
+    //         UserRepository.getBaseUrl()
+    //             .then(response => {
+    //                     setBasePath(response.data.basePath)
+    //                     console.log("basePath i context", response.data.basePath)
+    //                 }
+    //             )
+    //             .catch((err) => {
+    //                 const errorObject = new Error((err as Error).message);
+    //                 setError(errorObject.message);
+    //                 console.error(err);
+    //             })
+    //     }
+    //     getBasePath()
+    // }, [])
 
     const getUserById = (uri: string) => {
         console.log('Deet er heer', uri)
