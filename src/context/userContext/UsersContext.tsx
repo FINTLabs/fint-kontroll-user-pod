@@ -20,6 +20,7 @@ export const UsersContext = createContext<UserContextState>(
 
 type Props = {
     children: ReactNode[] | ReactNode;
+    basePath: string; // Add basePath prop
 };
 
 const UsersProvider = ({children}: Props) => {
