@@ -20,11 +20,11 @@ export const UsersContext = createContext<UserContextState>(
 
 type Props = {
     children: ReactNode[] | ReactNode;
-    basePath: string; // Add basePath prop
+    basePath: string;
 };
 
-const UsersProvider = ({children}: Props) => {
-    const [basePath] = useState<string>(contextDefaultValues.basePath);
+const UsersProvider = ({ children, basePath }: Props) => {
+
     const [userSimple] = useState<IUserItem | null>(contextDefaultValues.userSimple);
     const [userDetailed, setUserDetailed] = useState<IUser | null>(contextDefaultValues.userDetailed);
     const [users] = useState<IUserItem[]>(contextDefaultValues.users);
@@ -63,10 +63,9 @@ const UsersProvider = ({children}: Props) => {
     //     getBasePath()
     // }, [])
 
-    const getUserById = (uri: string) => {
-        console.log('Deet er heer', uri)
+    const getUserById = (id: string) => {
         if (basePath) {
-            UserRepository.getUserById(uri)
+            UserRepository.getUserById(id, basePath)
                 .then(response => {
                         setUserDetailed(response.data)
                     }
@@ -81,6 +80,7 @@ const UsersProvider = ({children}: Props) => {
 
     useEffect(() => {
         const getUserPage = () => {
+            console.log("getting a user page", basePath)
             if (basePath) {
                 UserRepository.getUserPage(basePath, currentPage, size, userType, selected, searchString)
                     .then(response => setPage(response.data))
@@ -158,7 +158,6 @@ const UsersProvider = ({children}: Props) => {
     return (
         <UsersContext.Provider
             value={{
-                basePath,
                 userType,
                 page,
                 userSimple: userSimple,

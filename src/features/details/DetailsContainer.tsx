@@ -11,13 +11,13 @@ import {ResourceTable} from "./ResourceTable";
 function DetailsContainer() {
 
 
-    const {basePath, getUserById, userDetailed, getAssignmentPage} = useContext(UsersContext);
+    const {getUserById, userDetailed, getAssignmentPage} = useContext(UsersContext);
     const {id} = useParams<string>();
 
     useEffect(() => {
         console.log("DatailsContainer", "useEffetct", id);
         if (id) {
-            getUserById(`${basePath === '/' ? '' : basePath}/api/users/${id}`);
+            getUserById(`${id}`);
             getAssignmentPage(parseInt(id))
         }
         // eslint-disable-next-line

@@ -66,7 +66,6 @@ export interface IAssignmentPage {
 }
 
 export type UserContextState = {
-    basePath: string;
     userDetailed: IUser | null;
     userSimple: IUserItem | null;
     users: IUserItem[];
@@ -104,7 +103,6 @@ export type UserContextState = {
 };
 
 export const contextDefaultValues: UserContextState = {
-    basePath: "/",
     userType: "",
     userDetailed: null,
     userSimple: null,
