@@ -27,6 +27,7 @@ const getUserById = (uri: string) => axios.get<IUser>(uri);
 
 const getUserPage = (basePath: string, page: number, size: number, userType: string, organisationUnitId: string[], searchString: string) => {
     const baseUrl = `${basePath === '/' ? '' : basePath}/api/users`;
+    console.log("basepath in user repository: ", basePath);
     let queryParams = [];
 
     const sanitizedQueryString = searchString.trim();
