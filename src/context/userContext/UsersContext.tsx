@@ -64,6 +64,7 @@ const UsersProvider = ({ children, basePath }: Props) => {
     // }, [])
 
     const getUserById = (id: string) => {
+        console.log("get user by id in context with basepath ", basePath);
         if (basePath) {
             UserRepository.getUserById(id, basePath)
                 .then(response => {

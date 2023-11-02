@@ -17,7 +17,7 @@ function DetailsContainer() {
     useEffect(() => {
         console.log("DatailsContainer", "useEffetct", id);
         if (id) {
-            getUserById(`${id}`);
+            getUserById(id);
             getAssignmentPage(parseInt(id))
         }
         // eslint-disable-next-line
