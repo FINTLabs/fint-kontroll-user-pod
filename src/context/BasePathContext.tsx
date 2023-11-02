@@ -14,7 +14,7 @@ interface BasePathProviderProps {
 }
 
 export const BasePathProvider: React.FC<BasePathProviderProps> = ({ children }) => {
-    const [basePath, setBasePath] = useState<string>('');
+    const [basePath, setBasePath] = useState<string>('/');
 
     useEffect(() => {
         const getBasePath = () => {
@@ -28,9 +28,9 @@ export const BasePathProvider: React.FC<BasePathProviderProps> = ({ children }) 
                 });
         };
 
-        // if (process.env.NODE_ENV === 'production') {
+        if (process.env.NODE_ENV === 'production') {
             getBasePath();
-        // }
+        }
     }, []);
 
     return (

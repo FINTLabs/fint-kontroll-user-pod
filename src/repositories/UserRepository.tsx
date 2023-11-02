@@ -23,7 +23,10 @@ const getAssignmentPage = (basePath: string, id: number, assignmentPage: number,
     return axios.get<IAssignmentPage>(url);
 }
 
-const getUserById = (uri: string) => axios.get<IUser>(uri);
+const getUserById = (id: string, basePath:string) => {
+    const uri = `${basePath === '/' ? '' : basePath}/api/users${id}`;
+    return axios.get<IUser>(uri);
+};
 
 const getUserPage = (basePath: string, page: number, size: number, userType: string, organisationUnitId: string[], searchString: string) => {
     const baseUrl = `${basePath === '/' ? '' : basePath}/api/users`;
