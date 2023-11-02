@@ -93,6 +93,7 @@ const UsersProvider = ({children}: Props) => {
         }
 
         if (searchString.length >= 3 || searchString.length === 0) {
+            console.log("basepath in user context:", basePath);
             getUserPage();
         }
     }, [basePath, currentPage, size, userType, organisationUnitId, searchString, selected]);
