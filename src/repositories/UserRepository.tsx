@@ -25,7 +25,7 @@ const getAssignmentPage = (basePath: string, id: number, assignmentPage: number,
 
 const getUserById = (id: string, basePath:string) => {
     console.log("getting a user with basepath", basePath);
-    const uri = `${basePath === '/' ? '' : basePath}/api/users${id}`;
+    const uri = `${basePath === '/' ? '' : basePath}/api/users/${id}`;
     return axios.get<IUser>(uri);
 };
 
