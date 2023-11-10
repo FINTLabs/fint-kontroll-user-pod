@@ -3,7 +3,7 @@ import theme from "./theme";
 const style = {
     content: {
         [theme.breakpoints.up("sm")]: {
-            margin: theme.spacing(10)
+            margin: theme.spacing(4)
         },
     },
     filters: {
@@ -13,7 +13,7 @@ const style = {
         [theme.breakpoints.down("md")]: {
             display: "flex",
             flexDirection: "column",
-            margin: theme.spacing(10)
+            margin: theme.spacing(4)
         }
     },
     table: {
@@ -24,7 +24,6 @@ const style = {
         textTransform: 'none',
         height: 56,
         width: 300,
-       // color: 'grey',
     },
     addNewResourceSection: {
         display: "flex",
@@ -36,7 +35,8 @@ const style = {
             flexDirection: "column",
         }
     },
-    treecontent: {
+
+   /* treecontent: {
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
@@ -45,7 +45,7 @@ const style = {
         display: "flex",
         marginRight: "50px",
         marginTop: "20px",
-    },
+    },*/
 }
 
 export default style;
