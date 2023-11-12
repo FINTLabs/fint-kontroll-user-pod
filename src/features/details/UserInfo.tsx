@@ -4,7 +4,7 @@ import {useContext} from "react";
 import FormGroup from '@mui/material/FormGroup';
 import Grid from '@mui/material/Grid';
 import {UsersContext} from "../../context/userContext";
-import {AlternateEmail, Apartment, Person, PersonOutline, Phone} from "@mui/icons-material";
+import {AlternateEmail, Apartment, Person, PersonOutline} from "@mui/icons-material";
 
 function UserInfo() {
 
@@ -60,20 +60,6 @@ function UserInfo() {
                                 id={'orgUnitText'}
                                 primary={userDetailed?.organisationUnitName}
                                 secondary={'Enhet'}
-                            />
-                        </ListItem>
-                        <ListItem>
-                            <ListItemAvatar>
-                                <Avatar sx={{
-                                    border: '1px solid #4b727a',
-                                    backgroundColor: 'transparent'
-                                }}>
-                                    {<Phone sx={{color: '#4b727a'}}/>}
-                                </Avatar>
-                            </ListItemAvatar>
-                            <ListItemText
-                                primary={userDetailed?.mobilePhone}
-                                secondary={'Telefon'}
                             />
                         </ListItem>
                         <ListItem>

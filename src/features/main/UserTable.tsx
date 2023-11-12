@@ -6,9 +6,8 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import IconButton from '@mui/material/IconButton';
-import {SettingsRounded} from "@mui/icons-material";
-import {Alert, Box, TableFooter, TablePagination, Tooltip} from "@mui/material";
+import {InfoOutlined} from "@mui/icons-material";
+import {Alert, Box, Button, TableFooter, TablePagination} from "@mui/material";
 import {Link} from "react-router-dom";
 import {UsersContext} from "../../context/userContext/UsersContext";
 import DialogUnit from "./DialogUnit";
@@ -91,8 +90,22 @@ export const UserTable: any = () => {
                                 </TableCell>
                                 <TableCell align="left">{user.organisationUnitName}</TableCell>
                                 <TableCell align="left">{user.userType}</TableCell>
-                                <TableCell align="left">
-                                    <Tooltip title={"Se detaljer"}>
+                                <TableCell align="right">
+
+                                    <Button
+                                        id={`iconUserInfo-${user.id}`}
+                                        variant={"outlined"}
+                                        aria-label="Se info"
+                                        component={Link}
+                                        to={`info/${user.id}`}
+                                        onClick={handleClick}
+                                        color={"primary"}
+                                        endIcon={<InfoOutlined/>}
+                                    >
+                                        Se info
+                                    </Button>
+
+                                    {/*<Tooltip title={"Se detaljer"}>
                                         <IconButton
                                             id={`iconUserInfo-${user.id}`}
                                             aria-label="informasjon"
@@ -102,7 +115,7 @@ export const UserTable: any = () => {
                                         >
                                             <SettingsRounded color={"primary"}/>
                                         </IconButton>
-                                    </Tooltip>
+                                    </Tooltip>*/}
                                 </TableCell>
                             </TableRow>
                         ))}

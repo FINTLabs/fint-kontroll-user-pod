@@ -3,7 +3,7 @@ import {UserTable} from "./UserTable";
 import * as React from "react";
 import style from "../../template/style";
 import UsersProvider from "../../context/userContext";
-import { useBasePath } from '../../context/BasePathContext';
+import {useBasePath} from '../../context/BasePathContext';
 
 function MainContainer() {
     const basePath = useBasePath() || '';
@@ -12,7 +12,7 @@ function MainContainer() {
         <Box sx={style.content}>
             <Box sx={style.table}>
                 <UsersProvider basePath={basePath}>
-                <UserTable/>
+                    <UserTable/>
                 </UsersProvider>
             </Box>
         </Box>
