@@ -53,7 +53,7 @@ function UnitSelectDialog({open, onClose}: DialogUnitProps) {
                 newSelected = selectedOrgUnits;
             }
         }
-        console.log(newSelected, 'Valgte')
+       // console.log(newSelected, 'Valgte')
         setSelectedOrgUnits(newSelected);
     };
 
@@ -157,7 +157,7 @@ function UnitSelectDialog({open, onClose}: DialogUnitProps) {
                 <div>
                     <FormControlLabel
                         control={<Switch/>}
-                        label="Aggregated"
+                        label="Inkluder underliggende enheter"
                         checked={aggregated}
                         onChange={handleAggregationToggle}
                         id="aggregatedCheckbox"

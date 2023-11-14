@@ -3,7 +3,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import {Button} from "@mui/material";
 import SearchField from "./SearchField";
-import FilterType from "./FilterType";
+//import FilterType from "./FilterType";
 import {Apartment} from "@mui/icons-material";
 import style from "../../template/style";
 
@@ -29,7 +29,7 @@ function CustomTableToolbar(props: CustomTableToolbarProps) {
                 Brukere
             </Typography>
             <SearchField/>
-            <FilterType/>
+           {/* <FilterType/>*/}
             <Button
                 id={'selectUnitsIcon'}
                 variant="outlined"
