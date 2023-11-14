@@ -26,7 +26,7 @@ export default function SearchFieldUser() {
     };
 
     return (
-        <FormControl style={{minWidth: 220}} sx={{ml: '2rem', my: '1rem'}}>
+        <FormControl style={{minWidth: 220}} sx={{mr: '2rem', my: '1rem'}}>
             <TextField
                 id="outlined-search"
                 label="Søk"
