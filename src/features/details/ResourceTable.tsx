@@ -85,6 +85,7 @@ export const ResourceTable: any = () => {
                                         'aria-label': 'rows per page',
                                     },
                                     native: true,
+                                    autoComplete: "off"
                                 }}
                                 onPageChange={handleChangePage}
                                 onRowsPerPageChange={handleChangeRowsPerPage}

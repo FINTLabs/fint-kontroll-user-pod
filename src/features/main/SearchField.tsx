@@ -33,6 +33,7 @@ export default function SearchFieldUser() {
                 role="search"
                 onChange={handleChange}
                 value={searchString}
+                autoComplete="off"
                 InputLabelProps={{
                     shrink: true,
                 }}

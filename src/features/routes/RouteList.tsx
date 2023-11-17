@@ -8,10 +8,12 @@ const RouteList = () => {
     const basePath = useBasePath() || '';
 
     return (
-        <Routes>
-            <Route path={`${basePath}/brukere`} element={<MainContainer/>}/>
-            <Route path={`${basePath}/brukere/info/:id`} element={<DetailsTempContainer/>}/>
-        </Routes>
+        <main>
+            <Routes>
+                <Route path={`${basePath}/brukere`} element={<MainContainer/>}/>
+                <Route path={`${basePath}/brukere/info/:id`} element={<DetailsTempContainer/>}/>
+            </Routes>
+        </main>
     )
 }
 
