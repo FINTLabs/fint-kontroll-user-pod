@@ -19,7 +19,7 @@ env:
 
 
 jobs:
-  build-and-deploy:
+  build-and-deploy-to-cdn:
     runs-on: ubuntu-latest
     outputs:
       image-tag: ${{ steps.meta.outputs.tags }}
