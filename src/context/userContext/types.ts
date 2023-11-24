@@ -85,7 +85,7 @@ export type UserContextState = {
     updateUserType: (userType: string) => void;
     getOrgName: (orgName: string) => void;
     organisationUnitId: string;
-    updateOrganisationUnitId: (id: number) => void;
+    updateOrganisationUnitId: (id: string) => void;
     unitTree: IUnitTree | null;
     setUnitTree: (unitTree: IUnitTree) => void;
     selected: string[];
@@ -114,7 +114,7 @@ export const contextDefaultValues: UserContextState = {
     orgUnits: [],
     orgName: "",
     orgUnitPage: null,
-    organisationUnitId: '',
+    organisationUnitId: "",
     searchValue: () => {
     },
     getUserById: () => {

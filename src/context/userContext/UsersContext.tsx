@@ -36,7 +36,7 @@ const UsersProvider = ({ children, basePath }: Props) => {
     const [searchString, setSearchString] = useState<string>("");
     const [orgUnits] = useState<IOrgUnit[]>(contextDefaultValues.orgUnits);
     const [orgName, setOrgName] = useState<string>(contextDefaultValues.orgName);
-    const [organisationUnitId, setOrganisationUnitId] = useState<number>(contextDefaultValues.organisationUnitId);
+    const [organisationUnitId, setOrganisationUnitId] = useState<string>(contextDefaultValues.organisationUnitId);
     const [unitTree, setUnitTree] = useState<IUnitTree | null>(contextDefaultValues.unitTree);
     const [selected, setSelected] = useState<string[]>(contextDefaultValues.selected);
     const [resources] = useState<IResource[]>(contextDefaultValues.resources);
@@ -115,7 +115,7 @@ const UsersProvider = ({ children, basePath }: Props) => {
         setUserType(userType)
     }
 
-    const updateOrganisationUnitId = (id: number) => {
+    const updateOrganisationUnitId = (id: string) => {
         setOrganisationUnitId(id);
     }
 
