@@ -11,7 +11,7 @@ export interface IUserItem {
     "id": number;
     "fullName": string;
     "organisationUnitName": string;
-    "organisationUnitId": number;
+    "organisationUnitId": string;
     "userType": string;
 }
 
@@ -84,7 +84,7 @@ export type UserContextState = {
     //getUserPage: () => void;
     updateUserType: (userType: string) => void;
     getOrgName: (orgName: string) => void;
-    organisationUnitId: number;
+    organisationUnitId: string;
     updateOrganisationUnitId: (id: number) => void;
     unitTree: IUnitTree | null;
     setUnitTree: (unitTree: IUnitTree) => void;
@@ -114,7 +114,7 @@ export const contextDefaultValues: UserContextState = {
     orgUnits: [],
     orgName: "",
     orgUnitPage: null,
-    organisationUnitId: 0,
+    organisationUnitId: '',
     searchValue: () => {
     },
     getUserById: () => {
