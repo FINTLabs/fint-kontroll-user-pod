@@ -66,7 +66,7 @@ export const ResourceTable: any = () => {
                                     {resources.resourceType}
                                 </TableCell>
                                 <TableCell align="left">
-
+                                    {resources.assignerDisplayname ? resources.assignerDisplayname : resources.assignerUsername}
                                 </TableCell>
                             </TableRow>
                         ))}

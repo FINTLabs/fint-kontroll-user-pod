@@ -56,6 +56,8 @@ export interface IResource {
     resourceId: string;
     resourceName: string;
     resourceType: string;
+    assignerUsername: string,
+    assignerDisplayname: string,
 }
 
 export interface IAssignmentPage {
